@@ -1,8 +1,10 @@
 from decimal import Decimal
+from pathlib import Path
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from app.core.config import get_settings
 from app.modules.kategori.repository import get_by_id as get_kategori_by_id
 from app.modules.produk import repository
 from app.modules.produk.model import Produk
@@ -13,6 +15,9 @@ from app.modules.produk.schema import (
     ProdukUpdate,
 )
 from app.shared.exceptions import BadRequestException, NotFoundException
+from app.shared.file_validator import generate_safe_filename, validate_file_size
+
+settings = get_settings()
 
 
 def list_produk(
@@ -95,6 +100,36 @@ def update_produk_stok(db: Session, produk_id: int, payload: ProdukStokUpdate) -
     db.commit()
     db.refresh(produk)
     return produk
+
+
+def update_produk_gambar(
+    db: Session,
+    produk_id: int,
+    original_filename: str,
+    content: bytes,
+) -> Produk:
+    produk = get_produk(db, produk_id)
+    validate_file_size(len(content))
+
+    safe_filename = generate_safe_filename(original_filename)
+    upload_dir = settings.upload_path / "produk"
+    upload_dir.mkdir(parents=True, exist_ok=True)
+    path = upload_dir / safe_filename
+    old_path = Path(produk.gambar) if produk.gambar else None
+
+    try:
+        path.write_bytes(content)
+        produk.gambar = str(path)
+        db.commit()
+        db.refresh(produk)
+        if old_path and old_path.exists() and old_path != path:
+            old_path.unlink()
+        return produk
+    except Exception:
+        db.rollback()
+        if path.exists():
+            path.unlink()
+        raise
 
 
 def delete_produk(db: Session, produk_id: int) -> None:
