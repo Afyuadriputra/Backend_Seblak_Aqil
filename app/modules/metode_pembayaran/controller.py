@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query, status
+from fastapi import APIRouter, Depends, File, Query, UploadFile, status
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
@@ -15,9 +15,11 @@ from app.modules.metode_pembayaran.service import (
     get_metode,
     list_metode,
     list_metode_aktif,
+    update_gambar_qr,
     update_metode,
     update_status,
 )
+from app.shared.file_validator import validate_upload_file
 from app.shared.pagination import calculate_offset, pagination_meta
 from app.shared.response import success_response
 
@@ -93,6 +95,26 @@ def update_status_endpoint(
     metode = update_status(db, metode_id, payload)
     return success_response(
         "Status metode pembayaran berhasil diperbarui",
+        MetodePembayaranResponse.model_validate(metode).model_dump(mode="json"),
+    )
+
+
+@router.patch("/{metode_id}/gambar-qr")
+async def update_gambar_qr_endpoint(
+    metode_id: int,
+    file: UploadFile = File(...),
+    db: Session = Depends(get_database),
+    _: Admin = Depends(get_current_admin),
+):
+    validate_upload_file(file)
+    metode = update_gambar_qr(
+        db,
+        metode_id,
+        original_filename=file.filename or "qris.jpg",
+        content=await file.read(),
+    )
+    return success_response(
+        "Gambar QR berhasil diperbarui",
         MetodePembayaranResponse.model_validate(metode).model_dump(mode="json"),
     )
 

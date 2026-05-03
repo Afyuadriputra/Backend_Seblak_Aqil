@@ -1,6 +1,9 @@
+from pathlib import Path
+
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from app.core.config import get_settings
 from app.modules.metode_pembayaran import repository
 from app.modules.metode_pembayaran.model import MetodePembayaran
 from app.modules.metode_pembayaran.schema import (
@@ -9,6 +12,9 @@ from app.modules.metode_pembayaran.schema import (
     MetodePembayaranUpdate,
 )
 from app.shared.exceptions import BadRequestException, NotFoundException
+from app.shared.file_validator import generate_safe_filename, validate_file_size
+
+settings = get_settings()
 
 
 def list_metode(
@@ -60,6 +66,36 @@ def update_status(
     db.commit()
     db.refresh(metode)
     return metode
+
+
+def update_gambar_qr(
+    db: Session,
+    metode_id: int,
+    original_filename: str,
+    content: bytes,
+) -> MetodePembayaran:
+    metode = get_metode(db, metode_id)
+    validate_file_size(len(content))
+
+    safe_filename = generate_safe_filename(original_filename)
+    upload_dir = settings.upload_path / "metode_pembayaran"
+    upload_dir.mkdir(parents=True, exist_ok=True)
+    path = upload_dir / safe_filename
+    old_path = Path(metode.gambar_qr) if metode.gambar_qr else None
+
+    try:
+        path.write_bytes(content)
+        metode.gambar_qr = str(path)
+        db.commit()
+        db.refresh(metode)
+        if old_path and old_path.exists() and old_path != path:
+            old_path.unlink()
+        return metode
+    except Exception:
+        db.rollback()
+        if path.exists():
+            path.unlink()
+        raise
 
 
 def delete_metode(db: Session, metode_id: int) -> None:

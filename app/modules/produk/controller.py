@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from fastapi import APIRouter, Depends, Query, status
+from fastapi import APIRouter, Depends, File, Query, UploadFile, status
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
@@ -18,9 +18,11 @@ from app.modules.produk.service import (
     get_produk,
     list_produk,
     update_produk,
+    update_produk_gambar,
     update_produk_status,
     update_produk_stok,
 )
+from app.shared.file_validator import validate_upload_file
 from app.shared.pagination import calculate_offset, pagination_meta
 from app.shared.response import success_response
 
@@ -153,6 +155,26 @@ def update_produk_stok_endpoint(
     produk = update_produk_stok(db, produk_id, payload)
     return success_response(
         "Stok produk berhasil diperbarui",
+        ProdukResponse.model_validate(produk).model_dump(mode="json"),
+    )
+
+
+@router.patch("/{produk_id}/gambar")
+async def update_produk_gambar_endpoint(
+    produk_id: int,
+    file: UploadFile = File(...),
+    db: Session = Depends(get_database),
+    _: Admin = Depends(get_current_admin),
+):
+    validate_upload_file(file)
+    produk = update_produk_gambar(
+        db,
+        produk_id,
+        original_filename=file.filename or "produk.jpg",
+        content=await file.read(),
+    )
+    return success_response(
+        "Gambar produk berhasil diperbarui",
         ProdukResponse.model_validate(produk).model_dump(mode="json"),
     )
 
