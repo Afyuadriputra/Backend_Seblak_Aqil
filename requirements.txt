@@ -1,0 +1,56 @@
+# =========================
+# Core Backend
+# =========================
+fastapi
+uvicorn[standard]
+
+# =========================
+# Database & Migration
+# =========================
+sqlalchemy
+pymysql
+alembic
+
+# =========================
+# Environment & Config
+# =========================
+pydantic-settings
+python-dotenv
+email-validator
+
+# =========================
+# Security
+# =========================
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt
+
+# =========================
+# File Upload
+# =========================
+python-multipart
+
+# =========================
+# Rate Limiting
+# =========================
+slowapi
+
+# =========================
+# Testing
+# =========================
+pytest
+pytest-cov
+httpx
+faker
+
+# =========================
+# Code Quality
+# =========================
+ruff
+
+# =========================
+# Documentation & Visualization
+# =========================
+mkdocs
+mkdocs-material
+mkdocs-mermaid2-plugin

@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+# Jangan push virtual environment ke Git
+
+# Configuration & Secrets
+.env
+# File .env mengandung database URL & API Key, WAJIB di-ignore.
+# .env.example tetap di-push sebagai template.
+
+# Database
+*.db
+*.sqlite3
+# File dev.db kamu di-ignore agar data lokal tidak masuk ke cloud.
+
+# Alembic
+# Jangan meng-ignore folder alembic/versions karena itu riwayat migrasi.
+# Tapi, file-file log atau temporary bisa di-ignore.
+alembic/parts/
+
+# Testing & Linting
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Documentation & Build
+docs/_build/
+site/
+# Folder site hasil build dari mkdocs biasanya tidak perlu di-push.
+
+# OS & IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Project Specific
+storage/
+# Folder storage biasanya berisi file upload yang tidak perlu masuk Git.
+# Jika ingin foldernya ada tapi isinya kosong, masukkan file .gitkeep di dalamnya.
