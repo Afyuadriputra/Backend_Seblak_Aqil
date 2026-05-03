@@ -35,3 +35,32 @@ class RiwayatStokResponse(RiwayatStokCreate):
     diperbarui_pada: datetime | None = None
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class RiwayatStokRequest(BaseModel):
+    produk_id: int = Field(..., gt=0)
+    jenis_perubahan: JenisPerubahanStok
+    jumlah_perubahan: int = Field(..., gt=0)
+    stok_baru: int | None = Field(default=None, ge=0)
+    keterangan: str | None = None
+
+    @model_validator(mode="after")
+    def validate_adjustment_target(self):
+        if self.jenis_perubahan == JenisPerubahanStok.PENYESUAIAN and self.stok_baru is None:
+            raise ValueError("stok_baru wajib diisi untuk penyesuaian")
+        return self
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "examples": [
+                {"produk_id": 1, "jenis_perubahan": "masuk", "jumlah_perubahan": 10},
+                {"produk_id": 1, "jenis_perubahan": "keluar", "jumlah_perubahan": 2},
+                {
+                    "produk_id": 1,
+                    "jenis_perubahan": "penyesuaian",
+                    "jumlah_perubahan": 1,
+                    "stok_baru": 20,
+                },
+            ]
+        }
+    )
