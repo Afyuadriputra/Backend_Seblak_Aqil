@@ -15,7 +15,19 @@ class ProdukBase(BaseModel):
 
 
 class ProdukCreate(ProdukBase):
-    pass
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "kategori_id": 1,
+                "nama_produk": "Seblak Original",
+                "deskripsi": "Seblak original pedas",
+                "harga": "15000.00",
+                "stok": 20,
+                "gambar": "seblak.jpg",
+                "status_tersedia": True,
+            }
+        }
+    )
 
 
 class ProdukUpdate(BaseModel):
@@ -31,9 +43,13 @@ class ProdukUpdate(BaseModel):
 class ProdukStatusUpdate(BaseModel):
     status_tersedia: bool
 
+    model_config = ConfigDict(json_schema_extra={"example": {"status_tersedia": False}})
+
 
 class ProdukStokUpdate(BaseModel):
     stok: int = Field(..., ge=0)
+
+    model_config = ConfigDict(json_schema_extra={"example": {"stok": 25}})
 
 
 class ProdukResponse(ProdukBase):
