@@ -27,6 +27,8 @@ Migration tambahan:
 - `9f3a2b1c4d5e_add_audit_log_table.py`
 - Membuat tabel `audit_log`.
 
+Fitur dashboard summary, produk stok rendah, response nama kategori/metode pembayaran, upload gambar produk, dan upload gambar QRIS tidak membutuhkan migration baru karena memakai tabel dan kolom yang sudah ada.
+
 Rollback audit log:
 
 ```bash

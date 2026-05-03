@@ -33,3 +33,7 @@ Test integration `tests/modules/test_prd_flow.py` mencakup:
 - verifikasi pembayaran
 - riwayat stok
 - audit log
+- dashboard summary
+- produk stok rendah
+- upload gambar produk
+- upload gambar QRIS/metode pembayaran
