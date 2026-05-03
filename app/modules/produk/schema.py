@@ -54,6 +54,7 @@ class ProdukStokUpdate(BaseModel):
 
 class ProdukResponse(ProdukBase):
     id: int
+    nama_kategori: str | None = None
     dibuat_pada: datetime | None = None
     diperbarui_pada: datetime | None = None
 

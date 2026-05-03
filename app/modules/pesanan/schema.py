@@ -74,6 +74,8 @@ class PesananResponse(BaseModel):
     id: int
     pelanggan_id: int
     metode_pembayaran_id: int
+    nama_metode_pembayaran: str | None = None
+    tipe_metode_pembayaran: str | None = None
     kode_pesanan: str
     tanggal_pesanan: datetime
     total_harga: Decimal
