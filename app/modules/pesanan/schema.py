@@ -19,18 +19,41 @@ class PesananCreate(BaseModel):
     catatan: str | None = None
     items: list[PesananItemCreate] = Field(..., min_length=1)
 
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "nama_pelanggan": "Budi",
+                "no_telepon": "08123456789",
+                "alamat": "Jl. Mawar No. 10",
+                "metode_pembayaran_id": 1,
+                "catatan": "Pedas level 3",
+                "items": [{"produk_id": 1, "jumlah": 2}],
+            }
+        }
+    )
+
 
 class PesananLacakRequest(BaseModel):
     kode_pesanan: str = Field(..., min_length=1, max_length=50)
     no_telepon: str = Field(..., min_length=8, max_length=20)
 
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {"kode_pesanan": "ORD-20260504-ABC12345", "no_telepon": "08123456789"}
+        }
+    )
+
 
 class PesananStatusPembayaranUpdate(BaseModel):
     status_pembayaran: StatusPembayaran
 
+    model_config = ConfigDict(json_schema_extra={"example": {"status_pembayaran": "diterima"}})
+
 
 class PesananStatusPesananUpdate(BaseModel):
     status_pesanan: StatusPesanan
+
+    model_config = ConfigDict(json_schema_extra={"example": {"status_pesanan": "diproses"}})
 
 
 class DetailPesananResponse(BaseModel):

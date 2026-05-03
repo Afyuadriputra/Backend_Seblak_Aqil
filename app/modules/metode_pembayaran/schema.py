@@ -27,7 +27,20 @@ class MetodePembayaranBase(BaseModel):
 
 
 class MetodePembayaranCreate(MetodePembayaranBase):
-    pass
+    model_config = ConfigDict(
+        json_schema_extra={
+            "examples": [
+                {"nama_metode": "QRIS", "tipe_metode": "qris", "gambar_qr": "qris.png"},
+                {
+                    "nama_metode": "Transfer BCA",
+                    "tipe_metode": "transfer_bank",
+                    "nama_bank": "BCA",
+                    "nomor_rekening": "1234567890",
+                    "nama_pemilik_rekening": "Seblak Rika",
+                },
+            ]
+        }
+    )
 
 
 class MetodePembayaranUpdate(BaseModel):
