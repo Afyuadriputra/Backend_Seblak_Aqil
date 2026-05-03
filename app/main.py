@@ -41,12 +41,27 @@ def register_routes(app: FastAPI) -> None:
             },
         )
 
-    # Nanti setelah module controller siap:
-    # from app.modules.auth.controller import router as auth_router
-    # from app.modules.produk.controller import router as produk_router
-    #
-    # app.include_router(auth_router)
-    # app.include_router(produk_router)
+    from app.modules.admin.controller import router as admin_router
+    from app.modules.audit_log.controller import router as audit_log_router
+    from app.modules.auth.controller import router as auth_router
+    from app.modules.bukti_pembayaran.controller import router as bukti_pembayaran_router
+    from app.modules.kategori.controller import router as kategori_router
+    from app.modules.metode_pembayaran.controller import router as metode_pembayaran_router
+    from app.modules.pelanggan.controller import router as pelanggan_router
+    from app.modules.pesanan.controller import router as pesanan_router
+    from app.modules.produk.controller import router as produk_router
+    from app.modules.riwayat_stok.controller import router as riwayat_stok_router
+
+    app.include_router(auth_router)
+    app.include_router(admin_router)
+    app.include_router(kategori_router)
+    app.include_router(produk_router)
+    app.include_router(metode_pembayaran_router)
+    app.include_router(pelanggan_router)
+    app.include_router(pesanan_router)
+    app.include_router(bukti_pembayaran_router)
+    app.include_router(riwayat_stok_router)
+    app.include_router(audit_log_router)
 
 
 app = create_app()
