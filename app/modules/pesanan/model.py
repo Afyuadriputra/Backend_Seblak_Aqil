@@ -83,6 +83,14 @@ class Pesanan(IdMixin, TimestampMixin, Base):
         cascade="all, delete-orphan",
     )
 
+    @property
+    def nama_metode_pembayaran(self) -> str | None:
+        return self.metode_pembayaran.nama_metode if self.metode_pembayaran else None
+
+    @property
+    def tipe_metode_pembayaran(self) -> str | None:
+        return self.metode_pembayaran.tipe_metode if self.metode_pembayaran else None
+
     __table_args__ = (
         Index("idx_lacak_pesanan", "kode_pesanan", "no_telepon_pelanggan"),
         Index("idx_pesanan_status_pembayaran", "status_pembayaran"),

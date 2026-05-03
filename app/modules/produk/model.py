@@ -46,6 +46,10 @@ class Produk(IdMixin, TimestampMixin, Base):
         cascade="save-update, merge",
     )
 
+    @property
+    def nama_kategori(self) -> str | None:
+        return self.kategori.nama_kategori if self.kategori else None
+
     __table_args__ = (
         Index("idx_produk_kategori_id", "kategori_id"),
         Index("idx_produk_status_tersedia", "status_tersedia"),
