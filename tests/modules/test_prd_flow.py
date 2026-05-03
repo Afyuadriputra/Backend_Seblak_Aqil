@@ -98,6 +98,23 @@ def test_guest_checkout_upload_verify_and_stock_flow(flow_client):
     assert produk_response.status_code == 201
     produk_id = produk_response.json()["data"]["id"]
 
+    upload_produk_gambar_response = client.patch(
+        f"/produk/{produk_id}/gambar",
+        headers=headers,
+        files={"file": ("produk.png", b"fake-product-image", "image/png")},
+    )
+    assert upload_produk_gambar_response.status_code == 200
+    assert upload_produk_gambar_response.json()["data"]["nama_kategori"] == "Seblak"
+    assert upload_produk_gambar_response.json()["data"]["gambar"]
+
+    upload_qr_response = client.patch(
+        f"/metode-pembayaran/{metode_id}/gambar-qr",
+        headers=headers,
+        files={"file": ("qris.png", b"fake-qris-image", "image/png")},
+    )
+    assert upload_qr_response.status_code == 200
+    assert upload_qr_response.json()["data"]["gambar_qr"]
+
     checkout_response = client.post(
         "/pesanan",
         json={
@@ -145,6 +162,15 @@ def test_guest_checkout_upload_verify_and_stock_flow(flow_client):
     )
     assert verify_response.status_code == 200
     assert verify_response.json()["data"]["status_pembayaran"] == "diterima"
+    assert verify_response.json()["data"]["nama_metode_pembayaran"] == "Transfer BCA"
+
+    complete_response = client.patch(
+        f"/pesanan/{checkout_data['id']}/status-pesanan",
+        json={"status_pesanan": "selesai"},
+        headers=headers,
+    )
+    assert complete_response.status_code == 200
+    assert complete_response.json()["data"]["status_pesanan"] == "selesai"
 
     riwayat_response = client.post(
         "/riwayat-stok",
@@ -159,6 +185,18 @@ def test_guest_checkout_upload_verify_and_stock_flow(flow_client):
     assert riwayat_response.status_code == 201
     assert riwayat_response.json()["data"]["stok_sebelum"] == 8
     assert riwayat_response.json()["data"]["stok_sesudah"] == 7
+
+    dashboard_response = client.get("/dashboard/summary?stok_threshold=7", headers=headers)
+    assert dashboard_response.status_code == 200
+    dashboard_data = dashboard_response.json()["data"]
+    assert dashboard_data["total_produk"] == 1
+    assert dashboard_data["pesanan_selesai"] == 1
+    assert Decimal(dashboard_data["total_omzet"]) == Decimal("30000.00")
+    assert dashboard_data["produk_stok_rendah"] == 1
+
+    low_stock_response = client.get("/dashboard/produk-stok-rendah?threshold=7", headers=headers)
+    assert low_stock_response.status_code == 200
+    assert low_stock_response.json()["data"]["items"][0]["nama_kategori"] == "Seblak"
 
     audit_response = client.get("/audit-log", headers=headers)
     assert audit_response.status_code == 200

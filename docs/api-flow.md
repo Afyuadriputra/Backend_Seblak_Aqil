@@ -65,3 +65,29 @@ Authorization: Bearer <access_token>
 | GET | `/riwayat-stok/produk/{produk_id}` | Admin | List riwayat stok produk. Filter: `admin_id`, `jenis_perubahan`. |
 | POST | `/riwayat-stok` | Admin | Stok masuk/keluar/penyesuaian, update stok produk dan audit stok. |
 | GET | `/audit-log` | Admin | List audit log. Filter: `admin_id`, `aksi`, `entity`, `entity_id`. |
+
+## Dashboard Admin
+
+| Method | Endpoint | Akses | Fungsi |
+| --- | --- | --- | --- |
+| GET | `/dashboard/summary` | Admin | Ringkasan dashboard. Filter tanggal: `tanggal_dari`, `tanggal_sampai`; stok rendah: `stok_threshold`. |
+| GET | `/dashboard/produk-stok-rendah` | Admin | Produk stok rendah. Query: `threshold`, `limit`. |
+
+Ringkasan dashboard berisi:
+
+- total produk
+- total pelanggan
+- total pesanan
+- total pesanan selesai
+- pembayaran menunggu verifikasi
+- produk stok rendah
+- total omzet dari pesanan dengan `status_pembayaran=diterima`
+
+## Media Upload
+
+| Method | Endpoint | Akses | Fungsi |
+| --- | --- | --- | --- |
+| PATCH | `/produk/{produk_id}/gambar` | Admin | Upload/update gambar produk. |
+| PATCH | `/metode-pembayaran/{metode_id}/gambar-qr` | Admin | Upload/update gambar QRIS/metode pembayaran. |
+
+Upload memakai multipart form field `file`. File dibatasi jpg, jpeg, png, webp dan ukuran maksimal mengikuti `MAX_UPLOAD_SIZE_MB`.

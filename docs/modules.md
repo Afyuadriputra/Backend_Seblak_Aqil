@@ -32,12 +32,18 @@ CRUD produk, status tersedia, stok, dan filter:
 
 Public hanya melihat produk tersedia.
 
+Response produk menyertakan `nama_kategori` agar dashboard tidak perlu request kategori terpisah.
+
+Admin dapat upload gambar produk lewat `PATCH /produk/{produk_id}/gambar`.
+
 ## Metode Pembayaran
 
 CRUD metode pembayaran. Validasi:
 
 - `qris` wajib `gambar_qr`.
 - `transfer_bank` wajib `nama_bank`, `nomor_rekening`, `nama_pemilik_rekening`.
+
+Admin dapat upload gambar QR/metode pembayaran lewat `PATCH /metode-pembayaran/{metode_id}/gambar-qr`.
 
 ## Pelanggan
 
@@ -57,6 +63,8 @@ Checkout public melakukan:
 8. Commit transaksi.
 
 Admin dapat filter pesanan berdasarkan status, kode, telepon, dan tanggal.
+
+Response pesanan menyertakan `nama_metode_pembayaran` dan `tipe_metode_pembayaran` agar dashboard dapat menampilkan metode pembayaran langsung.
 
 ## Bukti Pembayaran
 
@@ -82,3 +90,12 @@ Audit log mencatat:
 - perubahan status pesanan
 
 Endpoint admin: `GET /audit-log`.
+
+## Dashboard
+
+Modul dashboard menyediakan:
+
+- `GET /dashboard/summary`
+- `GET /dashboard/produk-stok-rendah`
+
+Summary mendukung filter tanggal untuk ringkasan pesanan dan omzet.

@@ -11,6 +11,7 @@
 ## Performance
 
 - Query list memakai pagination `page` dan `limit`.
+- Dashboard summary memakai query agregat SQL (`count`, `sum`) agar tidak load semua row ke memory.
 - Pesanan detail memakai eager loading untuk mengurangi N+1.
 - Checkout mengambil semua produk item dalam satu query.
 - Filter memakai kolom yang sudah/indexed saat relevan: status pesanan, status pembayaran, kode pesanan, nomor telepon, produk kategori/status.
@@ -22,3 +23,5 @@
 - Pesanan: `status_pembayaran`, `status_pesanan`, `kode_pesanan`, `no_telepon`, `tanggal_dari`, `tanggal_sampai`.
 - Riwayat stok: `produk_id`, `admin_id`, `jenis_perubahan`.
 - Audit log: `admin_id`, `aksi`, `entity`, `entity_id`.
+- Dashboard summary: `tanggal_dari`, `tanggal_sampai`, `stok_threshold`.
+- Produk stok rendah: `threshold`, `limit`.
