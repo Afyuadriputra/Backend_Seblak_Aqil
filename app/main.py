@@ -42,6 +42,7 @@ def register_routes(app: FastAPI) -> None:
         )
 
     from app.modules.admin.controller import router as admin_router
+    from app.modules.admin_panel.controller import router as admin_panel_router
     from app.modules.audit_log.controller import router as audit_log_router
     from app.modules.auth.controller import router as auth_router
     from app.modules.bukti_pembayaran.controller import router as bukti_pembayaran_router
@@ -54,6 +55,7 @@ def register_routes(app: FastAPI) -> None:
     from app.modules.riwayat_stok.controller import router as riwayat_stok_router
 
     app.include_router(auth_router)
+    app.include_router(admin_panel_router)
     app.include_router(admin_router)
     app.include_router(kategori_router)
     app.include_router(produk_router)
