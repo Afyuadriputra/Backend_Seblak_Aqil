@@ -3,7 +3,12 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 
 from app.modules.dashboard import repository
-from app.modules.dashboard.schema import DashboardSummaryResponse, ProdukStokRendahResponse
+from app.modules.dashboard.schema import (
+    DashboardPesananTimelineItemResponse,
+    DashboardPesananTimelineResponse,
+    DashboardSummaryResponse,
+    ProdukStokRendahResponse,
+)
 from app.modules.produk.schema import ProdukResponse
 
 
@@ -25,6 +30,12 @@ def get_summary(
         ),
         produk_stok_rendah=repository.count_produk_stok_rendah(db, stok_threshold),
         total_omzet=repository.sum_omzet(db, tanggal_dari, tanggal_sampai),
+        aktivitas_pesanan_terbaru=get_aktivitas_pesanan_terbaru(
+            db,
+            limit=5,
+            tanggal_dari=tanggal_dari,
+            tanggal_sampai=tanggal_sampai,
+        ).items,
         tanggal_dari=tanggal_dari,
         tanggal_sampai=tanggal_sampai,
     )
@@ -39,4 +50,21 @@ def get_produk_stok_rendah(
     return ProdukStokRendahResponse(
         threshold=threshold,
         items=[ProdukResponse.model_validate(item) for item in items],
+    )
+
+
+def get_aktivitas_pesanan_terbaru(
+    db: Session,
+    limit: int = 10,
+    tanggal_dari: datetime | None = None,
+    tanggal_sampai: datetime | None = None,
+) -> DashboardPesananTimelineResponse:
+    items = repository.list_aktivitas_pesanan_terbaru(
+        db,
+        limit=limit,
+        tanggal_dari=tanggal_dari,
+        tanggal_sampai=tanggal_sampai,
+    )
+    return DashboardPesananTimelineResponse(
+        items=[DashboardPesananTimelineItemResponse(**item) for item in items],
     )

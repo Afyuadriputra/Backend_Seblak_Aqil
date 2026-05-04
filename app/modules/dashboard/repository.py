@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session, selectinload
 
 from app.modules.pelanggan.model import Pelanggan
 from app.modules.pesanan.model import Pesanan
+from app.modules.pesanan_timeline.model import PesananTimeline
 from app.modules.produk.model import Produk
 from app.shared.enums import StatusPembayaran, StatusPesanan
 
@@ -91,9 +92,49 @@ def list_produk_stok_rendah(db: Session, threshold: int, limit: int = 20) -> lis
     )
 
 
+def list_aktivitas_pesanan_terbaru(
+    db: Session,
+    limit: int = 10,
+    tanggal_dari: datetime | None = None,
+    tanggal_sampai: datetime | None = None,
+) -> list[dict]:
+    stmt = (
+        select(
+            PesananTimeline.id,
+            PesananTimeline.pesanan_id,
+            Pesanan.kode_pesanan,
+            Pesanan.nama_pelanggan,
+            PesananTimeline.tipe_event,
+            PesananTimeline.status,
+            PesananTimeline.judul,
+            PesananTimeline.deskripsi,
+            PesananTimeline.waktu,
+            PesananTimeline.actor_type,
+            PesananTimeline.admin_id,
+        )
+        .join(Pesanan, Pesanan.id == PesananTimeline.pesanan_id)
+        .order_by(PesananTimeline.waktu.desc(), PesananTimeline.id.desc())
+        .limit(limit)
+    )
+    stmt = apply_timeline_date_filter(stmt, tanggal_dari, tanggal_sampai)
+    return [dict(row) for row in db.execute(stmt).mappings()]
+
+
 def apply_date_filter(stmt, tanggal_dari: datetime | None, tanggal_sampai: datetime | None):
     if tanggal_dari is not None:
         stmt = stmt.where(Pesanan.tanggal_pesanan >= tanggal_dari)
     if tanggal_sampai is not None:
         stmt = stmt.where(Pesanan.tanggal_pesanan <= tanggal_sampai)
+    return stmt
+
+
+def apply_timeline_date_filter(
+    stmt,
+    tanggal_dari: datetime | None,
+    tanggal_sampai: datetime | None,
+):
+    if tanggal_dari is not None:
+        stmt = stmt.where(PesananTimeline.waktu >= tanggal_dari)
+    if tanggal_sampai is not None:
+        stmt = stmt.where(PesananTimeline.waktu <= tanggal_sampai)
     return stmt
