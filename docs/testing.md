@@ -37,3 +37,28 @@ Test integration `tests/modules/test_prd_flow.py` mencakup:
 - produk stok rendah
 - upload gambar produk
 - upload gambar QRIS/metode pembayaran
+
+## Manual Admin Panel Check
+
+Jalankan server:
+
+```bash
+.venv/Scripts/python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+Buka:
+
+```text
+http://127.0.0.1:8000/admin
+```
+
+Cek manual:
+
+- login admin
+- lihat dashboard summary
+- tambah kategori/produk/metode pembayaran
+- upload gambar produk
+- upload QR pembayaran
+- filter dan update pesanan
+- tambah riwayat stok
+- lihat audit log

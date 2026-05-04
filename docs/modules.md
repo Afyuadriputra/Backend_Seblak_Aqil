@@ -17,6 +17,25 @@ Contoh login:
 
 Menangani profil admin dan ubah password. Endpoint menggunakan `get_current_admin`.
 
+## Admin Panel
+
+Modul `admin_panel` menyediakan halaman HTML di `GET /admin`.
+
+Fitur halaman:
+
+- login admin
+- dashboard summary
+- produk stok rendah
+- kategori
+- produk dan upload gambar produk
+- metode pembayaran dan upload QR
+- pesanan dan update status
+- pelanggan
+- riwayat stok
+- audit log
+
+Implementasi memakai API backend yang sudah ada, bukan native model/resource `fastapi-admin`, karena backend ini memakai SQLAlchemy sync sedangkan `fastapi-admin` official memakai TortoiseORM + Redis.
+
 ## Kategori
 
 CRUD kategori. Delete akan gagal jika kategori masih dipakai produk oleh foreign key.

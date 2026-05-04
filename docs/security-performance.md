@@ -4,6 +4,7 @@
 
 - Password admin disimpan dengan hash bcrypt.
 - Endpoint admin memakai JWT Bearer token.
+- Halaman `/admin` memakai JWT dari `/auth/login` dan menyimpan token di `localStorage`.
 - Upload bukti pembayaran dibatasi extension, MIME type, dan ukuran file.
 - Error domain memakai `AppException` agar response konsisten.
 - Audit log mencatat login admin, upload bukti, dan perubahan status pesanan/pembayaran.
@@ -16,6 +17,7 @@
 - Checkout mengambil semua produk item dalam satu query.
 - Filter memakai kolom yang sudah/indexed saat relevan: status pesanan, status pembayaran, kode pesanan, nomor telepon, produk kategori/status.
 - File upload dibaca sekali, divalidasi ukuran, lalu disimpan ke storage lokal.
+- Admin panel HTML memakai fetch langsung ke API; tidak ada build frontend terpisah.
 
 ## Filter Lanjutan
 
