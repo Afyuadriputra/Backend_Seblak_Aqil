@@ -29,6 +29,8 @@ Migration tambahan:
 
 Fitur dashboard summary, produk stok rendah, response nama kategori/metode pembayaran, upload gambar produk, dan upload gambar QRIS tidak membutuhkan migration baru karena memakai tabel dan kolom yang sudah ada.
 
+Halaman admin `/admin` juga tidak membutuhkan migration baru karena hanya memakai endpoint dan tabel existing.
+
 Rollback audit log:
 
 ```bash

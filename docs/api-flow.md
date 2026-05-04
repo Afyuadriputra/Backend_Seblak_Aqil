@@ -17,6 +17,20 @@ Endpoint admin wajib header:
 Authorization: Bearer <access_token>
 ```
 
+## Admin Panel HTML
+
+| Method | Endpoint | Akses | Fungsi |
+| --- | --- | --- | --- |
+| GET | `/admin` | Public page, login di halaman | Halaman dashboard admin berbasis HTML/CSS/JS yang memakai API backend existing. |
+
+Catatan:
+
+- Halaman `/admin` melakukan login ke `/auth/login`.
+- Token JWT disimpan di `localStorage` browser.
+- Semua request data admin memakai header `Authorization: Bearer <token>`.
+- Panel ini dibuat kompatibel dengan SQLAlchemy sync project.
+- Paket `fastapi-admin` sudah ditambahkan, tetapi native `fastapi_admin.app` tidak dipakai karena library resmi berbasis TortoiseORM + Redis dan pada Python 3.12 import `aioredis` memunculkan error `duplicate base class TimeoutError`.
+
 ## Auth dan Admin
 
 | Method | Endpoint | Akses | Fungsi |
