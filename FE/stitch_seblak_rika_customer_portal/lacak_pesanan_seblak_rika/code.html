@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lacak Pesanan - Seblak Rika</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="../shared/site.css" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#ba1a20",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#82db7e",
+                        "on-primary-fixed": "#410003",
+                        "surface-dim": "#dcdad5",
+                        "primary": "#af101a",
+                        "surface": "#fcf9f4",
+                        "on-tertiary-container": "#fff3e3",
+                        "secondary-container": "#9df898",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#5b403d",
+                        "primary-container": "#d32f2f",
+                        "on-secondary-fixed": "#002204",
+                        "outline": "#8f6f6c",
+                        "on-surface": "#1c1c19",
+                        "surface-container-high": "#ebe8e3",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "tertiary": "#715300",
+                        "surface-bright": "#fcf9f4",
+                        "on-secondary-fixed-variant": "#005312",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdfa0",
+                        "on-secondary-container": "#1a7425",
+                        "inverse-surface": "#31302d",
+                        "surface-container": "#f0ede8",
+                        "on-primary-fixed-variant": "#930010",
+                        "tertiary-fixed-dim": "#f8bd2a",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffdad6",
+                        "secondary": "#106d20",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#e4beba",
+                        "inverse-on-surface": "#f3f0eb",
+                        "surface-variant": "#e5e2dd",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "surface-container-low": "#f6f3ee",
+                        "surface-container-highest": "#e5e2dd",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1c1c19",
+                        "tertiary-container": "#8f6a00",
+                        "background": "#fcf9f4",
+                        "secondary-fixed": "#9df898",
+                        "inverse-primary": "#ffb3ac",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-primary-container": "#fff2f0",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "gutter": "12px",
+                        "base": "4px",
+                        "container-margin": "16px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "xs": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Plus Jakarta Sans"],
+                        "display-price": ["Be Vietnam Pro"],
+                        "product-title": ["Be Vietnam Pro"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "body-main": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "display-price": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "product-title": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-bold": ["14px", { "lineHeight": "20px", "fontWeight": "700" }],
+                        "body-main": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-8 antialiased selection:bg-primary selection:text-on-primary font-body-main text-body-main">
+<!-- TopNavBar -->
+<nav class="fixed top-0 z-40 w-full bg-stone-50/95 dark:bg-stone-900/95 backdrop-blur-sm text-red-700 dark:text-red-500 font-['Be_Vietnam_Pro'] antialiased border-b border-stone-200 dark:border-stone-800 flex justify-between items-center px-4 h-16 max-w-7xl mx-auto shadow-none">
+<div class="text-xl font-black tracking-tight text-red-700 dark:text-red-500">Seblak Rika</div>
+<div class="flex items-center gap-4">
+<button aria-label="Cart" class="hover:text-red-600 dark:hover:text-red-400 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button aria-label="Account" class="hover:text-red-600 dark:hover:text-red-400 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-24 px-container-margin md:max-w-4xl md:mx-auto">
+<!-- Header Image & Title -->
+<div class="mb-lg rounded-xl overflow-hidden relative h-32 md:h-48 flex items-end p-md bg-surface-container border border-surface-variant">
+<div class="absolute inset-0 z-0 bg-cover bg-center opacity-30" data-alt="A warm, atmospheric overhead shot of a steaming bowl of spicy Indonesian Seblak, featuring reddish-orange broth, crackers, and noodles. The scene is illuminated by soft, natural light evoking a cozy, authentic local street food stall. The color palette emphasizes warm chili reds, earthy browns, and the bright greens of fresh scallions, perfectly aligning with a hunger-inducing, tactile minimalism aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJkfyxZdd19k0Ew36oOqlp4UoRWUYBHTQDwCSr8yMNeYc93OBnZzGzMAWu2hk1-BBpp-CyKXYlaExcr2yJ6P3sgS5Uj4a-HJbsAgxkWodb5ra9ozxnZflpCiVnjLxaD5nzKPI1HBvcA5qHTWlZ1hBOHg90aBLYBqjiJM-i66ApRE0Ms7aLsp-0HfeBEryAryL95sNPtugtrceSSyCH7Se4GvjZ4IG7CVg0GUqhsfDw6cv-5fRyP0jCwjjMs_jYLcOSItDhOj8kgLow');">
+</div>
+<div class="relative z-10 w-full flex justify-between items-end">
+<div>
+<h1 class="font-display-price text-display-price text-on-surface mb-base">Lacak Pesanan</h1>
+<p class="font-body-main text-body-main text-on-surface-variant">Follow the journey of your spice craving.</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary opacity-80 material-symbols-fill">local_shipping</span>
+</div>
+</div>
+<!-- Search Form -->
+<section class="bg-surface-container-lowest rounded-xl border border-surface-variant p-md md:p-lg mb-lg shadow-sm">
+<form class="flex flex-col md:flex-row gap-sm items-end">
+<div class="w-full md:flex-1">
+<label class="block font-label-bold text-label-bold text-on-surface mb-base" for="orderCode">Order Code</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">receipt_long</span>
+<input class="w-full bg-surface border border-outline rounded-lg py-sm pl-10 pr-sm font-body-main text-body-main text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors outline-none" id="orderCode" placeholder="e.g. SBL-9821" type="text" value="SBL-9821"/>
+</div>
+</div>
+<div class="w-full md:flex-1">
+<label class="block font-label-bold text-label-bold text-on-surface mb-base" for="phoneNumber">Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">phone</span>
+<input class="w-full bg-surface border border-outline rounded-lg py-sm pl-10 pr-sm font-body-main text-body-main text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors outline-none" id="phoneNumber" placeholder="0812-XXXX-XXXX" type="tel"/>
+</div>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary font-label-bold text-label-bold rounded-xl py-sm px-lg h-[46px] hover:bg-primary-container hover:text-on-primary-container active:scale-95 transition-all flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">search</span>
+                    Lacak
+                </button>
+</form>
+</section>
+<!-- Order Details Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-lg">
+<!-- Basic Info Card -->
+<section class="bg-surface rounded-xl border border-surface-variant p-md flex flex-col gap-sm">
+<div class="flex items-center gap-2 mb-xs">
+<span class="material-symbols-outlined text-outline">info</span>
+<h2 class="font-product-title text-product-title text-on-surface">Order Details</h2>
+</div>
+<div class="flex justify-between items-center py-base border-b border-surface-container-high">
+<span class="font-body-main text-body-main text-on-surface-variant">Customer</span>
+<span class="font-label-bold text-label-bold text-on-surface">Budi Santoso</span>
+</div>
+<div class="flex justify-between items-center py-base border-b border-surface-container-high">
+<span class="font-body-main text-body-main text-on-surface-variant">Method</span>
+<span class="font-label-bold text-label-bold text-on-surface">QRIS / Transfer</span>
+</div>
+<div class="flex justify-between items-center py-base pt-sm">
+<span class="font-body-main text-body-main text-on-surface-variant">Total Price</span>
+<span class="font-display-price text-[20px] leading-[28px] text-primary">Rp 45.000</span>
+</div>
+</section>
+<!-- Status & Payment Card -->
+<section class="bg-surface rounded-xl border border-surface-variant p-md flex flex-col justify-between gap-sm">
+<div>
+<h2 class="font-product-title text-product-title text-on-surface mb-sm">Current Status</h2>
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center bg-surface-container px-sm py-2 rounded-lg">
+<span class="font-body-main text-body-main text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">local_fire_department</span> Kitchen
+                            </span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-1 rounded-full font-caption text-caption flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">pending</span> Preparing
+                            </span>
+</div>
+<div class="flex justify-between items-center bg-surface-container px-sm py-2 rounded-lg">
+<span class="font-body-main text-body-main text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">payments</span> Payment
+                            </span>
+<span class="bg-secondary text-on-secondary px-2 py-1 rounded-full font-caption text-caption flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Verified
+                            </span>
+</div>
+</div>
+</div>
+<div class="mt-sm pt-sm border-t border-surface-container-high flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-high rounded flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface leading-tight">Bukti Pembayaran Terunggah</p>
+<p class="font-caption text-caption text-on-surface-variant">IMG_20231015_1204.jpg</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Timeline Progress -->
+<section class="bg-surface-container-lowest rounded-xl border border-surface-variant p-md md:p-lg">
+<h2 class="font-product-title text-product-title text-on-surface mb-md">Perkembangan Pesanan</h2>
+<div class="relative pl-6 border-l-2 border-surface-container-high space-y-md">
+<!-- Current Step -->
+<div class="relative">
+<div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-primary-fixed border border-on-primary"></div>
+<div class="mb-xs flex items-center gap-2">
+<span class="font-label-bold text-label-bold text-on-surface">Order is being Prepared</span>
+<span class="font-caption text-caption text-on-surface-variant bg-surface-container px-2 rounded">12:15 PM</span>
+</div>
+<p class="font-body-main text-body-main text-on-surface-variant">Dapur sedang menyiapkan pesanan Anda. Pesanan segera diproses.</p>
+</div>
+<!-- Past Step -->
+<div class="relative opacity-70">
+<div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-secondary ring-4 ring-surface border border-surface"></div>
+<div class="mb-xs flex items-center gap-2">
+<span class="font-label-bold text-label-bold text-on-surface line-through">Payment Verified</span>
+<span class="font-caption text-caption text-on-surface-variant bg-surface-container px-2 rounded">12:05 PM</span>
+</div>
+<p class="font-body-main text-body-main text-on-surface-variant">We have received and verified your payment transfer.</p>
+</div>
+<!-- Past Step -->
+<div class="relative opacity-70">
+<div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-secondary ring-4 ring-surface border border-surface"></div>
+<div class="mb-xs flex items-center gap-2">
+<span class="font-label-bold text-label-bold text-on-surface line-through">Order Placed</span>
+<span class="font-caption text-caption text-on-surface-variant bg-surface-container px-2 rounded">12:01 PM</span>
+</div>
+<p class="font-body-main text-body-main text-on-surface-variant">Order SBL-9821 successfully created.</p>
+</div>
+<!-- Future Step -->
+<div class="relative opacity-40">
+<div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-surface-container-highest ring-4 ring-surface border border-outline"></div>
+<div class="mb-xs flex items-center gap-2">
+<span class="font-label-bold text-label-bold text-on-surface">Siap Diambil / Diantar</span>
+</div>
+<p class="font-body-main text-body-main text-on-surface-variant">Menunggu tahap sebelumnya selesai.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-safe bg-white dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 shadow-[0_-10px_10px_0px_rgba(0,0,0,0.08)] z-50">
+<!-- Menu (Inactive) -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-3 py-1 hover:bg-stone-50 dark:hover:bg-stone-800 active:translate-y-0.5 transition-all duration-150 rounded-xl" href="../home_menu_seblak_rika/code.html">
+<span class="material-symbols-outlined mb-1">restaurant_menu</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider">Menu</span>
+</a>
+<!-- Cart (Inactive) -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-3 py-1 hover:bg-stone-50 dark:hover:bg-stone-800 active:translate-y-0.5 transition-all duration-150 rounded-xl" href="../keranjang_checkout_seblak_rika/code.html">
+<span class="material-symbols-outlined mb-1">shopping_basket</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider">Checkout</span>
+</a>
+<!-- Track (Active) -->
+<a class="flex flex-col items-center justify-center text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/30 rounded-xl px-3 py-1 active:translate-y-0.5 transition-all duration-150" href="../lacak_pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined mb-1 material-symbols-fill">local_shipping</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider">Lacak</span>
+</a>
+<!-- Upload (Inactive) -->
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-3 py-1 hover:bg-stone-50 dark:hover:bg-stone-800 active:translate-y-0.5 transition-all duration-150 rounded-xl" href="../upload_bukti_bayar_seblak_rika/code.html">
+<span class="material-symbols-outlined mb-1">upload_file</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider">Upload</span>
+</a>
+</nav>
+<script data-page="track" src="../shared/site.js"></script>
+</body></html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Category Management - Seblak Rika Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "background": "#fff8f7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#ba1434",
+                        "inverse-on-surface": "#ffedec",
+                        "surface-container-high": "#ffe1e1",
+                        "outline": "#8f6f6f",
+                        "surface-container": "#ffe9e8",
+                        "inverse-surface": "#3e2c2c",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#271718",
+                        "on-tertiary-fixed-variant": "#00504d",
+                        "surface-bright": "#fff8f7",
+                        "on-primary-fixed": "#40000a",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#9cf1ed",
+                        "primary-fixed-dim": "#ffb3b4",
+                        "tertiary-fixed-dim": "#80d5d1",
+                        "tertiary-container": "#00716e",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-dim": "#f0d3d3",
+                        "on-secondary-container": "#616363",
+                        "on-surface-variant": "#5b4040",
+                        "surface-container-highest": "#f9dcdb",
+                        "primary-fixed": "#ffdad9",
+                        "on-primary-container": "#ffdada",
+                        "on-surface": "#271718",
+                        "primary-container": "#c41e3a",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "outline-variant": "#e3bebd",
+                        "surface": "#fff8f7",
+                        "secondary-container": "#dfe0e0",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#005754",
+                        "on-tertiary-fixed": "#00201f",
+                        "surface-container-low": "#fff0f0",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-tertiary-container": "#9cf2ed",
+                        "on-primary-fixed-variant": "#920023",
+                        "primary": "#9e0027",
+                        "inverse-primary": "#ffb3b4",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#f9dcdb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "table-header": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "table-header": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f7;
+            color: #271718;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<link href="../shared/admin.css" rel="stylesheet"/>
+</head>
+<body class="antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-60 border-r border-gray-200 bg-white flex flex-col h-full py-4 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-black text-red-700">Seblak Rika</h1>
+<p class="text-xs text-gray-500 font-inter tracking-tight">Management System</p>
+</div>
+<nav class="flex-1 space-y-1 px-3">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-red-50 text-red-700 font-medium border-r-2 border-red-700 transition-all font-inter text-sm tracking-tight rounded-sm" href="../kategori_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span>Kategori</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../kelola_produk_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Produk</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../metode_pembayaran_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Metode Pembayaran</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span>Pesanan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Pelanggan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../riwayat_stok_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Riwayat Stok</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../audit_log_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span>Audit Log</span>
+</a>
+</nav>
+<div class="px-3 pt-4 border-t border-gray-100 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all font-inter text-sm tracking-tight rounded" href="../login_seblak_rika/code.html">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-60 h-14 bg-white border-b border-gray-200 z-40 flex justify-between items-center px-6">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+<span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+</span>
+<input class="block w-full h-9 pl-10 pr-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-sm focus:outline-none focus:border-red-700 transition-all" placeholder="Search categories..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-red-100 overflow-hidden border border-red-200">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a smiling man in a business casual setting, with soft natural lighting and a neutral blurred background. The image is crisp and conveys a sense of friendly professionalism suitable for an administrative dashboard profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyDGIXDQQCC7-KtR9ZarXoqiKzuG1OE7iTHc2opPP6mU5q-hnGJOk5wCQPsP3DQSz9b19it6n7g0tm2FJHZgvEtvVUwAinzFSF69EBx3DxWmqRUw_U0B9fSxEn5FiR1Wd6NZFRUZXI-zWOHjrym5b2fEwGs_a0IUDzfPk9LP_jBgR5ocJEmwJCYcVphhY-n7dkxt_AIp-zLxPKkdhJ8YqgUNpxew6Pm0u1o30yzQESHD7zATFaEHX5i9hsemvA6WQt5bIYvCSg78-H"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-60 pt-14 min-h-screen">
+<div class="p-lg">
+<!-- Header Section -->
+<div class="flex justify-between items-center mb-md">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Kategori</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage food categories and inventory classifications.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-body-md text-body-md hover:bg-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                    Tambah Kategori
+                </button>
+</div>
+<!-- Dashboard Stats Row (High-End Density Pattern) -->
+<div class="grid grid-cols-4 gap-gutter mb-lg">
+<div class="bg-white border border-outline-variant p-md rounded-xl">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">TOTAL KATEGORI</p>
+<div class="flex items-end gap-2">
+<span class="text-h1 font-h1 text-on-surface">12</span>
+<span class="text-green-600 text-[12px] font-semibold mb-1">+2 This Month</span>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-md rounded-xl">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">PRODUK AKTIF</p>
+<div class="flex items-end gap-2">
+<span class="text-h1 font-h1 text-on-surface">154</span>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-md rounded-xl">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">STOK KRITIS</p>
+<div class="flex items-end gap-2">
+<span class="text-h1 font-h1 text-error">3</span>
+<span class="text-error text-[12px] font-semibold mb-1">Needs Attention</span>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-md rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-primary opacity-5"></div>
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">MOST POPULAR</p>
+<div class="flex items-end gap-2">
+<span class="text-h2 font-h2 text-on-surface">Seblak Pedas</span>
+</div>
+</div>
+</div>
+<!-- DataTable Container -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-md py-3 text-table-header font-table-header text-on-surface-variant uppercase tracking-wider">NAMA KATEGORI</th>
+<th class="px-md py-3 text-table-header font-table-header text-on-surface-variant uppercase tracking-wider">DESKRIPSI</th>
+<th class="px-md py-3 text-table-header font-table-header text-on-surface-variant uppercase tracking-wider">DIBUAT PADA</th>
+<th class="px-md py-3 text-table-header font-table-header text-on-surface-variant uppercase tracking-wider text-right">AKSI</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-12">
+<td class="px-md py-2 font-body-md text-body-md text-on-surface font-semibold">Paket Hemat</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">Pilihan seblak porsi kecil dengan harga terjangkau.</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">12 Oct 2023, 09:45</td>
+<td class="px-md py-2 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-12">
+<td class="px-md py-2 font-body-md text-body-md text-on-surface font-semibold">Special Spicy</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">Varian seblak dengan bumbu extra pedas khas Rika.</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">15 Oct 2023, 14:20</td>
+<td class="px-md py-2 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-12">
+<td class="px-md py-2 font-body-md text-body-md text-on-surface font-semibold">Topping Premium</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">Berbagai tambahan seperti odeng, sosis bratwurst.</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">18 Oct 2023, 11:10</td>
+<td class="px-md py-2 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-12">
+<td class="px-md py-2 font-body-md text-body-md text-on-surface font-semibold">Minuman Segar</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">Es teh manis, jus buah, dan air mineral.</td>
+<td class="px-md py-2 font-body-sm text-body-sm text-on-surface-variant">20 Oct 2023, 16:05</td>
+<td class="px-md py-2 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-md py-4 bg-white border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Showing 1 to 4 of 12 entries</span>
+<div class="flex items-center gap-1">
+<button class="p-2 border border-outline-variant rounded hover:bg-gray-50 text-on-surface-variant disabled:opacity-50">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-primary bg-primary text-on-primary font-body-sm text-body-sm">1</button>
+<button class="w-8 h-8 rounded border border-outline-variant hover:bg-gray-50 text-on-surface-variant font-body-sm text-body-sm">2</button>
+<button class="w-8 h-8 rounded border border-outline-variant hover:bg-gray-50 text-on-surface-variant font-body-sm text-body-sm">3</button>
+<button class="p-2 border border-outline-variant rounded hover:bg-gray-50 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal: Tambah/Edit Kategori (Hidden in Static Preview) -->
+<div class="hidden fixed inset-0 z-[60] flex items-center justify-center">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<div class="relative bg-white w-full max-w-md rounded-xl shadow-xl overflow-hidden border border-outline-variant">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-h2 text-h2 text-on-surface">Tambah Kategori</h3>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<form class="p-lg space-y-md">
+<div>
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-1">NAMA KATEGORI</label>
+<input class="w-full h-9 border border-outline-variant rounded px-3 text-body-md focus:border-primary focus:ring-0 outline-none transition-all" placeholder="e.g. Snack Sore" type="text"/>
+</div>
+<div>
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-1">DESKRIPSI</label>
+<textarea class="w-full border border-outline-variant rounded p-3 text-body-md focus:border-primary focus:ring-0 outline-none transition-all h-24" placeholder="Brief description of the category..."></textarea>
+</div>
+<div class="flex justify-end gap-sm pt-md">
+<button class="px-4 py-2 border border-outline-variant rounded-lg text-body-md font-medium text-on-surface-variant hover:bg-gray-50 transition-colors" type="button">Batal</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-body-md font-medium hover:bg-primary-container transition-colors" type="submit">Simpan Kategori</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Confirm Dialog: Delete (Hidden in Static Preview) -->
+<div class="hidden fixed inset-0 z-[60] flex items-center justify-center">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<div class="relative bg-white w-full max-w-sm rounded-xl shadow-xl p-lg border border-outline-variant">
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-error-container text-error rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[28px]" data-icon="warning">warning</span>
+</div>
+<h3 class="text-h2 font-h2 text-on-surface mb-xs">Hapus Kategori?</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-lg">Tindakan ini tidak dapat dibatalkan. Kategori ini akan dihapus permanen dari sistem.</p>
+<div class="flex gap-sm w-full">
+<button class="flex-1 py-2 border border-outline-variant rounded-lg text-body-md font-medium text-on-surface-variant hover:bg-gray-50 transition-colors">Batal</button>
+<button class="flex-1 py-2 bg-error text-on-error rounded-lg text-body-md font-medium hover:bg-red-800 transition-colors">Hapus</button>
+</div>
+</div>
+</div>
+</div>
+<script data-page="kategori" src="../shared/admin.js"></script>
+</body></html>

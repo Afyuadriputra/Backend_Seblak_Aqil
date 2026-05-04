@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "background": "#fff8f7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#ba1434",
+                        "inverse-on-surface": "#ffedec",
+                        "surface-container-high": "#ffe1e1",
+                        "outline": "#8f6f6f",
+                        "surface-container": "#ffe9e8",
+                        "inverse-surface": "#3e2c2c",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#271718",
+                        "on-tertiary-fixed-variant": "#00504d",
+                        "surface-bright": "#fff8f7",
+                        "on-primary-fixed": "#40000a",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#9cf1ed",
+                        "primary-fixed-dim": "#ffb3b4",
+                        "tertiary-fixed-dim": "#80d5d1",
+                        "tertiary-container": "#00716e",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-dim": "#f0d3d3",
+                        "on-secondary-container": "#616363",
+                        "on-surface-variant": "#5b4040",
+                        "surface-container-highest": "#f9dcdb",
+                        "primary-fixed": "#ffdad9",
+                        "on-primary-container": "#ffdada",
+                        "on-surface": "#271718",
+                        "primary-container": "#c41e3a",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "outline-variant": "#e3bebd",
+                        "surface": "#fff8f7",
+                        "secondary-container": "#dfe0e0",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#005754",
+                        "on-tertiary-fixed": "#00201f",
+                        "surface-container-low": "#fff0f0",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-tertiary-container": "#9cf2ed",
+                        "on-primary-fixed-variant": "#920023",
+                        "primary": "#9e0027",
+                        "inverse-primary": "#ffb3b4",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#f9dcdb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "table-header": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="../shared/admin.css" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-background antialiased overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-60 border-r border-gray-200 bg-white dark:bg-gray-950 flex flex-col h-full py-4 z-50">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+</div>
+<div>
+<h1 class="text-xl font-black text-red-700 dark:text-red-500 leading-none">Seblak Rika</h1>
+<p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1">Management System</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 px-3 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 font-medium border-r-2 border-red-700 transition-all" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-red-700 transition-all" href="../kategori_seblak_rika/code.html">
+<span class="material-symbols-outlined">category</span>
+<span class="font-body-md">Kategori</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-red-700 transition-all" href="../kelola_produk_seblak_rika/code.html">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md">Produk</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-red-700 transition-all" href="../metode_pembayaran_seblak_rika/code.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md">Metode Pembayaran</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-red-700 transition-all" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-body-md">Pesanan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-red-700 transition-all" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Pelanggan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-red-700 transition-all" href="../riwayat_stok_seblak_rika/code.html">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md">Riwayat Stok</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-red-700 transition-all" href="../audit_log_seblak_rika/code.html">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-body-md">Audit Log</span>
+</a>
+</nav>
+<div class="px-3 pt-4 border-t border-gray-100 dark:border-gray-800 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 transition-all" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 transition-all" href="../login_seblak_rika/code.html">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-60 min-h-screen">
+<!-- TopNavBar -->
+<header class="h-14 px-6 w-full flex justify-between items-center bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold text-red-700 dark:text-red-500">Dashboard Summary</h2>
+<div class="h-6 w-px bg-gray-200"></div>
+<div class="flex items-center gap-2 text-gray-500 text-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="font-body-md italic text-gray-400">Viewing real-time operations data</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-gray-500 hover:bg-gray-50 p-1.5 rounded transition-colors">notifications</button>
+<button class="material-symbols-outlined text-gray-500 hover:bg-gray-50 p-1.5 rounded transition-colors">help</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-gray-100">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Rika Admin</p>
+<p class="text-[10px] text-gray-500">Super Administrator</p>
+</div>
+<img alt="Admin Profile" class="w-8 h-8 rounded-full border border-gray-200" data-alt="A professional headshot of a business woman with a confident expression, set against a blurred office background. She has dark hair and is wearing a sleek professional blazer. The lighting is soft and flattering, emphasizing a clean and corporate look consistent with a high-end management software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBefs_uOkV202vMoXnP2Xu5uIK0YfzHXW_AYdtxqNYin7f0bFHyUQEpx0RauxUTfiW7uEzygSlnxYMGMm4Lf90jOPWhaUNmmEAOazowo7C9dwysXvWGtehHW-z5uREreUqk7rXPlq0rSQfET9-ymxTLatKGvhgDFhgENgZ5CMDCHpltbeY1a6qGD0AyXlHXACDFI5oS13GxF9_325sxTvHwBEIJ38_Ikk5wm1P2P80WXyPC7FHq8oIGRAoRykFE_7E6PJJil0iXCAps"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-lg">
+<!-- Filters Bar -->
+<div class="bg-white p-md rounded-lg border border-gray-200 mb-lg flex flex-wrap items-end gap-md">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-caps text-on-surface-variant mb-xs">TANGGAL DARI</label>
+<div class="relative">
+<input class="w-full h-9 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary" type="date" value="2023-11-01"/>
+</div>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-caps text-on-surface-variant mb-xs">TANGGAL SAMPAI</label>
+<input class="w-full h-9 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary" type="date" value="2023-11-30"/>
+</div>
+<div class="flex-none w-48">
+<label class="block text-label-caps text-on-surface-variant mb-xs">STOCK THRESHOLD</label>
+<div class="flex h-9">
+<input class="w-full border-gray-200 rounded-l text-body-sm focus:ring-primary focus:border-primary" type="number" value="5"/>
+<button class="bg-primary text-white px-3 rounded-r hover:bg-red-800 transition-colors">
+<span class="material-symbols-outlined text-sm">refresh</span>
+</button>
+</div>
+</div>
+<button class="h-9 px-lg bg-surface-container-highest text-primary font-bold text-body-sm rounded hover:bg-primary hover:text-white transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">filter_alt</span>
+                    Terapkan Filter
+                </button>
+</div>
+<!-- Bento Grid Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md mb-lg">
+<!-- Card 1: Total Omzet (Featured) -->
+<div class="lg:col-span-2 bg-gradient-to-br from-primary-container to-red-800 p-lg rounded-xl text-white shadow-sm flex flex-col justify-between h-36">
+<div class="flex justify-between items-start">
+<span class="text-label-caps opacity-80 uppercase tracking-widest">Total Omzet (Bulan Ini)</span>
+<div class="p-2 bg-white/10 rounded-lg">
+<span class="material-symbols-outlined">payments</span>
+</div>
+</div>
+<div>
+<h3 class="text-3xl font-black">Rp 45.820.000</h3>
+<p class="text-xs text-red-200 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+                            +12.5% dari bulan lalu
+                        </p>
+</div>
+</div>
+<!-- Card 2: Pesanan Selesai -->
+<div class="bg-white p-md border border-gray-200 rounded-lg flex flex-col justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-green-50 text-green-600 rounded flex items-center justify-center">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<div>
+<p class="text-label-caps text-gray-500">PESANAN SELESAI</p>
+<h4 class="text-xl font-bold">1,248</h4>
+</div>
+</div>
+<div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mt-4">
+<div class="bg-green-500 h-full" style="width: 85%"></div>
+</div>
+<p class="text-[10px] text-gray-400 mt-1">85% dari total pesanan masuk</p>
+</div>
+<!-- Card 3: Pembayaran Menunggu -->
+<div class="bg-white p-md border border-gray-200 rounded-lg flex flex-col justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-amber-50 text-amber-600 rounded flex items-center justify-center">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<p class="text-label-caps text-gray-500">PENDING PAYMENTS</p>
+<h4 class="text-xl font-bold">42</h4>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-4 text-[10px] text-amber-600 font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-xs">warning</span>
+                        Perlu Tindakan Segera
+                    </div>
+</div>
+<!-- Smaller Grid Stats -->
+<div class="bg-white p-md border border-gray-200 rounded-lg">
+<p class="text-label-caps text-gray-500 mb-xs">TOTAL PRODUK</p>
+<div class="flex items-end justify-between">
+<h4 class="text-2xl font-bold">156</h4>
+<span class="text-xs text-gray-400 font-medium">SKU Aktif</span>
+</div>
+</div>
+<div class="bg-white p-md border border-gray-200 rounded-lg">
+<p class="text-label-caps text-gray-500 mb-xs">TOTAL PELANGGAN</p>
+<div class="flex items-end justify-between">
+<h4 class="text-2xl font-bold">3,892</h4>
+<span class="text-xs text-green-500 font-bold">+12 Hari ini</span>
+</div>
+</div>
+<div class="bg-white p-md border border-gray-200 rounded-lg">
+<p class="text-label-caps text-gray-500 mb-xs">TOTAL PESANAN</p>
+<div class="flex items-end justify-between">
+<h4 class="text-2xl font-bold">1,470</h4>
+<span class="text-xs text-gray-400">Total Periode</span>
+</div>
+</div>
+<div class="bg-white p-md border border-red-200 rounded-lg bg-red-50/30">
+<p class="text-label-caps text-red-700 mb-xs">PRODUK STOK RENDAH</p>
+<div class="flex items-end justify-between">
+<h4 class="text-2xl font-bold text-red-700">8</h4>
+<span class="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-bold">Kritis</span>
+</div>
+</div>
+</div>
+<!-- DataTable Section: Produk Stok Rendah -->
+<div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+<div class="p-md border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-red-600">inventory_2</span>
+<h3 class="font-h2 text-on-surface">Produk Stok Rendah (&lt; 5)</h3>
+</div>
+<div class="flex gap-2">
+<button class="text-body-sm text-gray-500 hover:text-primary transition-colors flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-base">download</span> Export
+                        </button>
+<div class="h-4 w-px bg-gray-300"></div>
+<button class="text-body-sm text-primary hover:underline transition-colors font-bold">Lihat Semua Riwayat</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white border-b border-gray-100">
+<th class="px-md py-3 text-table-header text-gray-500 uppercase tracking-wider">KODE SKU</th>
+<th class="px-md py-3 text-table-header text-gray-500 uppercase tracking-wider">NAMA PRODUK</th>
+<th class="px-md py-3 text-table-header text-gray-500 uppercase tracking-wider">KATEGORI</th>
+<th class="px-md py-3 text-table-header text-gray-500 uppercase tracking-wider text-center">STOK SAAT INI</th>
+<th class="px-md py-3 text-table-header text-gray-500 uppercase tracking-wider">STATUS</th>
+<th class="px-md py-3 text-table-header text-gray-500 uppercase tracking-wider text-right">AKSI</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-md py-3 text-body-sm font-mono text-gray-400">SBK-001</td>
+<td class="px-md py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gray-100 overflow-hidden flex-shrink-0 border border-gray-200">
+<img alt="Kerupuk Tangga" data-alt="Close-up shot of a steaming bowl of spicy red noodle soup, with visible chili oil, green onions, and savory ingredients. The lighting is warm and dramatic, highlighting the texture and heat of the food, set in a clean ceramic bowl against a dark neutral background for a premium culinary feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdxnzOD8g1_wAarLC1Nwgd6bD0rSvGbChM1MDoAK5Oci3N9Q7TrhuOrKfggwrVxslTT6DRJkUMp8r6v5NjW8SRZkyAlOUtVQkiszuAZActo4twjhhnf3CnKaxhbLtbyuz9qsCsLznknmUKc-KIM60wFoCqREkoOVrwlSY1k2j7EwQ-w2k6xjt1fxr05L-6BrqKhBVklG-3szYJ0_O76zkCwu2sAP2iVKn_0k375On_9f3VpCp-2IYfeWfvHRp__bg-MVHDafw9bcDE"/>
+</div>
+<span class="font-body-md font-semibold text-on-surface">Kerupuk Tangga Super Spicy</span>
+</div>
+</td>
+<td class="px-md py-3 text-body-sm text-gray-600">Kerupuk</td>
+<td class="px-md py-3 text-center">
+<span class="font-bold text-red-700">2</span>
+</td>
+<td class="px-md py-3">
+<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase">Restock Segera</span>
+</td>
+<td class="px-md py-3 text-right">
+<button class="bg-white border border-gray-200 text-gray-600 px-3 py-1 rounded text-xs font-bold hover:bg-primary hover:text-white hover:border-primary transition-all">Update Stok</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-md py-3 text-body-sm font-mono text-gray-400">SBK-012</td>
+<td class="px-md py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gray-100 overflow-hidden flex-shrink-0 border border-gray-200">
+<img alt="Bumbu Rahasia" data-alt="A detailed macro image of vibrant red dried chili peppers and assorted spices like star anise and cinnamon sticks. The scene is brightly lit with a clean, high-key aesthetic to emphasize the freshness and quality of the raw ingredients, perfectly aligning with a sophisticated food management dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtQXWlC63h4NhygJbqnfCnHHnYYod_m4Ma3uZGIm3G7WHk8bSh_qqvlHpJFfkNpvxBsBv_ywoAOS_KO5jpPgMM2ptADDiWvO5aZbPUZ5zdgNCP0R0Lr-ZD5DOzXYrBlrsk5Hhc7siaMKOC6pAA7f5b4yyuLTwkuEZP1uZl2z3GywKfmjySsRI7T7Bn8P0WTFJPiXBLBTYPDhMjuuiDv6RxUMbtGIV5tieyNh8DsELzGmx_4KRf2QkpyIRmrmzmgD6P2OQ6_lHd9WGU"/>
+</div>
+<span class="font-body-md font-semibold text-on-surface">Bumbu Rahasia Rika (Sachet)</span>
+</div>
+</td>
+<td class="px-md py-3 text-body-sm text-gray-600">Bumbu</td>
+<td class="px-md py-3 text-center">
+<span class="font-bold text-amber-600">4</span>
+</td>
+<td class="px-md py-3">
+<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold uppercase">Stok Menipis</span>
+</td>
+<td class="px-md py-3 text-right">
+<button class="bg-white border border-gray-200 text-gray-600 px-3 py-1 rounded text-xs font-bold hover:bg-primary hover:text-white hover:border-primary transition-all">Update Stok</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-md py-3 text-body-sm font-mono text-gray-400">SBK-045</td>
+<td class="px-md py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gray-100 overflow-hidden flex-shrink-0 border border-gray-200">
+<img alt="Mie Kuning" data-alt="A professional product shot of high-quality dried noodles neatly arranged on a bamboo mat. The lighting is soft and natural, emphasizing the texture of the dry noodles. The composition is clean and minimalist, reflecting a modern and organized inventory management system style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhGCdeuXPoN4zR55isFz-Ev-vGn7HZhzglUsVL3_LuMp9CjhWDyRKitzadxbl3W1sZq24CkM9ZsY8yCQi92Cx9bqg6XSpqXX6r97pN3HsRDI6Dz2MZVPVMsxVGxguMEdOQwepHpLpJf8TtuQpwnLXGAagUupV2RMd9rmnCeBB0L03FgnJ3zsgmF3Ah5iB-NdAcPnsyFBTxR9EhEkk5KJmCTFFol1YuB6EMMSQC7KSwhIvMLOb3v3HQrZren5VLOZltf0uwhfNe8SME"/>
+</div>
+<span class="font-body-md font-semibold text-on-surface">Mie Kuning Kering 500g</span>
+</div>
+</td>
+<td class="px-md py-3 text-body-sm text-gray-600">Bahan Pokok</td>
+<td class="px-md py-3 text-center">
+<span class="font-bold text-red-700">0</span>
+</td>
+<td class="px-md py-3">
+<span class="px-2 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-bold uppercase tracking-tight">HABIS</span>
+</td>
+<td class="px-md py-3 text-right">
+<button class="bg-primary text-white px-3 py-1 rounded text-xs font-bold hover:bg-red-800 transition-all shadow-sm">Beli Sekarang</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-md py-3 text-body-sm font-mono text-gray-400">SBK-088</td>
+<td class="px-md py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gray-100 overflow-hidden flex-shrink-0 border border-gray-200">
+<img alt="Baso Ikan" data-alt="Macro photography of small, white fish meatballs in a bamboo steam basket. The steam is visible, suggesting fresh preparation. The color palette is neutral and clean, with soft directional lighting that creates gentle shadows, evoking a sense of authentic and high-quality street food ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_UUUFV3qtHvskcw26PDW6cafJ1K3abPeWu7rUK2uWPOlds7p0m4haGeY5zFdQsWj0zekYneiHQw14fvEgV_-5JQf-GvmDAmPu5BDXw2_0YYAmOat_ubW8cwaaIiSlANiczfEr1smETXi0JZMMm_Cb-Yilx5Y3xWEiMrItMMVspO1GdI0rmKLlu2h4JqR52bdVCNTx8z5mgUpXZiB1SkP0upA8qKcFst8ihu8iSg3TdD2xJZcLwvYibbUNik0adhSKQ7INwv1UaLyf"/>
+</div>
+<span class="font-body-md font-semibold text-on-surface">Baso Ikan Mini (Isi 50)</span>
+</div>
+</td>
+<td class="px-md py-3 text-body-sm text-gray-600">Frozen Food</td>
+<td class="px-md py-3 text-center">
+<span class="font-bold text-amber-600">3</span>
+</td>
+<td class="px-md py-3">
+<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold uppercase">Stok Menipis</span>
+</td>
+<td class="px-md py-3 text-right">
+<button class="bg-white border border-gray-200 text-gray-600 px-3 py-1 rounded text-xs font-bold hover:bg-primary hover:text-white hover:border-primary transition-all">Update Stok</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="px-md py-3 flex items-center justify-between border-t border-gray-100">
+<p class="text-body-sm text-gray-500">Menampilkan <span class="font-bold text-on-surface">4</span> dari <span class="font-bold text-on-surface">8</span> produk stok rendah</p>
+<div class="flex gap-1">
+<button class="p-1.5 border border-gray-200 rounded hover:bg-gray-50 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1.5 border border-gray-200 rounded hover:bg-gray-50">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Details -->
+<footer class="mt-xl pt-lg border-t border-gray-200 flex flex-wrap justify-between items-center text-body-sm text-gray-400">
+<div>© 2023 Seblak Rika Management System v2.4.0</div>
+<div class="flex gap-lg">
+<a class="hover:text-primary" href="../dashboard_seblak_rika/code.html">System Health: <span class="text-green-500 font-bold">Excellent</span></a>
+<a class="hover:text-primary" href="../dashboard_seblak_rika/code.html">API Response: 124ms</a>
+</div>
+</footer>
+</div>
+</main>
+<!-- FAB for Quick Order -->
+<div class="fixed bottom-6 right-6">
+<button class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+</button>
+</div>
+<script data-page="dashboard" src="../shared/admin.js"></script>
+</body></html>

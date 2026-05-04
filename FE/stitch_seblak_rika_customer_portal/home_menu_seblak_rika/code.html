@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seblak Rika - Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;900&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="../shared/site.css" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ba1a20",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#82db7e",
+                    "on-primary-fixed": "#410003",
+                    "surface-dim": "#dcdad5",
+                    "primary": "#af101a",
+                    "surface": "#fcf9f4",
+                    "on-tertiary-container": "#fff3e3",
+                    "secondary-container": "#9df898",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#5b403d",
+                    "primary-container": "#d32f2f",
+                    "on-secondary-fixed": "#002204",
+                    "outline": "#8f6f6c",
+                    "on-surface": "#1c1c19",
+                    "surface-container-high": "#ebe8e3",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "tertiary": "#715300",
+                    "surface-bright": "#fcf9f4",
+                    "on-secondary-fixed-variant": "#005312",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdfa0",
+                    "on-secondary-container": "#1a7425",
+                    "inverse-surface": "#31302d",
+                    "surface-container": "#f0ede8",
+                    "on-primary-fixed-variant": "#930010",
+                    "tertiary-fixed-dim": "#f8bd2a",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#ffdad6",
+                    "secondary": "#106d20",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#e4beba",
+                    "inverse-on-surface": "#f3f0eb",
+                    "surface-variant": "#e5e2dd",
+                    "primary-fixed-dim": "#ffb3ac",
+                    "surface-container-low": "#f6f3ee",
+                    "surface-container-highest": "#e5e2dd",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1c1c19",
+                    "tertiary-container": "#8f6a00",
+                    "background": "#fcf9f4",
+                    "secondary-fixed": "#9df898",
+                    "inverse-primary": "#ffb3ac",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-primary-container": "#fff2f0",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "gutter": "12px",
+                    "base": "4px",
+                    "container-margin": "16px",
+                    "md": "16px",
+                    "sm": "12px",
+                    "xs": "8px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "caption": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-price": [
+                            "Be Vietnam Pro"
+                    ],
+                    "product-title": [
+                            "Be Vietnam Pro"
+                    ],
+                    "label-bold": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-main": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "caption": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-price": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "product-title": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-bold": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-main": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+        
+        /* Hide scrollbar for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-main text-body-main antialiased min-h-screen flex flex-col relative pb-[160px] md:pb-[100px]">
+<!-- TopNavBar from JSON -->
+<nav class="sticky top-0 w-full z-40 bg-stone-50/95 dark:bg-stone-900/95 backdrop-blur-sm border-b border-stone-200 dark:border-stone-800 transition-transform duration-200">
+<div class="flex justify-between items-center px-4 h-16 w-full max-w-7xl mx-auto font-['Be_Vietnam_Pro'] antialiased">
+<div class="text-xl font-black tracking-tight text-red-700 dark:text-red-500">
+                Seblak Rika
+            </div>
+<div class="flex items-center gap-4">
+<button class="text-stone-600 dark:text-stone-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-stone-600 dark:text-stone-400 hover:text-red-600 dark:hover:text-red-400 transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-red-700 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="text-stone-600 dark:text-stone-400 hover:text-red-600 dark:hover:text-red-400 transition-colors hidden md:block">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-1 w-full max-w-7xl mx-auto px-container-margin py-md w-full">
+<!-- Search & Filter -->
+<div class="mb-lg">
+<div class="relative w-full mb-md">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container rounded-full py-sm pl-[40px] pr-md border-none focus:ring-1 focus:ring-primary text-body-main font-body-main text-on-surface placeholder:text-outline outline-none" placeholder="Cari seblak, minuman..." type="text"/>
+</div>
+<!-- Category Chips -->
+<div class="flex gap-xs overflow-x-auto no-scrollbar pb-xs">
+<button class="whitespace-nowrap px-sm py-xs rounded-full bg-primary-container text-on-primary-container font-label-bold text-label-bold border-2 border-primary transition-colors">
+                    Semua
+                </button>
+<button class="whitespace-nowrap px-sm py-xs rounded-full bg-surface-container text-on-surface font-label-bold text-label-bold border border-surface-variant hover:bg-surface-variant transition-colors">
+                    Seblak Kuah
+                </button>
+<button class="whitespace-nowrap px-sm py-xs rounded-full bg-surface-container text-on-surface font-label-bold text-label-bold border border-surface-variant hover:bg-surface-variant transition-colors">
+                    Seblak Kering
+                </button>
+<button class="whitespace-nowrap px-sm py-xs rounded-full bg-surface-container text-on-surface font-label-bold text-label-bold border border-surface-variant hover:bg-surface-variant transition-colors">
+                    Minuman
+                </button>
+<button class="whitespace-nowrap px-sm py-xs rounded-full bg-surface-container text-on-surface font-label-bold text-label-bold border border-surface-variant hover:bg-surface-variant transition-colors">
+                    Extra Toping
+                </button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md md:gap-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden flex flex-col">
+<div class="relative h-40 md:h-48 w-full bg-surface-container-high">
+<img alt="Seblak Komplit Spesial" class="w-full h-full object-cover" data-alt="A close-up, highly detailed food photography shot of Seblak Kuah in a rustic ceramic bowl. The dish features a vibrant, fiery red chili broth brimming with soggy crackers, macaroni, sliced beef sausage, and a perfectly boiled egg cut in half. The lighting is warm and natural, casting soft shadows that highlight the glistening, steamy surface of the spicy soup. The setting suggests a clean, modern Indonesian street food stall with a minimalist beige background, fitting the Seblak Rika brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE8WveOPn-311HK8qNStFHMgUoIqKYEqq2g_oIxDjfhQc6huY9FZY0q3zJg8t_blK6_drv7u5vq7BoOIKTq8sJQE_yAj7vPQ7zLiard6twZSzvOSyMB6fkE0pWYfReapVTIK-YiYkMeCnMfS4QYwvNOWO4gZxheGzSN1QOTTUbHmD5PU-pOMqb5i-809hFzxu-spgFw3UMjB73yBKcLtRZrnx16QpqAMCiIwauAFCFp7pV45aaV3-s8XaXJ6ckHUoHTtNwXavN1GRf"/>
+<div class="absolute top-xs left-xs bg-secondary text-on-secondary font-caption text-caption px-xs py-[2px] rounded-DEFAULT">
+                        Tersedia
+                    </div>
+</div>
+<div class="p-sm flex flex-col flex-1 gap-xs">
+<div>
+<h3 class="font-product-title text-product-title text-on-surface line-clamp-2 leading-tight">Seblak Komplit Spesial</h3>
+<p class="font-caption text-caption text-outline mt-base">Seblak Kuah</p>
+</div>
+<div class="font-display-price text-display-price text-primary mt-auto pt-sm">
+                        Rp 25.000
+                    </div>
+<!-- Quantity Stepper / Add -->
+<div class="flex items-center justify-between mt-sm bg-surface-container rounded-lg p-base border border-surface-variant">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:bg-surface-variant rounded-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-bold text-label-bold text-on-surface">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-secondary hover:bg-secondary-container rounded-md transition-colors">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden flex flex-col">
+<div class="relative h-40 md:h-48 w-full bg-surface-container-high">
+<img alt="Seblak Ceker Pedas" class="w-full h-full object-cover" data-alt="A top-down, appetizing photograph of Seblak Ceker, showcasing tender chicken feet submerged in a thick, deeply red and oily chili sauce. Scattered around are soft orange crackers and green scallions for garnish. The bowl sits on a subtle textured wooden table. The lighting is bright and directional, emphasizing the rich, spicy texture of the sauce and conveying a warm, neighborly local food shop atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpHnwG5txUl_tFhEEMmUPONSuZuqY0OX2prpl9Gh7GShC91suA0ZxU4W9BYgcb9xnYXNNnRHuizYL9M85ZlCwhM-lqkxEvYy1uzgXxkPoc-gA5dl3cmiDAMPHG-pV7WZYMymhvlAstE_p22Ou1fXNyvZHaTA3cL-QDNMIi-fX9DRO-9gEtJ0OtSL9_fsgmGIYU8b2D3Rt6rQnEvJaJulw_gU_F2JlmnunRkxRkrFTIH9Y5hROkKvUWgKviz7rUOJGenwHnnxSRrgjV"/>
+<div class="absolute top-xs left-xs bg-tertiary-fixed-dim text-on-tertiary-fixed-variant font-caption text-caption px-xs py-[2px] rounded-DEFAULT font-bold">
+                        Must Try
+                    </div>
+</div>
+<div class="p-sm flex flex-col flex-1 gap-xs">
+<div>
+<h3 class="font-product-title text-product-title text-on-surface line-clamp-2 leading-tight">Seblak Ceker Mercon</h3>
+<p class="font-caption text-caption text-outline mt-base">Seblak Kuah</p>
+</div>
+<div class="font-display-price text-display-price text-primary mt-auto pt-sm">
+                        Rp 20.000
+                    </div>
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-sm rounded-lg mt-sm hover:bg-surface-tint active:bg-on-primary-fixed transition-colors text-center">
+                        Tambah
+                    </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden flex flex-col opacity-60 grayscale-[0.5]">
+<div class="relative h-40 md:h-48 w-full bg-surface-container-high">
+<img alt="Seblak Kering Makaroni" class="w-full h-full object-cover" data-alt="A close-up shot of dry Seblak Kering macaroni in a small paper boat container. The crispy macaroni pieces are coated in a fine, powdery dark red chili seasoning. The aesthetic is tactile and minimalist, with a soft off-white background that matches the application's clean design system. The lighting is diffused, highlighting the crunchy texture of the snack." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtcIsRRX4cbYkB5r7AAz0tD1In71I8pJ0ly870Bi8V647KgAH3j6mzeZidvWYy-SZBXcm4VPnFLlYpMLpfSLIb5tfIa2WRZhn8k5jNLlSkZ5zNLEJXScHKGqdHkadglUNmAk_SSWXoONAQLRIE-e0d6QRdvrXfsSrzB82AVXPdESHSjnEibMgoC_2EIvKTNxWZdp0CfrPXhxppgmJZUPfUy27dsPabYGG01TJFXDrRQwVSxL7B2CjULFtucrgLFk2XyCP74BR4O_dt"/>
+<div class="absolute top-xs left-xs bg-surface-variant text-on-surface-variant font-caption text-caption px-xs py-[2px] rounded-DEFAULT">
+                        Habis
+                    </div>
+</div>
+<div class="p-sm flex flex-col flex-1 gap-xs">
+<div>
+<h3 class="font-product-title text-product-title text-on-surface line-clamp-2 leading-tight">Macaroni Bantet Pedas</h3>
+<p class="font-caption text-caption text-outline mt-base">Seblak Kering</p>
+</div>
+<div class="font-display-price text-display-price text-outline mt-auto pt-sm">
+                        Rp 10.000
+                    </div>
+<button class="w-full bg-surface-variant text-on-surface-variant font-label-bold text-label-bold py-sm rounded-lg mt-sm cursor-not-allowed text-center" disabled="">
+                        Habis
+                    </button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden flex flex-col">
+<div class="relative h-40 md:h-48 w-full bg-surface-container-high">
+<img alt="Es Teh Manis" class="w-full h-full object-cover" data-alt="A refreshing glass of iced sweet tea (Es Teh Manis) sweating with condensation. The tall glass is filled with golden-brown tea and geometric ice cubes, with a single slice of lime on the rim. The background is a clean, bright, slightly warm-toned minimal surface that perfectly aligns with the neighborly and efficient brand identity of the app. The lighting is bright and summery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM-Auj7wPUDpE1vKxR7IYm0wsPCsqM1IjY6MA1jY1lDnXdztHoRBP--xuWfjRhNLZgb8w-z3L7fSBw4MYVGXhjp_4c0-gP-3MEQbHe2yrWV08aCmAGghojBTMt-pekOk_wDFYrG-Dr9BwGSKEHzW8snFbrISuahT7yZ97Gk1V6WQtjFvCIlVzcnO8DU5iAbhV2YDlR4-Z8GXf_sjJExHPFuhvPMUMvXdlAZSey04n9_ybCbbWwN9lSS5UsXxS9QIsOd5aZo3dQTSV3"/>
+</div>
+<div class="p-sm flex flex-col flex-1 gap-xs">
+<div>
+<h3 class="font-product-title text-product-title text-on-surface line-clamp-2 leading-tight">Es Teh Manis Jumbo</h3>
+<p class="font-caption text-caption text-outline mt-base">Minuman</p>
+</div>
+<div class="font-display-price text-display-price text-primary mt-auto pt-sm">
+                        Rp 5.000
+                    </div>
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-sm rounded-lg mt-sm hover:bg-surface-tint active:bg-on-primary-fixed transition-colors text-center">
+                        Tambah
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Cart Summary (User Feature Request adapted to fit above fixed BottomNav) -->
+<div class="fixed bottom-[88px] left-0 w-full px-4 z-40 md:bottom-6 md:max-w-md md:left-1/2 md:-translate-x-1/2">
+<div class="bg-surface-tint text-on-primary rounded-xl p-md flex items-center justify-between shadow-[0_10px_20px_-5px_rgba(0,0,0,0.15)] cursor-pointer active:scale-[0.98] transition-transform">
+<div class="flex flex-col">
+<span class="font-caption text-caption text-primary-fixed-dim">2 Item terpilih</span>
+<span class="font-label-bold text-label-bold text-on-primary">Total: Rp 30.000</span>
+</div>
+<div class="flex items-center gap-xs font-label-bold text-label-bold">
+                Lanjut Bayar
+                <span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- BottomNavBar from JSON (Mobile Only as per guidelines) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-safe bg-white dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 shadow-[0_-10px_10px_0px_rgba(0,0,0,0.08)] z-50 transition-all duration-150">
+<!-- Menu (Active) -->
+<button class="flex flex-col items-center justify-center text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/30 rounded-xl px-3 py-1 font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+<span>Menu</span>
+</button>
+<!-- Cart (Inactive) -->
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-3 py-1 font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl transition-colors relative">
+<span class="material-symbols-outlined mb-1">shopping_basket</span>
+<span>Checkout</span>
+<span class="absolute top-1 right-2 w-2 h-2 bg-red-600 rounded-full"></span>
+</button>
+<!-- Track (Inactive) -->
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-3 py-1 font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl transition-colors">
+<span class="material-symbols-outlined mb-1">local_shipping</span>
+<span>Lacak</span>
+</button>
+<!-- Upload (Inactive) -->
+<button class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 px-3 py-1 font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-wider hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl transition-colors">
+<span class="material-symbols-outlined mb-1">upload_file</span>
+<span>Upload</span>
+</button>
+</nav>
+<script data-page="menu" src="../shared/site.js"></script>
+</body></html>
