@@ -45,6 +45,7 @@ def list_all(
             selectinload(Pesanan.detail_pesanan),
             selectinload(Pesanan.metode_pembayaran),
             selectinload(Pesanan.bukti_pembayaran),
+            selectinload(Pesanan.timeline),
         )
         .order_by(Pesanan.tanggal_pesanan.desc(), Pesanan.id.desc())
     )
@@ -67,6 +68,7 @@ def get_by_id(db: Session, pesanan_id: int) -> Pesanan | None:
             selectinload(Pesanan.detail_pesanan),
             selectinload(Pesanan.metode_pembayaran),
             selectinload(Pesanan.bukti_pembayaran),
+            selectinload(Pesanan.timeline),
         )
         .where(Pesanan.id == pesanan_id)
     )
@@ -79,6 +81,7 @@ def get_by_code_and_phone(db: Session, kode_pesanan: str, no_telepon: str) -> Pe
             selectinload(Pesanan.detail_pesanan),
             selectinload(Pesanan.metode_pembayaran),
             selectinload(Pesanan.bukti_pembayaran),
+            selectinload(Pesanan.timeline),
         )
         .where(
             Pesanan.kode_pesanan == kode_pesanan,

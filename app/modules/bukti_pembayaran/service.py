@@ -8,6 +8,7 @@ from app.modules.bukti_pembayaran import repository
 from app.modules.bukti_pembayaran.model import BuktiPembayaran
 from app.modules.pesanan.repository import get_by_code_and_phone
 from app.modules.pesanan.repository import get_by_id as get_pesanan_by_id
+from app.modules.pesanan_timeline.service import record_payment_status_event
 from app.shared.enums import StatusPembayaran
 from app.shared.exceptions import BadRequestException, NotFoundException
 from app.shared.file_validator import generate_safe_filename, validate_file_size
@@ -44,6 +45,7 @@ def upload_bukti_tanpa_login(
             },
         )
         pesanan.status_pembayaran = StatusPembayaran.MENUNGGU_VERIFIKASI.value
+        record_payment_status_event(db, pesanan.id, StatusPembayaran.MENUNGGU_VERIFIKASI)
         record_audit(
             db,
             aksi="upload_bukti_pembayaran",

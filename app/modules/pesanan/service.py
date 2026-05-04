@@ -16,6 +16,10 @@ from app.modules.pesanan.schema import (
     PesananStatusPembayaranUpdate,
     PesananStatusPesananUpdate,
 )
+from app.modules.pesanan_timeline.service import (
+    record_order_status_event,
+    record_payment_status_event,
+)
 from app.modules.produk.repository import get_many_by_ids
 from app.shared.enums import StatusPembayaran, StatusPesanan
 from app.shared.exceptions import BadRequestException, NotFoundException
@@ -124,6 +128,8 @@ def create_pesanan(db: Session, payload: PesananCreate) -> Pesanan:
                 "status_pesanan": StatusPesanan.MENUNGGU_KONFIRMASI.value,
             },
         )
+        record_order_status_event(db, pesanan.id, StatusPesanan.MENUNGGU_KONFIRMASI)
+        record_payment_status_event(db, pesanan.id, StatusPembayaran.BELUM_DIBAYAR)
 
         for produk_id, jumlah in qty_by_produk_id.items():
             produk = produk_by_id[produk_id]
@@ -162,6 +168,7 @@ def lacak_pesanan(db: Session, payload: PesananLacakRequest) -> PesananLacakResp
         status_pesanan=pesanan.status_pesanan,
         total_harga=pesanan.total_harga,
         bukti_pembayaran_tersedia=len(pesanan.bukti_pembayaran) > 0,
+        timeline=pesanan.timeline,
     )
 
 
@@ -173,7 +180,9 @@ def update_status_pembayaran(
 ) -> Pesanan:
     pesanan = get_pesanan(db, pesanan_id)
     status_lama = pesanan.status_pembayaran
-    repository.update(db, pesanan, {"status_pembayaran": payload.status_pembayaran.value})
+    if status_lama != payload.status_pembayaran.value:
+        repository.update(db, pesanan, {"status_pembayaran": payload.status_pembayaran.value})
+        record_payment_status_event(db, pesanan.id, payload.status_pembayaran, admin)
     record_audit(
         db,
         aksi="ubah_status_pembayaran",
@@ -196,7 +205,9 @@ def update_status_pesanan(
 ) -> Pesanan:
     pesanan = get_pesanan(db, pesanan_id)
     status_lama = pesanan.status_pesanan
-    repository.update(db, pesanan, {"status_pesanan": payload.status_pesanan.value})
+    if status_lama != payload.status_pesanan.value:
+        repository.update(db, pesanan, {"status_pesanan": payload.status_pesanan.value})
+        record_order_status_event(db, pesanan.id, payload.status_pesanan, admin)
     record_audit(
         db,
         aksi="ubah_status_pesanan",
