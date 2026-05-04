@@ -2,6 +2,7 @@
 # Core Backend
 # =========================
 fastapi
+fastapi-admin
 uvicorn[standard]
 
 # =========================
