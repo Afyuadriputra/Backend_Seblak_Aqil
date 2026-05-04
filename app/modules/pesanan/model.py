@@ -83,6 +83,13 @@ class Pesanan(IdMixin, TimestampMixin, Base):
         cascade="all, delete-orphan",
     )
 
+    timeline = relationship(
+        "PesananTimeline",
+        back_populates="pesanan",
+        cascade="all, delete-orphan",
+        order_by="PesananTimeline.waktu",
+    )
+
     @property
     def nama_metode_pembayaran(self) -> str | None:
         return self.metode_pembayaran.nama_metode if self.metode_pembayaran else None

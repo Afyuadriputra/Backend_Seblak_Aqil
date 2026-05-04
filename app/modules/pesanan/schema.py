@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from app.modules.pesanan_timeline.schema import PesananTimelineResponse
 from app.shared.enums import StatusPembayaran, StatusPesanan
 
 
@@ -86,6 +87,7 @@ class PesananResponse(BaseModel):
     status_pembayaran: StatusPembayaran
     status_pesanan: StatusPesanan
     detail_pesanan: list[DetailPesananResponse] = []
+    timeline: list[PesananTimelineResponse] = []
     dibuat_pada: datetime | None = None
     diperbarui_pada: datetime | None = None
 
@@ -110,6 +112,7 @@ class PesananLacakResponse(BaseModel):
     status_pesanan: StatusPesanan
     total_harga: Decimal
     bukti_pembayaran_tersedia: bool
+    timeline: list[PesananTimelineResponse] = []
 
 
 class DetailPesananCreate(BaseModel):
