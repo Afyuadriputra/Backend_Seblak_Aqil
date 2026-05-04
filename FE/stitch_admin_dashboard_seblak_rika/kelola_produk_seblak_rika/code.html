@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seblak Rika Admin - Produk</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "background": "#fff8f7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#ba1434",
+                        "inverse-on-surface": "#ffedec",
+                        "surface-container-high": "#ffe1e1",
+                        "outline": "#8f6f6f",
+                        "surface-container": "#ffe9e8",
+                        "inverse-surface": "#3e2c2c",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#271718",
+                        "on-tertiary-fixed-variant": "#00504d",
+                        "surface-bright": "#fff8f7",
+                        "on-primary-fixed": "#40000a",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#9cf1ed",
+                        "primary-fixed-dim": "#ffb3b4",
+                        "tertiary-fixed-dim": "#80d5d1",
+                        "tertiary-container": "#00716e",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-dim": "#f0d3d3",
+                        "on-secondary-container": "#616363",
+                        "on-surface-variant": "#5b4040",
+                        "surface-container-highest": "#f9dcdb",
+                        "primary-fixed": "#ffdad9",
+                        "on-primary-container": "#ffdada",
+                        "on-surface": "#271718",
+                        "primary-container": "#c41e3a",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "outline-variant": "#e3bebd",
+                        "surface": "#fff8f7",
+                        "secondary-container": "#dfe0e0",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#005754",
+                        "on-tertiary-fixed": "#00201f",
+                        "surface-container-low": "#fff0f0",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-tertiary-container": "#9cf2ed",
+                        "on-primary-fixed-variant": "#920023",
+                        "primary": "#9e0027",
+                        "inverse-primary": "#ffb3b4",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#f9dcdb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "table-header": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "table-header": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<link href="../shared/admin.css" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-60 border-r border-gray-200 bg-white dark:bg-gray-950 flex flex-col py-4 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-black text-red-700 dark:text-red-500">Seblak Rika</h1>
+<p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Management System</p>
+</div>
+<nav class="flex-1 space-y-1 px-3">
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg group transition-all" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg group transition-all" href="../kategori_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="category">category</span>
+<span class="font-medium">Kategori</span>
+</a>
+<a class="flex items-center px-3 py-2 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 font-medium border-r-2 border-red-700 rounded-lg group transition-all" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-medium">Produk</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg group transition-all" href="../metode_pembayaran_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="payments">payments</span>
+<span class="font-medium">Metode Pembayaran</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg group transition-all" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-medium">Pesanan</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg group transition-all" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="group">group</span>
+<span class="font-medium">Pelanggan</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg group transition-all" href="../riwayat_stok_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="history">history</span>
+<span class="font-medium">Riwayat Stok</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg group transition-all" href="../audit_log_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="assignment">assignment</span>
+<span class="font-medium">Audit Log</span>
+</a>
+</nav>
+<div class="mt-auto px-3 space-y-1 pt-4 border-t border-gray-100">
+<a class="flex items-center px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-lg transition-all" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="settings">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+<a class="flex items-center px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-all" href="../login_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="logout">logout</span>
+<span class="font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-60 h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 z-40">
+<div class="flex items-center flex-1">
+<div class="relative w-96 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-gray-50 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary focus:bg-white transition-all" placeholder="Cari pesanan atau produk..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-red-600 border-2 border-white rounded-full"></span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-px bg-gray-200 mx-1"></div>
+<div class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-1 pr-3 rounded-lg transition-all">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-gray-200">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young male manager in a bright, modern office setting. He is wearing a clean white shirt, and the background is softly blurred with warm interior lighting. The overall aesthetic is clean, corporate, and trustworthy, matching the red and white theme of the Seblak Rika brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCepLt_zOwW_sB9VuQZpgvMhq72JeIqzEinvCIVdfM8jWxYmn8vkQMMdy6Aeihb3uqll-6S3B0JcP0fKiIqVhVqGfm5NpFWfwxJMHYWTvhuCFNK6TuTiQAipnp0pXS9H62qw1JuuU1a_FiDqYz_aNdglkkUcRm6Ei-hZ3eONi7wOoaFqOUxEi92oYRIZ-OCq7Hw-KxJP11Bu-nNQU1bnKJLoUOt5s5cobTdq5WnjQpn1sesnEkrKlsMuOl53bTPGLfvn_KPomgJLAMC"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-gray-900 leading-none">Rika Admin</span>
+<span class="text-[10px] text-gray-500 uppercase tracking-tighter">Owner</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-60 pt-14 min-h-screen">
+<div class="p-lg space-y-md">
+<!-- Page Header & Filters -->
+<div class="bg-white rounded-xl border border-gray-200 p-md flex flex-col gap-md shadow-sm">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-h1 text-h1 text-on-background">Manajemen Produk</h2>
+<p class="text-body-sm text-secondary font-body-sm">Kelola katalog, harga, dan ketersediaan stok seblak Anda.</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-white px-md py-sm rounded-lg flex items-center gap-sm transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="font-semibold text-sm">Tambah Produk</span>
+</button>
+</div>
+<div class="grid grid-cols-12 gap-md pt-4 border-t border-gray-50">
+<div class="col-span-3">
+<label class="block text-label-caps text-secondary mb-1">CARI PRODUK</label>
+<div class="relative">
+<input class="w-full border-gray-200 rounded-lg text-sm h-9 focus:border-primary focus:ring-primary" placeholder="Nama produk..." type="text"/>
+</div>
+</div>
+<div class="col-span-2">
+<label class="block text-label-caps text-secondary mb-1">KATEGORI</label>
+<select class="w-full border-gray-200 rounded-lg text-sm h-9 focus:border-primary focus:ring-primary">
+<option>Semua Kategori</option>
+<option>Seblak Kuah</option>
+<option>Seblak Kering</option>
+<option>Topping</option>
+<option>Minuman</option>
+</select>
+</div>
+<div class="col-span-2">
+<label class="block text-label-caps text-secondary mb-1">STATUS</label>
+<select class="w-full border-gray-200 rounded-lg text-sm h-9 focus:border-primary focus:ring-primary">
+<option>Tersedia &amp; Kosong</option>
+<option>Tersedia</option>
+<option>Kosong</option>
+</select>
+</div>
+<div class="col-span-3">
+<label class="block text-label-caps text-secondary mb-1">RENTANG HARGA (RP)</label>
+<div class="flex items-center gap-2">
+<input class="w-full border-gray-200 rounded-lg text-sm h-9 focus:border-primary focus:ring-primary" placeholder="Min" type="number"/>
+<span class="text-gray-400">-</span>
+<input class="w-full border-gray-200 rounded-lg text-sm h-9 focus:border-primary focus:ring-primary" placeholder="Max" type="number"/>
+</div>
+</div>
+<div class="col-span-2 flex items-end">
+<button class="w-full border border-gray-200 hover:bg-gray-50 text-gray-700 h-9 rounded-lg text-sm font-semibold transition-all">
+                            Reset Filter
+                        </button>
+</div>
+</div>
+</div>
+<!-- DataTable Section -->
+<div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-gray-50 border-b border-gray-200">
+<tr>
+<th class="px-md py-3 text-table-header text-secondary font-table-header uppercase">GAMBAR</th>
+<th class="px-md py-3 text-table-header text-secondary font-table-header uppercase">NAMA PRODUK</th>
+<th class="px-md py-3 text-table-header text-secondary font-table-header uppercase">KATEGORI</th>
+<th class="px-md py-3 text-table-header text-secondary font-table-header uppercase">HARGA</th>
+<th class="px-md py-3 text-table-header text-secondary font-table-header uppercase">STOK</th>
+<th class="px-md py-3 text-table-header text-secondary font-table-header uppercase text-center">TERSEDIA</th>
+<th class="px-md py-3 text-table-header text-secondary font-table-header uppercase text-right">AKSI</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-md py-md">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200">
+<img alt="Seblak Komplit" class="w-full h-full object-cover" data-alt="A macro shot of a steaming bowl of Indonesian Seblak, filled with red-hot crackers, spicy broth, noodles, and meatballs. The lighting is warm and dramatic, highlighting the oily sheen and vibrant red chili flakes. The style is appetizing commercial food photography with a shallow depth of field, reflecting the intense and flavorful identity of Seblak Rika." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1MdyT72-KBAQ-P4oya_1xWlcDHG3bgVUvKpgRaNoJNVgFxaMS8BYkBpbltRclXXIXj6i5vsAwPCSIkw1lBNi9qXz3vPR0h80S1DCQyMY4E9Bk3VnoHe9B4uxQhY_NNZdr9k7bJ5EUOGrtnojNkbDaJO5KVBwXFLNnAZdSOx1ti7NKBkuKo7kPUHqP-GXf_IzWCN9Js0TiE336ZEDWl0d_JY1iaOmpehON2_F9i90p-brbeDyP6_z-bBppwBLON5mz9wPNro0RaP2r"/>
+</div>
+</td>
+<td class="px-md py-md">
+<div class="font-semibold text-on-background">Seblak Komplit Spesial</div>
+<div class="text-[11px] text-gray-400">ID: PRD-001</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-medium">Seblak Kuah</span>
+</td>
+<td class="px-md py-md font-medium text-on-background">Rp 25.000</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-bold text-green-700">18</span>
+</div>
+</td>
+<td class="px-md py-md text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="Update Stok"><span class="material-symbols-outlined text-lg" data-icon="add_business">add_business</span></button>
+<button class="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors" title="Upload Gambar"><span class="material-symbols-outlined text-lg" data-icon="image">image</span></button>
+<button class="p-1.5 text-gray-500 hover:bg-gray-100 rounded transition-colors" title="Edit Produk"><span class="material-symbols-outlined text-lg" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors" title="Hapus Produk"><span class="material-symbols-outlined text-lg" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-md py-md">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200">
+<img alt="Seblak Ceker" class="w-full h-full object-cover" data-alt="A focused close-up image of spicy chicken feet in a savory, red chili sauce, arranged beautifully in a rustic ceramic bowl. The lighting is high-contrast, emphasizing the texture of the sauce and the tenderness of the chicken feet. The image captures the spicy, local street food essence with a modern, high-density culinary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK4OyCN83zzhsw0iWbGh7FEqf30p5fRAzfgeaCQIJLc_2qhWZFN6UrpP9xK9-J1HRxJrPftgRvpOaErmJot34yC9fGYcJacF7EuCSmwM0VhHzQ7jIcoRHjg4XmSpCD_FEiIJCXvLNSddLacNxX8qitZ_CihxtWYjmoWAFCrytUcysl3FhHq0maSxZUTkIWT71QY6M_K0rTxKQVRlf0TRcu6NNbBY4FlDi7QrqzhJc-OpJzeiVvq9or_FjD7aJdEL3O-RxkNuzKRiS0"/>
+</div>
+</td>
+<td class="px-md py-md">
+<div class="font-semibold text-on-background">Seblak Ceker Mercon</div>
+<div class="text-[11px] text-gray-400">ID: PRD-002</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-medium">Seblak Kuah</span>
+</td>
+<td class="px-md py-md font-medium text-on-background">Rp 18.000</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+<span class="font-bold text-yellow-700">8</span>
+</div>
+</td>
+<td class="px-md py-md text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="add_business">add_business</span></button>
+<button class="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="image">image</span></button>
+<button class="p-1.5 text-gray-500 hover:bg-gray-100 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-md py-md">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200">
+<img alt="Kerupuk Seblak" class="w-full h-full object-cover" data-alt="A clean top-down view of crunchy, orange-colored Indonesian crackers seasoned with chili powder, arranged in a modern minimalist snack container. The background is a clean, neutral gray to emphasize the vibrant orange hue of the product. The lighting is soft and even, highlighting the crispy texture of the crackers in a high-end food product style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy236fdKY1wcBoDx-c0V5afZWC2halMdJrWEpjiTW-Gu_rvNyvvZjn2y4GIBneLH8aP61w5iL7tFDox8la5hUoC5Jbb73UDd3QTTjfZvfFnLt6PHTmEjqWQq04524qxb5s9xPgpkHCv4PtsuEDU8ze__7Aatj0Y1VTpuaGU_Eb5W6UtIUEq_-JtPxA0I4L7_ZxMUotZ-TbVNN8bWij55_QGsuHggsCKf2a40keiER4FP0gjL0SliI8W9cMlYRykk-R8PNrLEXgHCn9"/>
+</div>
+</td>
+<td class="px-md py-md">
+<div class="font-semibold text-on-background">Kerupuk Seblak Pedas</div>
+<div class="text-[11px] text-gray-400">ID: PRD-003</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-medium">Seblak Kering</span>
+</td>
+<td class="px-md py-md font-medium text-on-background">Rp 12.000</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600"></span>
+<span class="font-bold text-red-700">3</span>
+</div>
+</td>
+<td class="px-md py-md text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="add_business">add_business</span></button>
+<button class="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="image">image</span></button>
+<button class="p-1.5 text-gray-500 hover:bg-gray-100 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-md py-md">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200">
+<img alt="Es Teh Manis" class="w-full h-full object-cover" data-alt="A refreshing, crystal-clear glass of Indonesian sweet iced tea with ice cubes and condensation droplets on the outside. A sprig of mint and a slice of lemon garnish the top. The background is a bright, summery outdoor setting, with soft, natural sunlight creating a refreshing and cool atmosphere, contrasting with the spicy food items." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTzFjl61LyhMgsEgnYhOHI_XCqKkDilXM6xQKNHoBr6CEgaF8JfOhIl117urXZiLV-HqN6PnoS_BzGNMD9co4uP8JuW1cx8dbYyar91eX0GvSFe5GzHxLkPhR4bgcJcVyDeDl1XOiCYAnHpg3Z2ci-3RfoW5XOHV-CevsogB6swOAJOhu68j_n4u4ItGOIkA7mxD5m9l8cr1lN1np7RD9z-JK7piIUkNkFV8HT-wM5o-ExeNdYq4pB1MMMZAd6yiLTfLcntq1D3MB1"/>
+</div>
+</td>
+<td class="px-md py-md">
+<div class="font-semibold text-on-background">Es Teh Manis Segar</div>
+<div class="text-[11px] text-gray-400">ID: PRD-004</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full font-medium">Minuman</span>
+</td>
+<td class="px-md py-md font-medium text-on-background">Rp 5.000</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600"></span>
+<span class="font-bold text-red-700">0</span>
+</div>
+</td>
+<td class="px-md py-md text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="add_business">add_business</span></button>
+<button class="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="image">image</span></button>
+<button class="p-1.5 text-gray-500 hover:bg-gray-100 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors"><span class="material-symbols-outlined text-lg" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-lg py-md border-t border-gray-100 flex items-center justify-between bg-white">
+<span class="text-xs text-gray-500">Menampilkan 1-4 dari 42 Produk</span>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded hover:bg-gray-50 text-xs font-medium text-gray-600">2</button>
+<button class="w-8 h-8 rounded hover:bg-gray-50 text-xs font-medium text-gray-600">3</button>
+<button class="p-1 rounded border border-gray-200 text-gray-600 hover:bg-gray-50">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Stats Summary (Small Bento Widgets) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<div class="bg-white p-md rounded-xl border border-gray-200 shadow-sm flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
+</div>
+<div>
+<div class="text-xs text-secondary font-semibold uppercase tracking-wider">Total Menu</div>
+<div class="text-xl font-bold">42 Item</div>
+</div>
+</div>
+<div class="bg-white p-md rounded-xl border border-gray-200 shadow-sm flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<div>
+<div class="text-xs text-secondary font-semibold uppercase tracking-wider">Stok Menipis</div>
+<div class="text-xl font-bold text-yellow-700">12 Menu</div>
+</div>
+</div>
+<div class="bg-white p-md rounded-xl border border-gray-200 shadow-sm flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-red-100 text-red-700 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</div>
+<div>
+<div class="text-xs text-secondary font-semibold uppercase tracking-wider">Stok Kosong</div>
+<div class="text-xl font-bold text-red-700">3 Menu</div>
+</div>
+</div>
+<div class="bg-white p-md rounded-xl border border-gray-200 shadow-sm flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-green-100 text-green-700 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<div class="text-xs text-secondary font-semibold uppercase tracking-wider">Aktif Terjual</div>
+<div class="text-xl font-bold text-green-700">39 Menu</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Stock Update Drawer Backdrop (Simulation) -->
+<div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-[60] hidden"></div>
+<!-- Modal Simulation Template (Edit/Add) -->
+<div class="fixed inset-0 flex items-center justify-center z-[70] hidden">
+<div class="bg-white w-[500px] rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+<div class="px-lg py-md border-b border-gray-100 flex items-center justify-between bg-gray-50">
+<h3 class="font-h2 text-h2">Update Stok Produk</h3>
+<button class="text-gray-400 hover:text-gray-600"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="p-lg space-y-md">
+<div class="flex items-center gap-md p-md bg-gray-50 rounded-xl border border-gray-100">
+<div class="w-16 h-16 rounded-lg bg-gray-200 overflow-hidden">
+<img alt="Seblak Komplit" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9p-X8i1kOowAJ_HdSpVvQmsWPV9mv9x6KU9m8T9vdM1wIG--FKR2YHO-CipFwqq1ZL4nuP8IYe-nAHzCTwcxOyyOvxOU8qQbdCT-UfI_OGB3gFaxMNEfMZkFDTRZRYatADIpxQ-Hi_4eSewgTA6lvB7HujotjaiLlxF6aX6kbjzO2YzdrNP8LfC619f82WDuNNqXPNMauLl3xWZlsMTTo48J7cz5YU99L5WBKRXdwxd05vhZwU-dKc66bl0k5hBfCvUumRNo5Oyye"/>
+</div>
+<div>
+<div class="font-bold text-on-background">Seblak Komplit Spesial</div>
+<div class="text-xs text-secondary">Stok Saat Ini: 18</div>
+</div>
+</div>
+<div>
+<label class="block text-label-caps text-secondary mb-1">JUMLAH STOK BARU</label>
+<input class="w-full border-gray-200 rounded-lg h-10 focus:border-primary focus:ring-primary font-bold" type="number" value="18"/>
+</div>
+<div>
+<label class="block text-label-caps text-secondary mb-1">CATATAN (OPTIONAL)</label>
+<textarea class="w-full border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary" placeholder="Contoh: Penambahan stok baru dari supplier..." rows="3"></textarea>
+</div>
+</div>
+<div class="px-lg py-md border-t border-gray-100 flex justify-end gap-md bg-gray-50">
+<button class="px-md py-sm text-gray-600 font-semibold hover:bg-gray-100 rounded-lg transition-all">Batal</button>
+<button class="px-md py-sm bg-primary text-white font-semibold rounded-lg hover:bg-primary-container transition-all shadow-md shadow-primary/20">Simpan Perubahan</button>
+</div>
+</div>
+</div>
+<script data-page="produk" src="../shared/admin.js"></script>
+</body></html>

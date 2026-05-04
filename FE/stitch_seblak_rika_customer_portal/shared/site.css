@@ -1,0 +1,204 @@
+:root {
+  --sr-primary: #af101a;
+  --sr-primary-strong: #8f0d15;
+  --sr-surface: #fcf9f4;
+  --sr-surface-raised: rgba(255, 252, 247, 0.96);
+  --sr-border: #e4d8d2;
+  --sr-text: #1c1c19;
+  --sr-muted: #5b403d;
+  --sr-shadow: 0 10px 28px rgba(92, 41, 25, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.sr-shell-ready {
+  padding-top: 64px;
+}
+
+body.sr-shell-ready:not(.sr-page-detail) {
+  padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+}
+
+body.sr-shell-ready.sr-page-checkout {
+  padding-bottom: calc(168px + env(safe-area-inset-bottom, 0px));
+}
+
+body.sr-shell-ready > nav:not(.sr-site-header):not(.sr-bottom-nav),
+body.sr-shell-ready > header:not(.sr-site-header) {
+  display: none !important;
+}
+
+.sr-site-header,
+.sr-bottom-nav {
+  font-family: "Be Vietnam Pro", "Plus Jakarta Sans", sans-serif;
+}
+
+.sr-site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 70;
+  height: 64px;
+  background: var(--sr-surface-raised);
+  border-bottom: 1px solid var(--sr-border);
+  backdrop-filter: blur(14px);
+}
+
+.sr-site-header__inner {
+  width: min(100% - 32px, 1120px);
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.sr-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--sr-primary);
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.sr-brand-mark {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--sr-primary);
+  border-radius: 8px;
+  box-shadow: var(--sr-shadow);
+}
+
+.sr-main-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sr-nav-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  color: var(--sr-muted);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.sr-nav-link:hover,
+.sr-nav-link:focus-visible {
+  color: var(--sr-primary);
+  background: #fff0ee;
+  outline: 2px solid transparent;
+}
+
+.sr-nav-link[aria-current="page"] {
+  color: #fff;
+  background: var(--sr-primary);
+}
+
+.sr-bottom-nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 70;
+  height: calc(76px + env(safe-area-inset-bottom, 0px));
+  padding: 8px 14px calc(8px + env(safe-area-inset-bottom, 0px));
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--sr-surface-raised);
+  border-top: 1px solid var(--sr-border);
+  box-shadow: 0 -10px 22px rgba(92, 41, 25, 0.1);
+  backdrop-filter: blur(14px);
+}
+
+.sr-bottom-nav__link {
+  min-width: 64px;
+  min-height: 56px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: #6e5751;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.sr-bottom-nav__link:hover,
+.sr-bottom-nav__link:focus-visible {
+  color: var(--sr-primary);
+  background: #fff0ee;
+  outline: 2px solid transparent;
+}
+
+.sr-bottom-nav__link[aria-current="page"] {
+  color: var(--sr-primary);
+  background: #fff0ee;
+}
+
+.sr-bottom-nav .material-symbols-outlined {
+  font-size: 22px;
+}
+
+.sr-checkout-sticky {
+  bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+  z-index: 60 !important;
+}
+
+.sr-linkified {
+  cursor: pointer;
+}
+
+.sr-linkified:focus-visible {
+  outline: 3px solid rgba(175, 16, 26, 0.35);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .sr-site-header__inner {
+    width: min(100% - 24px, 1120px);
+  }
+
+  .sr-main-nav {
+    display: none;
+  }
+
+  .sr-bottom-nav {
+    display: flex;
+  }
+
+  body.sr-page-detail .sr-bottom-nav {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .sr-nav-link,
+  .sr-bottom-nav__link {
+    transition-duration: 0ms;
+  }
+}

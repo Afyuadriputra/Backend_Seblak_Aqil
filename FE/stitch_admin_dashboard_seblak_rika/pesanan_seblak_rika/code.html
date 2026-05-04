@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Management - Seblak Rika Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "background": "#fff8f7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#ba1434",
+                        "inverse-on-surface": "#ffedec",
+                        "surface-container-high": "#ffe1e1",
+                        "outline": "#8f6f6f",
+                        "surface-container": "#ffe9e8",
+                        "inverse-surface": "#3e2c2c",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#271718",
+                        "on-tertiary-fixed-variant": "#00504d",
+                        "surface-bright": "#fff8f7",
+                        "on-primary-fixed": "#40000a",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#9cf1ed",
+                        "primary-fixed-dim": "#ffb3b4",
+                        "tertiary-fixed-dim": "#80d5d1",
+                        "tertiary-container": "#00716e",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-dim": "#f0d3d3",
+                        "on-secondary-container": "#616363",
+                        "on-surface-variant": "#5b4040",
+                        "surface-container-highest": "#f9dcdb",
+                        "primary-fixed": "#ffdad9",
+                        "on-primary-container": "#ffdada",
+                        "on-surface": "#271718",
+                        "primary-container": "#c41e3a",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "outline-variant": "#e3bebd",
+                        "surface": "#fff8f7",
+                        "secondary-container": "#dfe0e0",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#005754",
+                        "on-tertiary-fixed": "#00201f",
+                        "surface-container-low": "#fff0f0",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-tertiary-container": "#9cf2ed",
+                        "on-primary-fixed-variant": "#920023",
+                        "primary": "#9e0027",
+                        "inverse-primary": "#ffb3b4",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#f9dcdb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "table-header": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "table-header": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #fff8f7; }
+        .sidebar-active { background-color: #ffdad9; color: #9e0027; border-right: 2px solid #9e0027; }
+    </style>
+<link href="../shared/admin.css" rel="stylesheet"/>
+</head>
+<body class="antialiased">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<nav class="fixed left-0 top-0 h-screen w-60 bg-white border-r border-gray-200 flex flex-col py-4 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-black text-red-700 tracking-tight">Seblak Rika</h1>
+<p class="text-xs text-gray-500 font-medium">Management System</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-2.5 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all text-sm font-inter" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all text-sm font-inter" href="../kategori_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="category">category</span> Kategori
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all text-sm font-inter" href="../kelola_produk_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="inventory_2">inventory_2</span> Produk
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all text-sm font-inter" href="../metode_pembayaran_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="payments">payments</span> Metode Pembayaran
+            </a>
+<!-- Active Tab: Pesanan -->
+<a class="flex items-center px-6 py-2.5 bg-red-50 text-red-700 font-medium border-r-2 border-red-700 transition-all text-sm font-inter" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="shopping_cart">shopping_cart</span> Pesanan
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all text-sm font-inter" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span> Pelanggan
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all text-sm font-inter" href="../riwayat_stok_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="history">history</span> Riwayat Stok
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all text-sm font-inter" href="../audit_log_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="assignment">assignment</span> Audit Log
+            </a>
+</div>
+<div class="px-6 pt-4 border-t border-gray-100 space-y-1">
+<a class="flex items-center py-2 text-gray-600 hover:text-red-700 text-sm font-inter" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="settings">settings</span> Settings
+            </a>
+<a class="flex items-center py-2 text-gray-600 hover:text-red-700 text-sm font-inter" href="../login_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3" data-icon="logout">logout</span> Logout
+            </a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 h-14 bg-white border-b border-gray-200 flex justify-between items-center px-6 z-40" style="left: 240px;">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="Search orders..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">
+                AR
+            </div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-20 pb-10 px-container-margin" style="margin-left: 240px;">
+<!-- Header & Primary Action -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Order Management</h2>
+<p class="font-body-md text-body-md text-secondary">Manage incoming orders and track kitchen fulfillment.</p>
+</div>
+<button class="flex items-center px-4 py-2 bg-primary text-on-primary rounded-lg font-body-md shadow-sm hover:opacity-90 active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined mr-2 text-lg">add</span> Buat Pesanan Baru
+            </button>
+</div>
+<!-- Filters Section (Bento Inspired Layout) -->
+<section class="grid grid-cols-12 gap-gutter mb-lg">
+<div class="col-span-12 lg:col-span-8 bg-white border border-gray-200 rounded-xl p-md flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">STATUS PESANAN</label>
+<select class="w-full h-9 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary">
+<option>Semua Status</option>
+<option>menunggu_konfirmasi</option>
+<option>diproses</option>
+<option>selesai</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">PEMBAYARAN</label>
+<select class="w-full h-9 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary">
+<option>Semua</option>
+<option>diterima</option>
+<option>belum_dibayar</option>
+<option>menunggu_verifikasi</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">RENTANG TANGGAL</label>
+<input class="w-full h-9 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary" type="date"/>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 bg-white border border-gray-200 rounded-xl p-md flex flex-col justify-center">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">KODE / TELEPON</label>
+<div class="relative">
+<input class="w-full h-9 pl-9 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary" placeholder="Cari Kode atau HP..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+</div>
+</div>
+</section>
+<!-- DataTable Section -->
+<div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 border-b border-gray-200">
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Kode Pesanan</th>
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Pelanggan</th>
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Metode</th>
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Total</th>
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Status Bayar</th>
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Status Pesanan</th>
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Tanggal</th>
+<th class="px-6 py-3 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 font-body-md text-primary font-semibold">ORD-20260504-ABC12345</td>
+<td class="px-6 py-4">
+<div class="font-body-md text-on-surface font-medium">Budi Setiawan</div>
+<div class="text-[11px] text-gray-500">0812-3456-7890</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-secondary">Transfer BCA</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Rp 45.000</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-green-100 text-green-700 uppercase">diterima</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-fixed text-primary uppercase">menunggu_konfirmasi</span>
+</td>
+<td class="px-6 py-4 font-body-sm text-secondary">14 Oct, 12:30</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 hover:bg-red-50 text-red-700 rounded-lg transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 font-body-md text-primary font-semibold">ORD-20260504-BCA22334</td>
+<td class="px-6 py-4">
+<div class="font-body-md text-on-surface font-medium">Siti Rahma</div>
+<div class="text-[11px] text-gray-500">0857-1122-3344</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-secondary">ShopeePay</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Rp 128.500</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-error-container text-error uppercase">belum_dibayar</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 uppercase">diproses</span>
+</td>
+<td class="px-6 py-4 font-body-sm text-secondary">14 Oct, 12:45</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 hover:bg-red-50 text-red-700 rounded-lg transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 font-body-md text-primary font-semibold">ORD-20260504-TUN88990</td>
+<td class="px-6 py-4">
+<div class="font-body-md text-on-surface font-medium">Andi Wijaya</div>
+<div class="text-[11px] text-gray-500">0821-9988-7766</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-secondary">tunai</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Rp 32.000</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-green-100 text-green-700 uppercase">diterima</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-green-100 text-green-700 uppercase">selesai</span>
+</td>
+<td class="px-6 py-4 font-body-sm text-secondary">14 Oct, 11:15</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 hover:bg-red-50 text-red-700 rounded-lg transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-white border-t border-gray-100 flex items-center justify-between">
+<span class="text-body-sm text-secondary">Menampilkan 1-10 dari 240 pesanan</span>
+<div class="flex gap-2">
+<button class="p-1.5 border border-gray-200 rounded hover:bg-gray-50 text-gray-500"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1.5 border border-gray-200 rounded bg-primary text-on-primary text-xs font-bold px-3">1</button>
+<button class="p-1.5 border border-gray-200 rounded hover:bg-gray-50 text-xs font-bold px-3">2</button>
+<button class="p-1.5 border border-gray-200 rounded hover:bg-gray-50 text-gray-500"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+<!-- Overlay (for Drawer) -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] flex justify-end">
+<!-- Right Drawer (Detail Pesanan) -->
+<aside class="w-full max-w-lg bg-white h-full shadow-2xl flex flex-col">
+<!-- Drawer Header -->
+<div class="p-lg border-b border-gray-100 flex justify-between items-center bg-surface-container-low">
+<div>
+<h3 class="font-h2 text-h2 text-primary">Detail Pesanan ORD-20260504-ABC12345</h3>
+<p class="text-body-sm text-secondary">Dipesan pada 14 Okt 2023 • 12:30 WIB</p>
+</div>
+<button class="p-2 hover:bg-red-50 rounded-full text-gray-400 hover:text-red-700 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-lg space-y-lg">
+<!-- Customer Section -->
+<section>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-md border-b pb-1">INFORMASI PELANGGAN</h4>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<p class="text-[11px] text-secondary">Nama Lengkap</p>
+<p class="font-body-md font-medium text-on-surface">Budi Setiawan</p>
+</div>
+<div>
+<p class="text-[11px] text-secondary">No. Telepon</p>
+<p class="font-body-md font-medium text-on-surface">0812-3456-7890</p>
+</div>
+<div class="col-span-2">
+<p class="text-[11px] text-secondary">Alamat Pengiriman</p>
+<p class="font-body-sm text-on-surface">Jl. Raya Cimahi No. 123, Kel. Karangmekar, Kec. Cimahi Tengah, Kota Cimahi 40523</p>
+</div>
+</div>
+</section>
+<!-- Order Items -->
+<section>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-md border-b pb-1">DAFTAR ITEM</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-gray-100 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up of a steaming bowl of traditional spicy Seblak with crackers, sausages, and chili oil in a bright modern kitchen setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpgRIdMb9Ya8u381M2nnV4_q-jYFi-_K1v1MSkXKazAkDuScRGPSOhg0t-riu-0P70i7xpTwPU6SSUyRGCkUPQW9zoNRwWBucJprZoHBRzf26D4aE922fRRIWh-TAdUu9DIbpnT7D_Ow7k9GzKva9EX2GaxutpqqsEwma3d40V0D68ffruHRAOLBmkgckoC9tPRHwuyvRfzoNjnoDOuVoV0QOlAK5avc8SCT2QRrBkLBv_wzxtXjHmrTOtkyYvjmQu-Lu-054wd5zT"/>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">Seblak Komplit Spesial</p>
+<p class="text-[11px] text-secondary">Level: Pedas Mampus • Extra Kerupuk</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-md text-on-surface">x 1</p>
+<p class="font-body-sm font-semibold text-primary">Rp 25.000</p>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-gray-100 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A refreshing glass of iced Thai Tea with layers of orange tea and white milk, served with a straw in a minimalist cafe environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfb-A0G9VLUFC2dO8GUFxLX7vYkS-ArMMguSa96si1twGITleHYHuNwalyb-hgL5ZdaYgUXGx1eONUohH8SWqgFLOfHF5iC2s2okT42dJzCOMXPfyOtz8JpK5PY-CJfcG0zBePxyRU0u-L3sKiOgTktVpGL7VJrt8BLH_AqpGiG7QeburUvSWv5HMrYekUG3zh58uFcFoTvpUAVppJls6-ziumlRYr6qDtt4QFGkHflHjFKy7eoWj2SWhDcLiwIAeIpA3KgeixU3CO"/>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">Thai Tea Jumbo</p>
+<p class="text-[11px] text-secondary">Less Sugar • Less Ice</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-md text-on-surface">x 2</p>
+<p class="font-body-sm font-semibold text-primary">Rp 20.000</p>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-dashed border-gray-200">
+<div class="flex justify-between mb-1">
+<span class="text-body-sm text-secondary">Subtotal</span>
+<span class="text-body-sm text-on-surface">Rp 45.000</span>
+</div>
+<div class="flex justify-between mb-1">
+<span class="text-body-sm text-secondary">Ongkos Kirim</span>
+<span class="text-body-sm text-on-surface">Rp 5.000</span>
+</div>
+<div class="flex justify-between mt-2">
+<span class="font-body-md font-bold text-on-surface">Total Bayar</span>
+<span class="font-body-md font-bold text-primary">Rp 50.000</span>
+</div>
+</div>
+</section>
+<!-- Payment Proof -->
+<section>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-md border-b pb-1">BUKTI PEMBAYARAN</h4>
+<div class="relative group aspect-video rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+<img class="w-full h-full object-cover opacity-80" data-alt="A high-quality scan of a digital payment receipt showing a successful bank transfer on a smartphone screen, with clean white and blue interface elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOa0sTmZM6nsoCg0YMmGQ0vZ5vH1yHAbOwYAnz0Zc7Q-3PLfuPUJsM9kF-JAcp0ghFOE5i8T5Y44GllUJ6QS9WJAhEbV_Kkq4HGctGlYL6F4GnxVfKcdMyEfuzeyG63unddoEOdoPlIydx-8hITXNJgAtnCS9YKkW-Qp17LB7NQ2RGFeuV7w-9VgsHL6pMsXpSu_bzxpvbqQti7p70NQMb-ByeyJB1O77nLm6rcCvIE1W2roq4jWWpyCwGwZGOL1wYIee2EUINZ9Ct"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-white text-on-surface p-2 rounded-lg flex items-center gap-2 text-xs font-semibold">
+<span class="material-symbols-outlined text-lg">fullscreen</span> Lihat
+                            </button>
+<button class="bg-white text-error p-2 rounded-lg flex items-center gap-2 text-xs font-semibold">
+<span class="material-symbols-outlined text-lg">delete</span> Hapus
+                            </button>
+</div>
+</div>
+</section>
+<!-- Update Status Actions -->
+<section class="grid grid-cols-2 gap-md pt-lg">
+<div class="space-y-sm">
+<label class="block font-label-caps text-label-caps text-on-surface-variant">UPDATE STATUS BAYAR</label>
+<select class="w-full h-10 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary">
+<option>diterima</option>
+<option>belum_dibayar</option>
+<option>menunggu_verifikasi</option>
+</select>
+<button class="w-full py-2 bg-secondary text-white text-xs font-bold rounded hover:opacity-90">Simpan Status</button>
+</div>
+<div class="space-y-sm">
+<label class="block font-label-caps text-label-caps text-on-surface-variant">UPDATE STATUS PESANAN</label>
+<select class="w-full h-10 border-gray-200 rounded text-body-sm focus:ring-primary focus:border-primary">
+<option>menunggu_konfirmasi</option>
+<option>diproses</option>
+<option>selesai</option>
+</select>
+<button class="w-full py-2 bg-primary text-white text-xs font-bold rounded hover:opacity-90">Kirim ke Dapur</button>
+</div>
+</section>
+</div>
+<!-- Drawer Footer -->
+<div class="p-lg border-t border-gray-100 bg-gray-50 flex gap-md">
+<button class="flex-1 py-2.5 border border-gray-300 text-on-surface-variant rounded-lg font-body-md font-semibold hover:bg-white">
+                    Cetak Struk
+                </button>
+<button class="flex-1 py-2.5 bg-green-600 text-white rounded-lg font-body-md font-semibold hover:bg-green-700">
+                    Selesaikan Pesanan
+                </button>
+</div>
+</aside>
+</div>
+<!-- Background Decoration for High-End Feel -->
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+<div class="fixed bottom-0 left-[240px] w-[300px] h-[300px] bg-tertiary/5 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
+<script data-page="pesanan" src="../shared/admin.js"></script>
+</body></html>

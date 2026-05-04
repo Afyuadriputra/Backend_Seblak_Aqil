@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "error-container": "#ffdad6",
+                  "background": "#fff8f7",
+                  "surface-container-lowest": "#ffffff",
+                  "surface-tint": "#ba1434",
+                  "inverse-on-surface": "#ffedec",
+                  "surface-container-high": "#ffe1e1",
+                  "outline": "#8f6f6f",
+                  "surface-container": "#ffe9e8",
+                  "inverse-surface": "#3e2c2c",
+                  "on-error-container": "#93000a",
+                  "on-error": "#ffffff",
+                  "secondary-fixed": "#e2e2e2",
+                  "on-tertiary": "#ffffff",
+                  "on-background": "#271718",
+                  "on-tertiary-fixed-variant": "#00504d",
+                  "surface-bright": "#fff8f7",
+                  "on-primary-fixed": "#40000a",
+                  "error": "#ba1a1a",
+                  "tertiary-fixed": "#9cf1ed",
+                  "primary-fixed-dim": "#ffb3b4",
+                  "tertiary-fixed-dim": "#80d5d1",
+                  "tertiary-container": "#00716e",
+                  "on-secondary-fixed": "#1a1c1c",
+                  "surface-dim": "#f0d3d3",
+                  "on-secondary-container": "#616363",
+                  "on-surface-variant": "#5b4040",
+                  "surface-container-highest": "#f9dcdb",
+                  "primary-fixed": "#ffdad9",
+                  "on-primary-container": "#ffdada",
+                  "on-surface": "#271718",
+                  "primary-container": "#c41e3a",
+                  "on-secondary": "#ffffff",
+                  "secondary": "#5d5f5f",
+                  "outline-variant": "#e3bebd",
+                  "surface": "#fff8f7",
+                  "secondary-container": "#dfe0e0",
+                  "secondary-fixed-dim": "#c6c6c7",
+                  "tertiary": "#005754",
+                  "on-tertiary-fixed": "#00201f",
+                  "surface-container-low": "#fff0f0",
+                  "on-secondary-fixed-variant": "#454747",
+                  "on-tertiary-container": "#9cf2ed",
+                  "on-primary-fixed-variant": "#920023",
+                  "primary": "#9e0027",
+                  "inverse-primary": "#ffb3b4",
+                  "on-primary": "#ffffff",
+                  "surface-variant": "#f9dcdb"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "lg": "24px",
+                  "xl": "32px",
+                  "xs": "4px",
+                  "sm": "8px",
+                  "container-margin": "24px",
+                  "gutter": "16px",
+                  "md": "16px",
+                  "base": "4px"
+          },
+          "fontFamily": {
+                  "body-md": ["Inter"],
+                  "h2": ["Inter"],
+                  "body-sm": ["Inter"],
+                  "table-header": ["Inter"],
+                  "label-caps": ["Inter"],
+                  "h1": ["Inter"]
+          },
+          "fontSize": {
+                  "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                  "h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                  "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                  "table-header": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                  "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                  "h1": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body { background-color: #fff8f7; }
+  </style>
+<link href="../shared/admin.css" rel="stylesheet"/>
+</head>
+<body class="font-body-md text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-60 border-r bg-white border-gray-200 flex flex-col h-full py-4 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-black text-red-700">Seblak Rika</h1>
+<p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Management System</p>
+</div>
+<nav class="flex-1 space-y-1 px-3">
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg group" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg group" href="../kategori_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">category</span>
+<span class="font-medium">Kategori</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg group" href="../kelola_produk_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+<span class="font-medium">Produk</span>
+</a>
+<a class="flex items-center px-3 py-2 bg-red-50 text-red-700 font-medium border-r-2 border-red-700 transition-all duration-150 ease-in-out rounded-l-lg group" href="../metode_pembayaran_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-medium">Metode Pembayaran</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg group" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">shopping_cart</span>
+<span class="font-medium">Pesanan</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg group" href="../pesanan_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-medium">Pelanggan</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg group" href="../riwayat_stok_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">history</span>
+<span class="font-medium">Riwayat Stok</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg group" href="../audit_log_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">assignment</span>
+<span class="font-medium">Audit Log</span>
+</a>
+</nav>
+<div class="px-3 pt-4 border-t border-gray-100 mt-auto space-y-1">
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+<a class="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-red-700 transition-all duration-150 ease-in-out rounded-lg" href="../login_seblak_rika/code.html">
+<span class="material-symbols-outlined mr-3 text-red-600">logout</span>
+<span class="font-medium text-red-600">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="ml-60 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="h-14 px-6 w-full flex justify-between items-center bg-white border-b border-gray-200 sticky top-0 z-40">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-gray-400 mr-4">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 placeholder-gray-400" placeholder="Search data..." type="text"/>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-gray-200 cursor-pointer">
+<img alt="Admin Profile" data-alt="A professional headshot of a middle-aged Asian man with a friendly expression, wearing a clean white chef's apron. The background is a brightly lit, modern office space with subtle red accents that align with a spicy food brand's identity. The lighting is soft and even, highlighting the administrative professional's approachable persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwHJWV9hf3r3cLoG3OcmKUB1rmj4KKUjlfuLsdQt4gwMlKwA-hJkSIL18a4iSahVLGV_rGL6sBhKancjvLE0No8L36f3TdXiJm5XC7fFcCuVHNonwYWSmajQfVIQhsicHKPinQenkeUoMPFp-5iSxs5PTfGFSwtEmhR8kqqeCpQjgBYkVtwUq-isLfJZSryGOreYR0BPDameXaOFf3i2PwW36rHqyqkD-JQJ8B8iGYjtJabmTd9g5A3v13Hg0D589LyvbV1FVKQiOJ"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="flex-1 p-lg max-w-[1400px] mx-auto w-full">
+<!-- Page Header Actions -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="text-h1 font-h1 text-on-surface">Metode Pembayaran</h2>
+<p class="text-body-sm text-on-surface-variant">Kelola cara pelanggan membayar pesanan mereka secara efisien.</p>
+</div>
+<button class="flex items-center bg-primary text-on-primary px-lg py-sm rounded shadow-sm hover:opacity-90 active:opacity-80 transition-all font-semibold">
+<span class="material-symbols-outlined mr-sm text-[20px]">add_circle</span>
+          Tambah Metode
+        </button>
+</div>
+<!-- Stats Cards Row (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-xl">
+<div class="bg-white p-md border border-outline-variant rounded shadow-sm">
+<p class="text-label-caps text-on-surface-variant">TOTAL METODE</p>
+<div class="flex items-baseline justify-between mt-xs">
+<span class="text-h2 font-h2 text-on-surface">12</span>
+<span class="text-body-sm text-tertiary font-semibold flex items-center">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>
+              +2 Baru
+            </span>
+</div>
+</div>
+<div class="bg-white p-md border border-outline-variant rounded shadow-sm">
+<p class="text-label-caps text-on-surface-variant">AKTIF</p>
+<div class="flex items-baseline justify-between mt-xs">
+<span class="text-h2 font-h2 text-tertiary">8</span>
+<span class="h-2 w-2 rounded-full bg-tertiary animate-pulse"></span>
+</div>
+</div>
+<div class="bg-white p-md border border-outline-variant rounded shadow-sm">
+<p class="text-label-caps text-on-surface-variant">TRANSAKSI HARI INI</p>
+<div class="flex items-baseline justify-between mt-xs">
+<span class="text-h2 font-h2 text-on-surface">Rp 4.2M</span>
+<span class="text-body-sm text-secondary font-medium">QRIS Dominant</span>
+</div>
+</div>
+<div class="bg-white p-md border border-outline-variant rounded shadow-sm bg-primary-container/10">
+<p class="text-label-caps text-on-primary-fixed-variant">ISU PEMBAYARAN</p>
+<div class="flex items-baseline justify-between mt-xs">
+<span class="text-h2 font-h2 text-primary">0</span>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div>
+</div>
+<!-- DataTable -->
+<div class="bg-white border border-outline-variant rounded overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant border-b border-outline-variant">
+<th class="px-md py-sm font-table-header text-table-header uppercase tracking-wider">Nama Metode</th>
+<th class="px-md py-sm font-table-header text-table-header uppercase tracking-wider">Tipe</th>
+<th class="px-md py-sm font-table-header text-table-header uppercase tracking-wider">Detail / Info Rekening</th>
+<th class="px-md py-sm font-table-header text-table-header uppercase tracking-wider">Status Aktif</th>
+<th class="px-md py-sm font-table-header text-table-header uppercase tracking-wider text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1: QRIS -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded bg-red-50 flex items-center justify-center text-red-700 mr-md">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">QRIS Dinamis</p>
+<p class="text-body-sm text-on-surface-variant">Otomatis via Midtrans</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-tertiary-fixed text-on-tertiary-fixed-variant">Digital</span>
+</td>
+<td class="px-md py-md">
+<p class="text-body-sm text-on-surface">ID: MID-992011</p>
+<p class="text-[11px] text-on-surface-variant italic">Scan &amp; Pay</p>
+</td>
+<td class="px-md py-md">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-md text-right">
+<div class="flex justify-end space-x-1">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded transition-all" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-tertiary hover:bg-tertiary-fixed/30 rounded transition-all" title="Upload QR">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/30 rounded transition-all" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Bank Transfer -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded bg-blue-50 flex items-center justify-center text-blue-700 mr-md">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Bank BCA</p>
+<p class="text-body-sm text-on-surface-variant">Transfer Manual</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-secondary-container text-on-secondary-container">transfer_bank</span>
+</td>
+<td class="px-md py-md">
+<p class="text-body-sm font-medium text-on-surface">8801928374</p>
+<p class="text-[11px] text-on-surface-variant">a.n. Rika Seblak Official</p>
+</td>
+<td class="px-md py-md">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-md text-right">
+<div class="flex justify-end space-x-1">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded transition-all" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-gray-200 cursor-not-allowed" disabled="" title="Upload QR">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/30 rounded transition-all" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: E-Wallet -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded bg-green-50 flex items-center justify-center text-green-700 mr-md">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">GoPay Business</p>
+<p class="text-body-sm text-on-surface-variant">Merchant Account</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-tertiary-fixed text-on-tertiary-fixed-variant">Digital</span>
+</td>
+<td class="px-md py-md">
+<p class="text-body-sm text-on-surface">0812-3344-5566</p>
+<p class="text-[11px] text-on-surface-variant">Linked Phone</p>
+</td>
+<td class="px-md py-md">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-md text-right">
+<div class="flex justify-end space-x-1">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded transition-all" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-tertiary hover:bg-tertiary-fixed/30 rounded transition-all" title="Upload QR">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/30 rounded transition-all" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-md py-sm bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+<p class="text-body-sm text-on-surface-variant font-medium">Menampilkan 3 dari 12 metode</p>
+<div class="flex space-x-1">
+<button class="p-1 px-2 border border-outline-variant rounded hover:bg-white transition-colors text-on-surface-variant disabled:opacity-50" disabled="">Prev</button>
+<button class="p-1 px-3 border border-primary bg-primary text-on-primary rounded font-bold">1</button>
+<button class="p-1 px-3 border border-outline-variant rounded hover:bg-white transition-colors text-on-surface-variant">2</button>
+<button class="p-1 px-3 border border-outline-variant rounded hover:bg-white transition-colors text-on-surface-variant">3</button>
+<button class="p-1 px-2 border border-outline-variant rounded hover:bg-white transition-colors text-on-surface-variant">Next</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Modal Overlay (Hidden State) -->
+<div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-md">
+<div class="bg-white w-full max-w-lg rounded shadow-xl overflow-hidden border border-outline-variant">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-h2 font-h2 text-on-surface">Tambah Metode Pembayaran</h3>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-lg space-y-md">
+<div class="space-y-base">
+<label class="text-label-caps text-on-surface-variant">NAMA METODE</label>
+<input class="w-full h-[36px] border border-outline-variant rounded px-md focus:border-primary focus:ring-0 transition-colors" placeholder="Contoh: Bank Mandiri" type="text"/>
+</div>
+<div class="space-y-base">
+<label class="text-label-caps text-on-surface-variant">TIPE METODE</label>
+<select class="w-full h-[36px] border border-outline-variant rounded px-md focus:border-primary focus:ring-0 transition-colors">
+<option value="transfer_bank">Transfer Bank</option>
+<option value="qris">qris</option>
+</select>
+</div>
+<!-- Conditional Section: Bank Transfer -->
+<div class="grid grid-cols-2 gap-md pt-sm">
+<div class="space-y-base">
+<label class="text-label-caps text-on-surface-variant">NOMOR REKENING</label>
+<input class="w-full h-[36px] border border-outline-variant rounded px-md focus:border-primary focus:ring-0 transition-colors" type="text"/>
+</div>
+<div class="space-y-base">
+<label class="text-label-caps text-on-surface-variant">NAMA PEMILIK</label>
+<input class="w-full h-[36px] border border-outline-variant rounded px-md focus:border-primary focus:ring-0 transition-colors" type="text"/>
+</div>
+</div>
+<!-- Conditional Section: QRIS (Simulated Hidden) -->
+<div class="hidden space-y-base pt-sm border-2 border-dashed border-outline-variant rounded-lg p-lg text-center bg-surface-container">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-sm">cloud_upload</span>
+<p class="text-body-md font-semibold text-on-surface">Klik untuk unggah gambar QRIS</p>
+<p class="text-xs text-on-surface-variant">Format: JPG, PNG (Maks 2MB)</p>
+</div>
+<div class="flex items-center space-x-md pt-md">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 text-body-md font-medium text-on-surface">Aktifkan saat simpan</span>
+</label>
+</div>
+</form>
+<div class="bg-surface-container-low px-lg py-md border-t border-outline-variant flex justify-end space-x-md">
+<button class="px-lg py-sm text-body-md font-semibold text-on-surface hover:bg-surface-container transition-colors rounded">Batal</button>
+<button class="px-lg py-sm text-body-md font-semibold bg-primary text-on-primary rounded shadow hover:opacity-90 transition-all">Simpan Metode</button>
+</div>
+</div>
+</div>
+<!-- QR Upload Modal (Hidden State for Demo) -->
+<div class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-md">
+<div class="bg-white w-full max-w-sm rounded shadow-2xl overflow-hidden text-center p-xl space-y-lg border border-outline-variant">
+<div class="mx-auto w-16 h-16 bg-tertiary-fixed rounded-full flex items-center justify-center text-on-tertiary-fixed-variant mb-md">
+<span class="material-symbols-outlined text-3xl">qr_code</span>
+</div>
+<h3 class="text-h2 font-h2">Unggah QRIS</h3>
+<p class="text-body-sm text-on-surface-variant">Silakan unggah gambar QR code statis untuk metode pembayaran "QRIS Digital".</p>
+<div class="border-2 border-dashed border-outline rounded-lg p-xl flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container transition-colors">
+<img alt="QR Placeholder" class="w-32 h-32 object-contain opacity-50 mb-md" data-alt="A clean, high-contrast digital mockup of a QR code displayed on a modern smartphone screen. The device is held by a person in a bright, minimalist setting with soft lighting. The overall aesthetic is professional and clean, using a white and soft red color palette consistent with a modern fintech application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXiruU2eO7HMKpp21OUfuOKxwhnKCKHa2K65kJUBmsY_ad2ym4y9Slsfuh0CGSGKfAw1hNagwTaKHbswmSDP4kM995lIKxImcYrPoxJt8wnjgRAZGve9y7HLINl0bwGhwh91GMMDCZ4Gtvp54agYVl6m6BvfLCIKbO44PFvWK4jL7kZ1iG52lX9VUp95sTs3idWEbmiB5z6llbssgmgtJKQmnSJar1NiH3oAkh1XrWcZlaeAk2EE7pRvi-rD4XnPkKyUKxiSuQ7Ry8"/>
+<span class="text-body-sm font-semibold text-primary">Klik untuk Pilih File</span>
+</div>
+<div class="flex flex-col space-y-sm">
+<button class="w-full py-sm bg-primary text-on-primary font-bold rounded">Selesai Unggah</button>
+<button class="w-full py-sm text-on-surface-variant font-medium">Batalkan</button>
+</div>
+</div>
+</div>
+<!-- Confirmation Dialog (Hidden State for Demo) -->
+<div class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[70] flex items-center justify-center p-md">
+<div class="bg-white w-full max-w-xs rounded-xl shadow-2xl overflow-hidden text-center p-lg space-y-md border border-error-container">
+<span class="material-symbols-outlined text-error text-5xl">warning</span>
+<h4 class="text-h2 font-bold text-on-surface">Hapus Metode?</h4>
+<p class="text-body-sm text-on-surface-variant px-sm">Anda yakin ingin menghapus metode ini? Tindakan ini tidak dapat dibatalkan.</p>
+<div class="flex flex-col space-y-sm pt-md">
+<button class="w-full py-sm bg-error text-white font-bold rounded">Ya, Hapus Permanen</button>
+<button class="w-full py-sm text-on-surface-variant font-medium">Batal</button>
+</div>
+</div>
+</div>
+<script data-page="metode" src="../shared/admin.js"></script>
+</body></html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seblak Rika Admin - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "background": "#fff8f7",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#ba1434",
+                    "inverse-on-surface": "#ffedec",
+                    "surface-container-high": "#ffe1e1",
+                    "outline": "#8f6f6f",
+                    "surface-container": "#ffe9e8",
+                    "inverse-surface": "#3e2c2c",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#271718",
+                    "on-tertiary-fixed-variant": "#00504d",
+                    "surface-bright": "#fff8f7",
+                    "on-primary-fixed": "#40000a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#9cf1ed",
+                    "primary-fixed-dim": "#ffb3b4",
+                    "tertiary-fixed-dim": "#80d5d1",
+                    "tertiary-container": "#00716e",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-dim": "#f0d3d3",
+                    "on-secondary-container": "#616363",
+                    "on-surface-variant": "#5b4040",
+                    "surface-container-highest": "#f9dcdb",
+                    "primary-fixed": "#ffdad9",
+                    "on-primary-container": "#ffdada",
+                    "on-surface": "#271718",
+                    "primary-container": "#c41e3a",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#5d5f5f",
+                    "outline-variant": "#e3bebd",
+                    "surface": "#fff8f7",
+                    "secondary-container": "#dfe0e0",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "tertiary": "#005754",
+                    "on-tertiary-fixed": "#00201f",
+                    "surface-container-low": "#fff0f0",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-tertiary-container": "#9cf2ed",
+                    "on-primary-fixed-variant": "#920023",
+                    "primary": "#9e0027",
+                    "inverse-primary": "#ffb3b4",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#f9dcdb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "md": "16px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "table-header": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "h1": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "table-header": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h1": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<link href="../shared/admin.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface-bright min-h-screen flex items-center justify-center p-md">
+<main class="w-full max-w-[1200px] grid lg:grid-cols-2 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant">
+<div class="hidden lg:block relative overflow-hidden bg-primary">
+<div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+<img alt="Spicy Indonesian Cuisine" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay" data-alt="A professional food photography shot of a steaming hot bowl of spicy Seblak, featuring red chili broth, crackers, and sausages. The lighting is dramatic with warm highlights and deep shadows, emphasizing the rich red textures of the spices. The background is a dark, minimalist kitchen setting with a clean, high-end culinary aesthetic. The overall mood is intense, flavorful, and modern, aligning with the brand's chili red identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4EAi0LrBUEb6GKUgURWiwGkzzI_De5RyeB3Bfk6a2Bot1GJgZL4dswSRJt5OiD0oxIzXV7iDmYWmrKRpifIVx9kZVpGZ1C1aN6EuAKuHAxXRci_hCCtipOdAu4pq-p616kktQ-JVd66Y2s1f05wXOfumYb3jW1J51Yme8s5_fHZD0Gm3dNPE1l9gdCEK3nSujgDktc2l61qJusjIj4XqOs40BakZqND1jkjpaLoFQIFNcMKwignn1nTw_KvzQCW4qPZ1-3soOJRGh"/>
+<div class="relative h-full flex flex-col justify-between p-xl text-on-primary">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+<span class="font-h1 text-h1 tracking-tight">Seblak Rika</span>
+</div>
+<div>
+<h2 class="font-h1 text-[40px] leading-tight mb-md">Sistem Manajemen Operasional Terpadu</h2>
+<p class="font-body-md text-body-md opacity-90 max-w-md">
+                        Kelola inventaris, pantau pesanan pelanggan, dan optimalkan performa bisnis Anda dalam satu dashboard yang efisien dan responsif.
+                    </p>
+</div>
+<div class="flex items-center gap-md">
+<div class="h-1 w-12 bg-on-primary rounded-full"></div>
+<span class="font-label-caps text-label-caps uppercase opacity-70">Kitchen Efficiency Standard 2.0</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-center p-xl lg:p-24 bg-white">
+<div class="mb-xl">
+<div class="lg:hidden flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+<span class="font-h2 text-h2 text-primary">Seblak Rika</span>
+</div>
+<h1 class="font-h1 text-h1 text-on-surface mb-xs">Selamat Datang</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Masuk ke akun admin untuk melanjutkan.</p>
+</div>
+<form class="space-y-md">
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="email">Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px] transition-colors group-focus-within:text-primary">mail</span>
+<input class="w-full h-[36px] pl-10 pr-md bg-surface-container-lowest border border-outline-variant rounded focus:ring-0 focus:border-primary font-body-md text-body-md text-on-surface transition-all placeholder:text-outline/50" id="email" name="email" placeholder="admin@seblakrika.com" required="" type="email"/>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="kata_sandi">Kata Sandi</label>
+<a class="font-body-sm text-body-sm text-primary hover:underline" href="../dashboard_seblak_rika/code.html">Lupa sandi?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px] transition-colors group-focus-within:text-primary">lock</span>
+<input class="w-full h-[36px] pl-10 pr-md bg-surface-container-lowest border border-outline-variant rounded focus:ring-0 focus:border-primary font-body-md text-body-md text-on-surface transition-all placeholder:text-outline/50" id="kata_sandi" name="kata_sandi" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-center gap-sm py-xs">
+<input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-0 focus:ring-offset-0" id="remember" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="remember">Ingat saya untuk sesi ini</label>
+</div>
+<div class="hidden animate-in fade-in slide-in-from-top-2" id="error-message">
+<div class="flex items-center gap-sm p-sm bg-error-container text-on-error-container rounded border border-error/20">
+<span class="material-symbols-outlined text-[18px]">error</span>
+<p class="font-body-sm text-body-sm" id="error-text">Email atau kata sandi yang Anda masukkan salah.</p>
+</div>
+</div>
+<button class="w-full h-[40px] bg-primary hover:bg-primary-container text-on-primary font-body-md font-semibold rounded flex items-center justify-center gap-sm transition-all active:scale-[0.98]" id="login-button" type="submit">
+<span id="button-text">Masuk</span>
+<div class="hidden" id="loading-spinner">
+<svg class="animate-spin h-5 w-5 text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+</div>
+</button>
+</form>
+<footer class="mt-xl pt-xl border-t border-outline-variant flex flex-col gap-sm">
+<div class="flex justify-center gap-lg">
+<a class="text-outline hover:text-primary transition-colors" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</a>
+<a class="text-outline hover:text-primary transition-colors" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</a>
+<a class="text-outline hover:text-primary transition-colors" href="../dashboard_seblak_rika/code.html">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+</a>
+</div>
+<p class="text-center font-label-caps text-label-caps text-outline opacity-60">
+                    © 2024 SEBLAK RIKA INDONESIA. ALL RIGHTS RESERVED.
+                </p>
+</footer>
+</div>
+</main>
+<script>
+        /**
+         * Operational Logic for Login Form
+         * Strictly handles the UI states (loading, error) and localStorage persistence.
+         */
+        const loginForm = document.querySelector('form');
+        const loginButton = document.getElementById('login-button');
+        const buttonText = document.getElementById('button-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const errorMessage = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // UI State: Loading
+            loginButton.disabled = true;
+            buttonText.classList.add('opacity-0');
+            loadingSpinner.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+
+            const formData = new FormData(loginForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                // Mock endpoint simulation for demonstration as per prompt requirement
+                // Real implementation would use fetch('POST /auth/login')
+                const response = await simulateLoginRequest(data);
+                
+                if (response.success) {
+                    // Success: Store token and redirect
+                    localStorage.setItem('access_token', response.access_token);
+                    window.location.href = '../dashboard_seblak_rika/code.html';
+                } else {
+                    // Error state from response.message
+                    throw new Error(response.message || 'Login gagal. Periksa kembali kredensial Anda.');
+                }
+            } catch (err) {
+                // UI State: Error
+                errorText.textContent = err.message;
+                errorMessage.classList.remove('hidden');
+            } finally {
+                // UI State: Reset
+                loginButton.disabled = false;
+                buttonText.classList.remove('opacity-0');
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+
+        // Simulation helper
+        function simulateLoginRequest(data) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    if (data.email === 'admin@seblakrika.com' && data.kata_sandi === 'admin123') {
+                        resolve({
+                            success: true,
+                            access_token: 'mock-admin-access-token',
+                            token_type: 'bearer'
+                        });
+                    } else {
+                        resolve({
+                            success: false,
+                            message: 'Email atau kata sandi tidak ditemukan dalam sistem.'
+                        });
+                    }
+                }, 1500);
+            });
+        }
+    </script>
+<script data-page="login" src="../shared/admin.js"></script>
+</body></html>
