@@ -1,11 +1,9 @@
-from datetime import UTC, datetime
+from datetime import datetime
 
 from sqlalchemy import BigInteger, DateTime, Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
-
-def utc_now() -> datetime:
-    return datetime.now(UTC)
+from app.shared.datetime_utils import utc_now
 
 
 BigIntPrimaryKey = BigInteger().with_variant(Integer, "sqlite")
