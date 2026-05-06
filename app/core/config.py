@@ -29,13 +29,25 @@ class Settings(BaseSettings):
     )
 
     upload_dir: str = Field(default="storage/uploads", alias="UPLOAD_DIR")
+    private_upload_dir: str = Field(default="storage/private", alias="PRIVATE_UPLOAD_DIR")
     max_upload_size_mb: int = Field(default=2, alias="MAX_UPLOAD_SIZE_MB")
+    max_payment_proofs_per_order: int = Field(default=3, alias="MAX_PAYMENT_PROOFS_PER_ORDER")
 
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
     log_file: str = Field(default="logs/app.log", alias="LOG_FILE")
 
     rate_limit_enabled: bool = Field(default=True, alias="RATE_LIMIT_ENABLED")
     rate_limit_default: str = Field(default="100/minute", alias="RATE_LIMIT_DEFAULT")
+    rate_limit_storage_uri: str | None = Field(default=None, alias="RATE_LIMIT_STORAGE_URI")
+
+    redis_url: str = Field(default="redis://127.0.0.1:6379/0", alias="REDIS_URL")
+    redis_socket_timeout_seconds: float = Field(default=1.0, alias="REDIS_SOCKET_TIMEOUT_SECONDS")
+    cache_enabled: bool = Field(default=True, alias="CACHE_ENABLED")
+
+    db_pool_size: int = Field(default=5, alias="DB_POOL_SIZE")
+    db_max_overflow: int = Field(default=10, alias="DB_MAX_OVERFLOW")
+    db_pool_recycle_seconds: int = Field(default=1800, alias="DB_POOL_RECYCLE_SECONDS")
+    slow_request_threshold_ms: int = Field(default=500, alias="SLOW_REQUEST_THRESHOLD_MS")
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE,
@@ -53,8 +65,18 @@ class Settings(BaseSettings):
         return Path(self.upload_dir)
 
     @property
+    def private_upload_path(self) -> Path:
+        return Path(self.private_upload_dir)
+
+    @property
     def max_upload_size_bytes(self) -> int:
         return self.max_upload_size_mb * 1024 * 1024
+
+    @property
+    def effective_rate_limit_storage_uri(self) -> str | None:
+        if self.rate_limit_storage_uri:
+            return self.rate_limit_storage_uri
+        return self.redis_url if self.is_production else None
 
     @property
     def is_development(self) -> bool:

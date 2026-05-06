@@ -4,6 +4,7 @@ from collections.abc import Callable
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
 from slowapi import Limiter
 from slowapi.errors import RateLimitExceeded
@@ -22,12 +23,15 @@ limiter = Limiter(
     key_func=get_remote_address,
     default_limits=[settings.rate_limit_default] if settings.rate_limit_enabled else [],
     enabled=settings.rate_limit_enabled,
+    storage_uri=settings.effective_rate_limit_storage_uri,
 )
 
 
 def setup_middlewares(app: FastAPI) -> None:
     setup_cors(app)
+    setup_compression(app)
     setup_rate_limiter(app)
+    setup_security_headers(app)
     setup_request_logger(app)
     setup_exception_handlers(app)
 
@@ -48,6 +52,32 @@ def setup_rate_limiter(app: FastAPI) -> None:
     app.add_middleware(SlowAPIMiddleware)
 
 
+def setup_compression(app: FastAPI) -> None:
+    app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+
+def setup_security_headers(app: FastAPI) -> None:
+    @app.middleware("http")
+    async def security_headers(request: Request, call_next: Callable):
+        response = await call_next(request)
+        response.headers.setdefault("X-Content-Type-Options", "nosniff")
+        response.headers.setdefault("X-Frame-Options", "DENY")
+        response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+        response.headers.setdefault(
+            "Content-Security-Policy",
+            "default-src 'self'; "
+            "img-src 'self' data: blob:; "
+            "style-src 'self' 'unsafe-inline'; "
+            "script-src 'self'",
+        )
+        if settings.is_production:
+            response.headers.setdefault(
+                "Strict-Transport-Security",
+                "max-age=31536000; includeSubDomains",
+            )
+        return response
+
+
 def setup_request_logger(app: FastAPI) -> None:
     @app.middleware("http")
     async def request_logger(request: Request, call_next: Callable):
@@ -57,7 +87,10 @@ def setup_request_logger(app: FastAPI) -> None:
 
         duration_ms = (time.perf_counter() - start_time) * 1000
 
-        logger.info(
+        log_method = (
+            logger.warning if duration_ms >= settings.slow_request_threshold_ms else logger.info
+        )
+        log_method(
             "%s %s | status=%s | duration=%.2fms | client=%s",
             request.method,
             request.url.path,
