@@ -29,3 +29,21 @@ def test_pagination_meta_without_data():
     assert meta["limit"] == 10
     assert meta["total"] == 0
     assert meta["total_pages"] == 0
+
+
+def test_product_endpoint_rejects_limit_over_100(client):
+    response = client.get("/produk?limit=101")
+
+    assert response.status_code == 422
+
+
+def test_product_endpoint_rejects_page_under_1(client):
+    response = client.get("/produk?page=0")
+
+    assert response.status_code == 422
+
+
+def test_product_endpoint_rejects_limit_under_1(client):
+    response = client.get("/produk?limit=0")
+
+    assert response.status_code == 422

@@ -45,10 +45,13 @@ def validate_file_extension(filename: str | None) -> None:
     if not filename:
         raise BadRequestException("Nama file tidak valid")
 
-    extension = Path(filename).suffix.lower()
+    suffixes = [suffix.lower() for suffix in Path(filename).suffixes]
+    extension = suffixes[-1] if suffixes else ""
 
     if extension not in ALLOWED_IMAGE_EXTENSIONS:
         raise BadRequestException("Tipe file tidak diizinkan. Gunakan jpg, jpeg, png, atau webp.")
+    if len(suffixes) > 1 and any(suffix not in ALLOWED_IMAGE_EXTENSIONS for suffix in suffixes):
+        raise BadRequestException("Nama file tidak valid")
 
 
 def validate_file_mime_type(content_type: str | None) -> None:
@@ -57,6 +60,8 @@ def validate_file_mime_type(content_type: str | None) -> None:
 
 
 def validate_file_size(file_size: int) -> None:
+    if file_size <= 0:
+        raise BadRequestException("File tidak boleh kosong")
     if file_size > settings.max_upload_size_bytes:
         raise BadRequestException(f"Ukuran file maksimal {settings.max_upload_size_mb} MB")
 
