@@ -5,6 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
+from app.core.redis_client import delete_pattern
 from app.modules.kategori.repository import get_by_id as get_kategori_by_id
 from app.modules.produk import repository
 from app.modules.produk.model import Produk
@@ -71,6 +72,7 @@ def create_produk(db: Session, payload: ProdukCreate) -> Produk:
     validate_kategori_exists(db, payload.kategori_id)
     produk = repository.create(db, payload.model_dump())
     db.commit()
+    invalidate_produk_cache()
     db.refresh(produk)
     return produk
 
@@ -82,6 +84,7 @@ def update_produk(db: Session, produk_id: int, payload: ProdukUpdate) -> Produk:
         validate_kategori_exists(db, data["kategori_id"])
     produk = repository.update(db, produk, data)
     db.commit()
+    invalidate_produk_cache()
     db.refresh(produk)
     return produk
 
@@ -90,6 +93,7 @@ def update_produk_status(db: Session, produk_id: int, payload: ProdukStatusUpdat
     produk = get_produk(db, produk_id)
     produk = repository.update(db, produk, {"status_tersedia": payload.status_tersedia})
     db.commit()
+    invalidate_produk_cache()
     db.refresh(produk)
     return produk
 
@@ -98,6 +102,7 @@ def update_produk_stok(db: Session, produk_id: int, payload: ProdukStokUpdate) -
     produk = get_produk(db, produk_id)
     produk = repository.update(db, produk, {"stok": payload.stok})
     db.commit()
+    invalidate_produk_cache()
     db.refresh(produk)
     return produk
 
@@ -121,6 +126,7 @@ def update_produk_gambar(
         path.write_bytes(content)
         produk.gambar = str(path)
         db.commit()
+        invalidate_produk_cache()
         db.refresh(produk)
         if old_path and old_path.exists() and old_path != path:
             old_path.unlink()
@@ -137,6 +143,12 @@ def delete_produk(db: Session, produk_id: int) -> None:
     try:
         repository.delete(db, produk)
         db.commit()
+        invalidate_produk_cache()
     except IntegrityError as exc:
         db.rollback()
         raise BadRequestException("Produk masih digunakan data lain") from exc
+
+
+def invalidate_produk_cache() -> None:
+    delete_pattern("produk:public:*")
+    delete_pattern("dashboard:*")

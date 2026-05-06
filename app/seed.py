@@ -10,7 +10,7 @@ from app.modules.admin.model import Admin
 from app.modules.kategori.model import Kategori
 from app.modules.metode_pembayaran.model import MetodePembayaran
 from app.modules.produk.model import Produk
-from app.shared.enums import TipeMetodePembayaran
+from app.shared.enums import AdminRole, TipeMetodePembayaran
 
 
 def get_or_create(db, model, defaults: dict | None = None, **filters):
@@ -41,6 +41,8 @@ def seed() -> None:
             defaults={
                 "nama_admin": getenv("SEED_ADMIN_NAME", "Admin Seblak Rika"),
                 "kata_sandi": hash_password(admin_password),
+                "role": getenv("SEED_ADMIN_ROLE", AdminRole.SUPERADMIN.value),
+                "is_active": True,
             },
         )
 
@@ -144,7 +146,9 @@ def seed() -> None:
             {
                 "nama_produk": "Seblak Original",
                 "kategori": "Seblak",
-                "deskripsi": "Seblak original dengan kerupuk, makaroni, telur, dan kuah pedas gurih",
+                "deskripsi": (
+                    "Seblak original dengan kerupuk, makaroni, telur, dan kuah pedas gurih"
+                ),
                 "harga": "15000.00",
                 "stok": 40,
                 "status_tersedia": True,
@@ -152,7 +156,9 @@ def seed() -> None:
             {
                 "nama_produk": "Seblak Komplit",
                 "kategori": "Seblak",
-                "deskripsi": "Seblak lengkap dengan kerupuk, makaroni, telur, bakso, sosis, dan sayur",
+                "deskripsi": (
+                    "Seblak lengkap dengan kerupuk, makaroni, telur, bakso, sosis, dan sayur"
+                ),
                 "harga": "22000.00",
                 "stok": 35,
                 "status_tersedia": True,
@@ -168,7 +174,9 @@ def seed() -> None:
             {
                 "nama_produk": "Seblak Seafood",
                 "kategori": "Seblak",
-                "deskripsi": "Seblak dengan topping seafood seperti dumpling, fish roll, dan crab stick",
+                "deskripsi": (
+                    "Seblak dengan topping seafood seperti dumpling, fish roll, dan crab stick"
+                ),
                 "harga": "25000.00",
                 "stok": 25,
                 "status_tersedia": True,
@@ -221,7 +229,6 @@ def seed() -> None:
                 "stok": 26,
                 "status_tersedia": True,
             },
-
             # Topping
             {
                 "nama_produk": "Topping Ceker",
@@ -303,7 +310,6 @@ def seed() -> None:
                 "stok": 55,
                 "status_tersedia": True,
             },
-
             # Minuman
             {
                 "nama_produk": "Es Teh Manis",
@@ -369,7 +375,6 @@ def seed() -> None:
                 "stok": 35,
                 "status_tersedia": True,
             },
-
             # Level Pedas
             {
                 "nama_produk": "Level 0 - Tidak Pedas",
@@ -419,7 +424,6 @@ def seed() -> None:
                 "stok": 999,
                 "status_tersedia": True,
             },
-
             # Paket Hemat
             {
                 "nama_produk": "Paket Hemat Original + Es Teh",
@@ -461,7 +465,6 @@ def seed() -> None:
                 "stok": 15,
                 "status_tersedia": True,
             },
-
             # Snack
             {
                 "nama_produk": "Kerupuk Rafael",
@@ -503,7 +506,6 @@ def seed() -> None:
                 "stok": 30,
                 "status_tersedia": True,
             },
-
             # Contoh produk tidak tersedia
             {
                 "nama_produk": "Seblak Lobster",

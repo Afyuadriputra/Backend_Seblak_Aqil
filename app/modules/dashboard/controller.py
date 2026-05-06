@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
+from app.core.redis_client import get_json_cache, set_json_cache
 from app.modules.admin.model import Admin
 from app.modules.dashboard.service import (
     get_aktivitas_pesanan_terbaru,
@@ -23,8 +24,20 @@ def dashboard_summary(
     db: Session = Depends(get_database),
     _: Admin = Depends(get_current_admin),
 ):
+    cache_key = (
+        "dashboard:summary:"
+        f"dari={tanggal_dari.isoformat() if tanggal_dari else ''}:"
+        f"sampai={tanggal_sampai.isoformat() if tanggal_sampai else ''}:"
+        f"stok={stok_threshold}"
+    )
+    cached = get_json_cache(cache_key)
+    if cached is not None:
+        return success_response("Ringkasan dashboard", cached)
+
     summary = get_summary(db, tanggal_dari, tanggal_sampai, stok_threshold)
-    return success_response("Ringkasan dashboard", summary.model_dump(mode="json"))
+    data = summary.model_dump(mode="json")
+    set_json_cache(cache_key, data, 60)
+    return success_response("Ringkasan dashboard", data)
 
 
 @router.get("/produk-stok-rendah")

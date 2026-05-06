@@ -24,3 +24,9 @@ class JenisPerubahanStok(StrEnum):
 class TipeMetodePembayaran(StrEnum):
     QRIS = "qris"
     TRANSFER_BANK = "transfer_bank"
+
+
+class AdminRole(StrEnum):
+    SUPERADMIN = "superadmin"
+    ADMIN = "admin"
+    STAFF = "staff"

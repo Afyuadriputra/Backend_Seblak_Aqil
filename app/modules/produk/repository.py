@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from sqlalchemy import func, select
+from sqlalchemy import update as sqlalchemy_update
 from sqlalchemy.orm import Session, selectinload
 
 from app.modules.produk.model import Produk
@@ -63,6 +64,20 @@ def get_many_by_ids(db: Session, produk_ids: list[int]) -> list[Produk]:
     if not produk_ids:
         return []
     return list(db.scalars(select(Produk).where(Produk.id.in_(produk_ids))))
+
+
+def decrease_stock_atomic(db: Session, produk_id: int, qty: int) -> bool:
+    result = db.execute(
+        sqlalchemy_update(Produk)
+        .where(
+            Produk.id == produk_id,
+            Produk.stok >= qty,
+            Produk.status_tersedia.is_(True),
+        )
+        .values(stok=Produk.stok - qty)
+        .execution_options(synchronize_session=False)
+    )
+    return result.rowcount == 1
 
 
 def create(db: Session, data: dict) -> Produk:
