@@ -137,7 +137,7 @@ def test_customer_tracking_timeline_follows_order_lifecycle(timeline_client):
     )
     assert timeline[-2]["judul"] == "Payment Verified"
     assert timeline[-2]["actor_type"] == "admin"
-    assert timeline[-2]["admin_id"] is not None
+    assert "admin_id" not in timeline[-2]
     assert timeline[-1]["judul"] == "Order is being Prepared"
     assert timeline[-1]["actor_type"] == "admin"
     assert [item["status"] for item in timeline].count("diterima") == 1
