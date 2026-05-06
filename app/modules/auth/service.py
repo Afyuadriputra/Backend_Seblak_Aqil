@@ -11,6 +11,25 @@ def login(db: Session, payload: LoginRequest) -> TokenResponse:
     admin = get_admin_by_email(db, payload.email)
 
     if admin is None or not verify_password(payload.kata_sandi, admin.kata_sandi):
+        record_audit(
+            db,
+            aksi="login_admin_gagal",
+            entity="admin",
+            deskripsi="Login admin gagal",
+            metadata={"email": payload.email},
+        )
+        db.commit()
+        raise UnauthorizedException("Email atau kata sandi salah")
+    if not admin.is_active:
+        record_audit(
+            db,
+            aksi="login_admin_gagal",
+            entity="admin",
+            entity_id=admin.id,
+            admin_id=admin.id,
+            deskripsi="Login admin gagal karena akun tidak aktif",
+        )
+        db.commit()
         raise UnauthorizedException("Email atau kata sandi salah")
 
     token = create_access_token(
@@ -18,6 +37,7 @@ def login(db: Session, payload: LoginRequest) -> TokenResponse:
         additional_claims={
             "admin_id": admin.id,
             "email": admin.email,
+            "role": admin.role,
         },
     )
     record_audit(
