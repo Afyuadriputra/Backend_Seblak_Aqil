@@ -3,7 +3,10 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from app.modules.pesanan_timeline.schema import PesananTimelineResponse
+from app.modules.pesanan_timeline.schema import (
+    PesananTimelinePublicResponse,
+    PesananTimelineResponse,
+)
 from app.shared.enums import StatusPembayaran, StatusPesanan
 
 
@@ -112,7 +115,7 @@ class PesananLacakResponse(BaseModel):
     status_pesanan: StatusPesanan
     total_harga: Decimal
     bukti_pembayaran_tersedia: bool
-    timeline: list[PesananTimelineResponse] = []
+    timeline: list[PesananTimelinePublicResponse] = []
 
 
 class DetailPesananCreate(BaseModel):
