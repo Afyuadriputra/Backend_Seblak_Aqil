@@ -7,7 +7,7 @@ from app.core.database import get_db
 from app.core.security import decode_access_token
 from app.modules.admin.model import Admin
 from app.shared.enums import AdminRole
-from app.shared.exceptions import UnauthorizedException
+from app.shared.exceptions import ForbiddenException, UnauthorizedException
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
@@ -29,7 +29,7 @@ def get_current_admin(
     token_payload: dict = Depends(get_current_admin_token),
     db: Session = Depends(get_database),
 ) -> Admin:
-    admin_id = token_payload.get("admin_id") or token_payload.get("sub")
+    admin_id = token_payload.get("admin_id")
 
     if admin_id is None:
         raise UnauthorizedException("Token tidak valid")
@@ -49,7 +49,7 @@ def require_role(role: AdminRole | str):
 
     def dependency(current_admin: Admin = Depends(get_current_admin)) -> Admin:
         if current_admin.role != required_role:
-            raise UnauthorizedException("Token tidak valid atau sudah kedaluwarsa")
+            raise ForbiddenException("Tidak memiliki akses")
         return current_admin
 
     return dependency
@@ -60,7 +60,7 @@ def require_any_role(roles: list[AdminRole | str]):
 
     def dependency(current_admin: Admin = Depends(get_current_admin)) -> Admin:
         if current_admin.role not in allowed_roles:
-            raise UnauthorizedException("Token tidak valid atau sudah kedaluwarsa")
+            raise ForbiddenException("Tidak memiliki akses")
         return current_admin
 
     return dependency
