@@ -9,16 +9,16 @@ from app.shared.enums import StatusPembayaran, StatusPesanan
 
 class PesananItemCreate(BaseModel):
     produk_id: int = Field(..., gt=0)
-    jumlah: int = Field(..., gt=0)
+    jumlah: int = Field(..., gt=0, le=50)
 
 
 class PesananCreate(BaseModel):
     nama_pelanggan: str = Field(..., min_length=1, max_length=100)
     no_telepon: str = Field(..., min_length=8, max_length=20)
-    alamat: str = Field(..., min_length=1)
+    alamat: str = Field(..., min_length=1, max_length=500)
     metode_pembayaran_id: int = Field(..., gt=0)
-    catatan: str | None = None
-    items: list[PesananItemCreate] = Field(..., min_length=1)
+    catatan: str | None = Field(default=None, max_length=500)
+    items: list[PesananItemCreate] = Field(..., min_length=1, max_length=30)
 
     model_config = ConfigDict(
         json_schema_extra={

@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
+from app.core.redis_client import delete_pattern
 from app.modules.metode_pembayaran import repository
 from app.modules.metode_pembayaran.model import MetodePembayaran
 from app.modules.metode_pembayaran.schema import (
@@ -39,6 +40,7 @@ def get_metode(db: Session, metode_id: int) -> MetodePembayaran:
 def create_metode(db: Session, payload: MetodePembayaranCreate) -> MetodePembayaran:
     metode = repository.create(db, payload.model_dump())
     db.commit()
+    invalidate_metode_cache()
     db.refresh(metode)
     return metode
 
@@ -52,6 +54,7 @@ def update_metode(
     data = payload.model_dump(exclude_unset=True)
     metode = repository.update(db, metode, data)
     db.commit()
+    invalidate_metode_cache()
     db.refresh(metode)
     return metode
 
@@ -64,6 +67,7 @@ def update_status(
     metode = get_metode(db, metode_id)
     metode = repository.update(db, metode, {"status_aktif": payload.status_aktif})
     db.commit()
+    invalidate_metode_cache()
     db.refresh(metode)
     return metode
 
@@ -87,6 +91,7 @@ def update_gambar_qr(
         path.write_bytes(content)
         metode.gambar_qr = str(path)
         db.commit()
+        invalidate_metode_cache()
         db.refresh(metode)
         if old_path and old_path.exists() and old_path != path:
             old_path.unlink()
@@ -103,6 +108,11 @@ def delete_metode(db: Session, metode_id: int) -> None:
     try:
         repository.delete(db, metode)
         db.commit()
+        invalidate_metode_cache()
     except IntegrityError as exc:
         db.rollback()
         raise BadRequestException("Metode pembayaran masih digunakan pesanan") from exc
+
+
+def invalidate_metode_cache() -> None:
+    delete_pattern("metode-pembayaran:*")

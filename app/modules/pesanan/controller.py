@@ -1,9 +1,10 @@
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, Query, status
+from fastapi import APIRouter, Depends, Query, Request, status
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
+from app.core.middleware import limiter
 from app.modules.admin.model import Admin
 from app.modules.pesanan.schema import (
     PesananCreate,
@@ -29,7 +30,12 @@ router = APIRouter(prefix="/pesanan", tags=["Pesanan"])
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-def create_pesanan_endpoint(payload: PesananCreate, db: Session = Depends(get_database)):
+@limiter.limit("5/minute")
+def create_pesanan_endpoint(
+    request: Request,
+    payload: PesananCreate,
+    db: Session = Depends(get_database),
+):
     pesanan = create_pesanan(db, payload)
     return success_response(
         "Pesanan berhasil dibuat",
@@ -38,7 +44,12 @@ def create_pesanan_endpoint(payload: PesananCreate, db: Session = Depends(get_da
 
 
 @router.post("/lacak")
-def lacak_pesanan_endpoint(payload: PesananLacakRequest, db: Session = Depends(get_database)):
+@limiter.limit("10/minute")
+def lacak_pesanan_endpoint(
+    request: Request,
+    payload: PesananLacakRequest,
+    db: Session = Depends(get_database),
+):
     result = lacak_pesanan(db, payload)
     return success_response("Status pesanan", result.model_dump(mode="json"))
 

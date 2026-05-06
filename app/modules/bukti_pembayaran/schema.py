@@ -14,8 +14,10 @@ class BuktiPembayaranCreate(BaseModel):
     path_file: str = Field(..., min_length=1, max_length=255)
 
 
-class BuktiPembayaranResponse(BuktiPembayaranCreate):
+class BuktiPembayaranResponse(BaseModel):
     id: int
+    pesanan_id: int
+    nama_file: str
     diunggah_pada: datetime
     dibuat_pada: datetime | None = None
     diperbarui_pada: datetime | None = None
