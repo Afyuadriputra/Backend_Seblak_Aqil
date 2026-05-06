@@ -1,3 +1,8 @@
+from datetime import UTC, datetime, timedelta
+
+from jose import jwt
+
+from app.core.config import get_settings
 from app.core.security import (
     create_access_token,
     decode_access_token,
@@ -50,3 +55,50 @@ def test_decode_invalid_token_returns_none():
     payload = decode_access_token("invalid.token.value")
 
     assert payload is None
+
+
+def test_decode_token_with_wrong_type_returns_none():
+    settings = get_settings()
+    token = jwt.encode(
+        {
+            "sub": "1",
+            "type": "refresh",
+            "iat": datetime.now(UTC),
+            "exp": datetime.now(UTC) + timedelta(minutes=30),
+        },
+        settings.jwt_secret_key,
+        algorithm=settings.jwt_algorithm,
+    )
+
+    assert decode_access_token(token) is None
+
+
+def test_decode_token_missing_sub_returns_none():
+    settings = get_settings()
+    token = jwt.encode(
+        {
+            "type": "access",
+            "iat": datetime.now(UTC),
+            "exp": datetime.now(UTC) + timedelta(minutes=30),
+        },
+        settings.jwt_secret_key,
+        algorithm=settings.jwt_algorithm,
+    )
+
+    assert decode_access_token(token) is None
+
+
+def test_decode_expired_token_returns_none():
+    settings = get_settings()
+    token = jwt.encode(
+        {
+            "sub": "1",
+            "type": "access",
+            "iat": datetime.now(UTC) - timedelta(hours=2),
+            "exp": datetime.now(UTC) - timedelta(minutes=1),
+        },
+        settings.jwt_secret_key,
+        algorithm=settings.jwt_algorithm,
+    )
+
+    assert decode_access_token(token) is None

@@ -16,3 +16,11 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "-ra"
+markers = [
+  "smoke: quick API smoke tests",
+  "security: security and hardening tests",
+  "integration: cross-module integration tests",
+  "fuzz: fuzz/property-based tests",
+  "slow: slow tests not run by default",
+  "performance: manual performance tests",
+]
