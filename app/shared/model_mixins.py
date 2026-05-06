@@ -5,7 +5,6 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from app.shared.datetime_utils import utc_now
 
-
 BigIntPrimaryKey = BigInteger().with_variant(Integer, "sqlite")
 
 

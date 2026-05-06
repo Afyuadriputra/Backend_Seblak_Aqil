@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
+from app.core.redis_client import get_json_cache, set_json_cache
 from app.modules.admin.model import Admin
 from app.modules.kategori.schema import KategoriCreate, KategoriResponse, KategoriUpdate
 from app.modules.kategori.service import (
@@ -23,9 +24,16 @@ def get_kategori_list(
     limit: int = Query(default=20, ge=1, le=100),
     db: Session = Depends(get_database),
 ):
+    cache_key = f"kategori:list:page={page}:limit={limit}"
+    cached = get_json_cache(cache_key)
+    if cached is not None:
+        return success_response("Daftar kategori", cached["data"], cached["meta"])
+
     items, total = list_kategori(db, calculate_offset(page, limit), limit)
     data = [KategoriResponse.model_validate(item).model_dump(mode="json") for item in items]
-    return success_response("Daftar kategori", data, pagination_meta(page, limit, total))
+    meta = pagination_meta(page, limit, total)
+    set_json_cache(cache_key, {"data": data, "meta": meta}, 300)
+    return success_response("Daftar kategori", data, meta)
 
 
 @router.get("/{kategori_id}")

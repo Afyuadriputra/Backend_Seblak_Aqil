@@ -13,6 +13,7 @@ from app.core.security import hash_password
 from app.main import app
 from app.modules.admin.model import Admin
 from app.modules.audit_log.model import AuditLog
+from app.modules.bukti_pembayaran.model import BuktiPembayaran
 from app.modules.produk.model import Produk
 
 
@@ -32,6 +33,7 @@ def flow_client() -> Generator[tuple[TestClient, sessionmaker[Session]], None, N
                 nama_admin="Admin Test",
                 email="admin@example.com",
                 kata_sandi=hash_password("password123"),
+                role="superadmin",
             )
         )
         db.commit()
@@ -101,7 +103,7 @@ def test_guest_checkout_upload_verify_and_stock_flow(flow_client):
     upload_produk_gambar_response = client.patch(
         f"/produk/{produk_id}/gambar",
         headers=headers,
-        files={"file": ("produk.png", b"fake-product-image", "image/png")},
+        files={"file": ("produk.png", b"\x89PNG\r\n\x1a\nfake-product-image", "image/png")},
     )
     assert upload_produk_gambar_response.status_code == 200
     assert upload_produk_gambar_response.json()["data"]["nama_kategori"] == "Seblak"
@@ -110,7 +112,7 @@ def test_guest_checkout_upload_verify_and_stock_flow(flow_client):
     upload_qr_response = client.patch(
         f"/metode-pembayaran/{metode_id}/gambar-qr",
         headers=headers,
-        files={"file": ("qris.png", b"fake-qris-image", "image/png")},
+        files={"file": ("qris.png", b"\x89PNG\r\n\x1a\nfake-qris-image", "image/png")},
     )
     assert upload_qr_response.status_code == 200
     assert upload_qr_response.json()["data"]["gambar_qr"]
@@ -150,10 +152,42 @@ def test_guest_checkout_upload_verify_and_stock_flow(flow_client):
             "kode_pesanan": checkout_data["kode_pesanan"],
             "no_telepon": "08123456789",
         },
-        files={"file": ("bukti.png", b"fake-image-content", "image/png")},
+        files={"file": ("bukti.png", b"\x89PNG\r\n\x1a\nfake-image-content", "image/png")},
     )
     assert upload_response.status_code == 200
     assert upload_response.json()["data"]["status_pembayaran"] == "menunggu_verifikasi"
+
+    with session_factory() as db:
+        bukti = db.scalar(select(BuktiPembayaran))
+        assert bukti is not None
+        protected_file_response = client.get(
+            f"/admin/bukti-pembayaran/{bukti.id}/file",
+            headers=headers,
+        )
+        assert protected_file_response.status_code == 200
+        assert protected_file_response.headers["x-content-type-options"] == "nosniff"
+        assert (
+            "path_file"
+            not in client.get(
+                f"/bukti-pembayaran/{checkout_data['id']}",
+                headers=headers,
+            ).json()["data"][0]
+        )
+
+    stok_kurang_response = client.post(
+        "/pesanan",
+        json={
+            "nama_pelanggan": "Budi",
+            "no_telepon": "08123456789",
+            "alamat": "Jl. Mawar No. 10",
+            "metode_pembayaran_id": metode_id,
+            "items": [{"produk_id": produk_id, "jumlah": 50}],
+        },
+    )
+    assert stok_kurang_response.status_code == 400
+    with session_factory() as db:
+        produk = db.scalar(select(Produk).where(Produk.id == produk_id))
+        assert produk.stok == 8
 
     verify_response = client.patch(
         f"/pesanan/{checkout_data['id']}/status-pembayaran",

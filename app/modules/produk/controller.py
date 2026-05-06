@@ -1,9 +1,11 @@
 from decimal import Decimal
 
-from fastapi import APIRouter, Depends, File, Query, UploadFile, status
+from fastapi import APIRouter, Depends, File, Query, Request, UploadFile, status
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
+from app.core.middleware import limiter
+from app.core.redis_client import get_json_cache, set_json_cache
 from app.modules.admin.model import Admin
 from app.modules.produk.schema import (
     ProdukCreate,
@@ -22,7 +24,7 @@ from app.modules.produk.service import (
     update_produk_status,
     update_produk_stok,
 )
-from app.shared.file_validator import validate_upload_file
+from app.shared.file_validator import validate_upload_content, validate_upload_file
 from app.shared.pagination import calculate_offset, pagination_meta
 from app.shared.response import success_response
 
@@ -30,7 +32,9 @@ router = APIRouter(prefix="/produk", tags=["Produk"])
 
 
 @router.get("")
+@limiter.limit("100/minute")
 def get_produk_list(
+    request: Request,
     page: int = Query(default=1, ge=1),
     limit: int = Query(default=20, ge=1, le=100),
     search: str | None = Query(default=None),
@@ -39,6 +43,15 @@ def get_produk_list(
     max_harga: Decimal | None = Query(default=None, ge=0),
     db: Session = Depends(get_database),
 ):
+    cache_key = (
+        "produk:public:"
+        f"page={page}:limit={limit}:search={search or ''}:kategori={kategori_id or ''}:"
+        f"min={min_harga or ''}:max={max_harga or ''}"
+    )
+    cached = get_json_cache(cache_key)
+    if cached is not None:
+        return success_response("Daftar produk", cached["data"], cached["meta"])
+
     items, total = list_produk(
         db,
         calculate_offset(page, limit),
@@ -50,7 +63,9 @@ def get_produk_list(
         max_harga=max_harga,
     )
     data = [ProdukResponse.model_validate(item).model_dump(mode="json") for item in items]
-    return success_response("Daftar produk", data, pagination_meta(page, limit, total))
+    meta = pagination_meta(page, limit, total)
+    set_json_cache(cache_key, {"data": data, "meta": meta}, 120)
+    return success_response("Daftar produk", data, meta)
 
 
 @router.get("/admin/semua")
@@ -167,11 +182,13 @@ async def update_produk_gambar_endpoint(
     _: Admin = Depends(get_current_admin),
 ):
     validate_upload_file(file)
+    content = await file.read()
+    validate_upload_content(content, file.content_type)
     produk = update_produk_gambar(
         db,
         produk_id,
         original_filename=file.filename or "produk.jpg",
-        content=await file.read(),
+        content=content,
     )
     return success_response(
         "Gambar produk berhasil diperbarui",

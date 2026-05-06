@@ -14,11 +14,31 @@ ALLOWED_IMAGE_MIME_TYPES = {
     "image/png",
     "image/webp",
 }
+JPEG_SIGNATURES = (b"\xff\xd8\xff",)
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+WEBP_RIFF = b"RIFF"
+WEBP_SIGNATURE = b"WEBP"
 
 
 def validate_upload_file(file: UploadFile) -> None:
     validate_file_extension(file.filename)
     validate_file_mime_type(file.content_type)
+
+
+def validate_upload_content(content: bytes, content_type: str | None) -> None:
+    validate_file_size(len(content))
+    if content_type == "image/jpeg" and content.startswith(JPEG_SIGNATURES):
+        return
+    if content_type == "image/png" and content.startswith(PNG_SIGNATURE):
+        return
+    if (
+        content_type == "image/webp"
+        and len(content) >= 12
+        and content.startswith(WEBP_RIFF)
+        and content[8:12] == WEBP_SIGNATURE
+    ):
+        return
+    raise BadRequestException("Konten file tidak sesuai dengan tipe gambar")
 
 
 def validate_file_extension(filename: str | None) -> None:

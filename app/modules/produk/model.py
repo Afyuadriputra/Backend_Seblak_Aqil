@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from sqlalchemy import Boolean, ForeignKey, Index, Numeric, String, Text
+from sqlalchemy import Boolean, CheckConstraint, ForeignKey, Index, Numeric, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
@@ -53,4 +53,6 @@ class Produk(IdMixin, TimestampMixin, Base):
     __table_args__ = (
         Index("idx_produk_kategori_id", "kategori_id"),
         Index("idx_produk_status_tersedia", "status_tersedia"),
+        Index("idx_produk_kategori_status", "kategori_id", "status_tersedia"),
+        CheckConstraint("stok >= 0", name="ck_produk_stok_non_negative"),
     )
