@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from sqlalchemy.orm import Session
 
+from app.core.redis_client import delete_pattern
 from app.modules.admin.model import Admin
 from app.modules.audit_log.service import record_audit
 from app.modules.metode_pembayaran.repository import get_by_id as get_metode_by_id
@@ -20,7 +21,7 @@ from app.modules.pesanan_timeline.service import (
     record_order_status_event,
     record_payment_status_event,
 )
-from app.modules.produk.repository import get_many_by_ids
+from app.modules.produk.repository import decrease_stock_atomic, get_many_by_ids
 from app.shared.enums import StatusPembayaran, StatusPesanan
 from app.shared.exceptions import BadRequestException, NotFoundException
 from app.shared.utils import generate_order_code
@@ -100,8 +101,6 @@ def create_pesanan(db: Session, payload: PesananCreate) -> Pesanan:
         produk = produk_by_id[produk_id]
         if not produk.status_tersedia:
             raise BadRequestException(f"Produk {produk.nama_produk} tidak tersedia")
-        if produk.stok < jumlah:
-            raise BadRequestException(f"Stok produk {produk.nama_produk} tidak mencukupi")
         total_harga += produk.harga * jumlah
 
     try:
@@ -145,9 +144,11 @@ def create_pesanan(db: Session, payload: PesananCreate) -> Pesanan:
                     "subtotal": subtotal,
                 },
             )
-            produk.stok -= jumlah
+            if not decrease_stock_atomic(db, produk.id, jumlah):
+                raise BadRequestException(f"Stok produk {produk.nama_produk} tidak mencukupi")
 
         db.commit()
+        invalidate_order_cache()
         db.refresh(pesanan)
         return get_pesanan(db, pesanan.id)
     except Exception:
@@ -193,6 +194,7 @@ def update_status_pembayaran(
         metadata={"dari": status_lama, "ke": payload.status_pembayaran.value},
     )
     db.commit()
+    invalidate_order_cache()
     db.refresh(pesanan)
     return get_pesanan(db, pesanan.id)
 
@@ -218,5 +220,11 @@ def update_status_pesanan(
         metadata={"dari": status_lama, "ke": payload.status_pesanan.value},
     )
     db.commit()
+    invalidate_order_cache()
     db.refresh(pesanan)
     return get_pesanan(db, pesanan.id)
+
+
+def invalidate_order_cache() -> None:
+    delete_pattern("produk:public:*")
+    delete_pattern("dashboard:*")

@@ -85,7 +85,13 @@ def test_customer_tracking_timeline_follows_order_lifecycle(timeline_client):
             "kode_pesanan": order["kode_pesanan"],
             "no_telepon": "081234567890",
         },
-        files={"file": ("bukti.png", b"realistic-payment-proof-bytes", "image/png")},
+        files={
+            "file": (
+                "bukti.png",
+                b"\x89PNG\r\n\x1a\nrealistic-payment-proof-bytes",
+                "image/png",
+            )
+        },
     )
     assert upload_response.status_code == 200
 
@@ -142,8 +148,7 @@ def test_customer_tracking_timeline_follows_order_lifecycle(timeline_client):
     assert len(dashboard_summary["aktivitas_pesanan_terbaru"]) == 5
     assert dashboard_summary["aktivitas_pesanan_terbaru"][0]["judul"] == "Order is being Prepared"
     assert (
-        dashboard_summary["aktivitas_pesanan_terbaru"][0]["kode_pesanan"]
-        == order["kode_pesanan"]
+        dashboard_summary["aktivitas_pesanan_terbaru"][0]["kode_pesanan"] == order["kode_pesanan"]
     )
 
     dashboard_timeline_response = client.get(

@@ -3,6 +3,7 @@ from pathlib import Path
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
+from app.core.redis_client import delete_pattern
 from app.modules.audit_log.service import record_audit
 from app.modules.bukti_pembayaran import repository
 from app.modules.bukti_pembayaran.model import BuktiPembayaran
@@ -27,10 +28,13 @@ def upload_bukti_tanpa_login(
     if pesanan is None:
         raise NotFoundException("Pesanan tidak ditemukan atau nomor telepon tidak cocok")
 
+    if repository.count_by_pesanan_id(db, pesanan.id) >= settings.max_payment_proofs_per_order:
+        raise BadRequestException("Jumlah upload bukti pembayaran sudah mencapai batas maksimal")
+
     validate_file_size(len(content))
 
     safe_filename = generate_safe_filename(original_filename)
-    upload_dir = settings.upload_path / "bukti_pembayaran"
+    upload_dir = settings.private_upload_path / "payment_proofs"
     upload_dir.mkdir(parents=True, exist_ok=True)
     path = upload_dir / safe_filename
 
@@ -55,6 +59,7 @@ def upload_bukti_tanpa_login(
             metadata={"nama_file": safe_filename, "kode_pesanan": kode_pesanan},
         )
         db.commit()
+        delete_pattern("dashboard:*")
         db.refresh(bukti)
         return bukti
     except Exception:
@@ -83,3 +88,17 @@ def delete_bukti(db: Session, bukti_id: int) -> None:
             path.unlink()
     except OSError as exc:
         raise BadRequestException("File bukti pembayaran gagal dihapus") from exc
+
+
+def get_bukti_file_path(db: Session, bukti_id: int) -> Path:
+    bukti = repository.get_by_id(db, bukti_id)
+    if bukti is None:
+        raise NotFoundException("Bukti pembayaran tidak ditemukan")
+
+    root = (settings.private_upload_path / "payment_proofs").resolve()
+    path = Path(bukti.path_file).resolve()
+    if root not in path.parents and path != root:
+        raise BadRequestException("Path bukti pembayaran tidak valid")
+    if not path.exists() or not path.is_file():
+        raise NotFoundException("File bukti pembayaran tidak ditemukan")
+    return path

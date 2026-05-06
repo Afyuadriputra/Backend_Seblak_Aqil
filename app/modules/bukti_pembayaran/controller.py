@@ -1,7 +1,9 @@
-from fastapi import APIRouter, Depends, File, Form, UploadFile
+from fastapi import APIRouter, Depends, File, Form, Request, UploadFile
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
+from app.core.middleware import limiter
 from app.modules.admin.model import Admin
 from app.modules.bukti_pembayaran.schema import (
     BuktiPembayaranResponse,
@@ -9,18 +11,22 @@ from app.modules.bukti_pembayaran.schema import (
 )
 from app.modules.bukti_pembayaran.service import (
     delete_bukti,
+    get_bukti_file_path,
     list_bukti_by_pesanan,
     upload_bukti_tanpa_login,
 )
 from app.shared.enums import StatusPembayaran
-from app.shared.file_validator import validate_upload_file
+from app.shared.file_validator import validate_upload_content, validate_upload_file
 from app.shared.response import success_response
 
 router = APIRouter(prefix="/bukti-pembayaran", tags=["Bukti Pembayaran"])
+admin_router = APIRouter(prefix="/admin/bukti-pembayaran", tags=["Bukti Pembayaran Admin"])
 
 
 @router.post("/upload-tanpa-login")
+@limiter.limit("3/minute")
 async def upload_bukti_endpoint(
+    request: Request,
     kode_pesanan: str = Form(...),
     no_telepon: str = Form(...),
     file: UploadFile = File(...),
@@ -28,6 +34,7 @@ async def upload_bukti_endpoint(
 ):
     validate_upload_file(file)
     content = await file.read()
+    validate_upload_content(content, file.content_type)
     upload_bukti_tanpa_login(
         db,
         kode_pesanan=kode_pesanan,
@@ -62,3 +69,18 @@ def delete_bukti_endpoint(
 ):
     delete_bukti(db, bukti_id)
     return success_response("Bukti pembayaran berhasil dihapus")
+
+
+@admin_router.get("/{bukti_id}/file")
+def get_bukti_file(
+    bukti_id: int,
+    db: Session = Depends(get_database),
+    _: Admin = Depends(get_current_admin),
+):
+    path = get_bukti_file_path(db, bukti_id)
+    return FileResponse(
+        path,
+        media_type="application/octet-stream",
+        headers={"X-Content-Type-Options": "nosniff"},
+        filename=path.name,
+    )

@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, File, Query, UploadFile, status
 from sqlalchemy.orm import Session
 
 from app.core.dependencies import get_current_admin, get_database
+from app.core.redis_client import get_json_cache, set_json_cache
 from app.modules.admin.model import Admin
 from app.modules.metode_pembayaran.schema import (
     MetodePembayaranCreate,
@@ -19,7 +20,7 @@ from app.modules.metode_pembayaran.service import (
     update_metode,
     update_status,
 )
-from app.shared.file_validator import validate_upload_file
+from app.shared.file_validator import validate_upload_content, validate_upload_file
 from app.shared.pagination import calculate_offset, pagination_meta
 from app.shared.response import success_response
 
@@ -40,8 +41,14 @@ def get_metode_list(
 
 @router.get("/aktif")
 def get_metode_aktif(db: Session = Depends(get_database)):
+    cache_key = "metode-pembayaran:aktif"
+    cached = get_json_cache(cache_key)
+    if cached is not None:
+        return success_response("Daftar metode pembayaran aktif", cached)
+
     items = list_metode_aktif(db)
     data = [MetodePembayaranResponse.model_validate(item).model_dump(mode="json") for item in items]
+    set_json_cache(cache_key, data, 300)
     return success_response("Daftar metode pembayaran aktif", data)
 
 
@@ -107,11 +114,13 @@ async def update_gambar_qr_endpoint(
     _: Admin = Depends(get_current_admin),
 ):
     validate_upload_file(file)
+    content = await file.read()
+    validate_upload_content(content, file.content_type)
     metode = update_gambar_qr(
         db,
         metode_id,
         original_filename=file.filename or "qris.jpg",
-        content=await file.read(),
+        content=content,
     )
     return success_response(
         "Gambar QR berhasil diperbarui",
