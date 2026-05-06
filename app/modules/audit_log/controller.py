@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
-from app.core.dependencies import get_current_admin, get_database
+from app.core.dependencies import get_database, require_role
 from app.modules.admin.model import Admin
 from app.modules.audit_log.schema import AuditLogResponse
 from app.modules.audit_log.service import list_audit_logs
+from app.shared.enums import AdminRole
 from app.shared.pagination import calculate_offset, pagination_meta
 from app.shared.response import success_response
 
@@ -20,7 +21,7 @@ def get_audit_logs(
     entity: str | None = Query(default=None),
     entity_id: int | None = Query(default=None, gt=0),
     db: Session = Depends(get_database),
-    _: Admin = Depends(get_current_admin),
+    _: Admin = Depends(require_role(AdminRole.SUPERADMIN)),
 ):
     items, total = list_audit_logs(
         db,

@@ -2,6 +2,8 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from app.shared.enums import AdminRole
+
 
 class AdminBase(BaseModel):
     nama_admin: str = Field(..., min_length=1, max_length=100)
@@ -24,6 +26,8 @@ class AdminPasswordUpdate(BaseModel):
 
 class AdminResponse(AdminBase):
     id: int
+    role: AdminRole = AdminRole.ADMIN
+    is_active: bool = True
     dibuat_pada: datetime | None = None
     diperbarui_pada: datetime | None = None
 

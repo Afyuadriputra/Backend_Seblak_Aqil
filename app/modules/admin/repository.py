@@ -12,8 +12,21 @@ def get_by_email(db: Session, email: str) -> Admin | None:
     return db.scalar(select(Admin).where(Admin.email == email))
 
 
-def create(db: Session, nama_admin: str, email: str, kata_sandi: str) -> Admin:
-    admin = Admin(nama_admin=nama_admin, email=email, kata_sandi=kata_sandi)
+def create(
+    db: Session,
+    nama_admin: str,
+    email: str,
+    kata_sandi: str,
+    role: str = "admin",
+    is_active: bool = True,
+) -> Admin:
+    admin = Admin(
+        nama_admin=nama_admin,
+        email=email,
+        kata_sandi=kata_sandi,
+        role=role,
+        is_active=is_active,
+    )
     db.add(admin)
     db.flush()
     return admin
