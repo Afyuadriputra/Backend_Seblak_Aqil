@@ -19,12 +19,14 @@ def test_metode_pembayaran_qris_valid():
     assert schema.status_aktif is True
 
 
-def test_metode_pembayaran_qris_requires_qr_image():
-    with pytest.raises(ValidationError):
-        MetodePembayaranCreate(
-            nama_metode="QRIS",
-            tipe_metode=TipeMetodePembayaran.QRIS,
-        )
+def test_metode_pembayaran_qris_can_be_created_before_qr_upload():
+    schema = MetodePembayaranCreate(
+        nama_metode="QRIS",
+        tipe_metode=TipeMetodePembayaran.QRIS,
+    )
+
+    assert schema.tipe_metode == TipeMetodePembayaran.QRIS
+    assert schema.gambar_qr is None
 
 
 def test_metode_pembayaran_transfer_bank_requires_account_data():

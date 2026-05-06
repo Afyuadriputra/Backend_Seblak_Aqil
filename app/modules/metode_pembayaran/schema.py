@@ -16,9 +16,6 @@ class MetodePembayaranBase(BaseModel):
 
     @model_validator(mode="after")
     def validate_payment_fields(self):
-        if self.tipe_metode == TipeMetodePembayaran.QRIS and not self.gambar_qr:
-            raise ValueError("gambar_qr wajib diisi untuk metode QRIS")
-
         if self.tipe_metode == TipeMetodePembayaran.TRANSFER_BANK:
             if not self.nama_bank or not self.nomor_rekening or not self.nama_pemilik_rekening:
                 raise ValueError("data rekening wajib diisi untuk metode transfer_bank")

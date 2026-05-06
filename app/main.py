@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from app.core.config import get_settings
 from app.core.logger import logger
@@ -18,6 +19,7 @@ def create_app() -> FastAPI:
     )
 
     setup_middlewares(app)
+    setup_static_files(app)
     register_routes(app)
 
     logger.info(
@@ -27,6 +29,15 @@ def create_app() -> FastAPI:
     )
 
     return app
+
+
+def setup_static_files(app: FastAPI) -> None:
+    settings.upload_path.mkdir(parents=True, exist_ok=True)
+    app.mount(
+        "/storage/uploads",
+        StaticFiles(directory=settings.upload_path),
+        name="uploads",
+    )
 
 
 def register_routes(app: FastAPI) -> None:
