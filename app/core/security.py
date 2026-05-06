@@ -55,6 +55,8 @@ def decode_access_token(token: str) -> dict[str, Any] | None:
 
         if payload.get("type") != "access":
             return None
+        if not payload.get("sub"):
+            return None
 
         return payload
 

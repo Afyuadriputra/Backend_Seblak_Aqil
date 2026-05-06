@@ -17,15 +17,24 @@ def is_sqlite_database(database_url: str) -> bool:
 
 
 connect_args = {}
+engine_kwargs = {}
 
 if is_sqlite_database(settings.database_url):
     connect_args = {"check_same_thread": False}
+else:
+    engine_kwargs = {
+        "pool_pre_ping": True,
+        "pool_recycle": settings.db_pool_recycle_seconds,
+        "pool_size": settings.db_pool_size,
+        "max_overflow": settings.db_max_overflow,
+    }
 
 
 engine = create_engine(
     settings.database_url,
     connect_args=connect_args,
     echo=settings.app_debug and settings.is_development,
+    **engine_kwargs,
 )
 
 

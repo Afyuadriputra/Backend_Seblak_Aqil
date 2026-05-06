@@ -35,6 +35,7 @@ python-multipart
 # Rate Limiting
 # =========================
 slowapi
+redis
 
 # =========================
 # Testing
