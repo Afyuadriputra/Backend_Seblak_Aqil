@@ -133,7 +133,7 @@ ADMIN_HTML = r"""
     <div id="loginMsg"></div>
     <label>Email <input id="email" value="admin@example.com"></label><br>
     <label>Kata sandi <input id="password" type="password" value="password123"></label><br>
-    <button class="btn red" onclick="login()">Masuk</button>
+    <button class="btn red" onclick="login()" type="button">Masuk</button>
   </section>
 
   <section id="appView" class="shell hidden">
@@ -192,11 +192,15 @@ function ensureAuth() {
   if (state.token) { renderNav(); refresh(); }
 }
 async function login() {
+  const loginMsg = document.getElementById("loginMsg");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
   try {
+    loginMsg.innerHTML = "";
     const data = await api("/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email.value, kata_sandi: password.value })
+      body: JSON.stringify({ email: emailInput.value, kata_sandi: passwordInput.value })
     });
     state.token = data.access_token;
     localStorage.setItem("admin_token", state.token);
